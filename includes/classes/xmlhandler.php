@@ -146,13 +146,22 @@ class XmlHandler {
      */
     private function XMLtoArray($EL) {
         $ch = $EL->children();
-        if (count($ch)>1) {
+        if (count($ch)) {
             $i=0;
             $arr = array(); // tiene hijos devuelve array
             foreach ($ch as $child) {
-                $arr[$i]["tag"]=$child->getName();
-                $arr[$i]["data"] = $this->XMLtoArray($child); //ejecuta recursivamente para cada elemento (pone id para tags repetidos)
-                $i++;
+                if(isset($arr[$child->getName()])){
+                    if($i==0){
+                        $tmp=$arr[$child->getName()];
+                        unset($arr[$child->getName()]);
+                        $arr[$child->getName()][$i]=$tmp;
+                        $i++;
+                    }
+                    $arr[$child->getName()][$i]= $this->XMLtoArray($child); 
+                    $i++;
+                }else{
+                    $arr[$child->getName()]= $this->XMLtoArray($child); 
+                }
             }
             return $arr;
         } else {
