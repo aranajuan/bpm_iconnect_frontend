@@ -1,0 +1,58 @@
+.popup{
+    display: none;
+    font-size: 12px;
+    overflow-x: visible;
+}
+.img_menu{
+    cursor: pointer;
+}
+.button{
+    
+}
+.img_lnk{
+    cursor:pointer;
+    display: inline;
+    border:none;
+}
+body{
+    
+    font-family: calibri;
+    font-size: 10px;
+}
+h2{
+    padding-left: 10px;
+    padding-top: 10px;
+    color:#0A266B;
+    clear:both;
+}
+.main_bar{
+/*    background-color: white;*/
+}
+
+.main_content{
+    width: 910px;
+    
+
+}
+.main_content_TD{
+    padding:5px;
+    background-color: #f1f4fc ;
+    background-image: url('../../img/base/backline.png');
+    background-repeat: repeat-x;
+}
+table{
+    font-family: calibri;
+    font-size: 12px;
+}
+
+div.jqDockLabelText{
+    color: white;
+    width: 100px;
+}
+a:hover{text-decoration:none;}
+a{text-decoration:none;}
+
+.lnk_blue{
+    color:blue;
+    text-decoration: underline;
+}

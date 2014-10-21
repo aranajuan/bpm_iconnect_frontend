@@ -1,0 +1,77 @@
+    .master_TH{
+        border: 1px solid; width:95%;margin:10px;padding:5px;
+
+        background-image: url(http://t0002622801/itracker/includes/js/jq/css/pepper-grinder/images/ui-bg_fine-grain_15_ffffff_60x60.png);
+        background-position-x: 50%;
+        background-position-y: 50%;
+        background-size: initial;
+        background-repeat-x: repeat;
+        background-repeat-y: repeat;
+        background-attachment: initial;
+        background-origin: initial;
+        background-clip: initial;
+        background-color: rgb(255, 255, 255);
+        
+    }
+    
+    .header_TH{
+        height:15px;
+        font-size:13px;
+        cursor:pointer;
+    }
+    
+    .title_TH{
+        float:left;color:blue;font-weight: bold;
+    }
+    .subtitle_TH{
+        color:red;
+        width: 100%;
+        font-size:9px;
+        float:left;font-weight: bold;clear:both;
+    }
+    
+    .date_TH{
+        float:right;font-weight: bold;
+    }
+    
+    .element{
+        
+        margin-top: 7px;
+    }
+    
+    .element_title{
+        font-weight: bold;
+        font_size:12px;
+    }
+    
+    .element_value{
+        font_size:10px;
+        font-style: italic;
+        padding-left: 10px;
+    }
+    
+    .action_title{
+        font-size: 15px;
+        font-weight: bold;
+    }
+    
+    .action_detail{
+        font-size: 11px;
+        font-style: italic;
+        color:#2d2620;
+        
+    }
+    .ext_tkt{
+
+
+    }
+
+/*    Estilos para los datos del arbol*/
+
+    .tree_form_title{
+        color: blue;
+        font-weight: bold;
+        }
+    .tree_form_comment{
+        display: none;
+    }
