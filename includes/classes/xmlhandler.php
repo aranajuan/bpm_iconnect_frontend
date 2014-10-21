@@ -1,21 +1,21 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- * Description of xmlhandler
- *
- * @author u548391
+ * Administra la comunicacion XML con el application
  */
-class XmlHandler extends HtmlRequest {
+class XmlHandler {
 
     private $request;
     private $response;
+
+    /**
+     *
+     * @var SimpleXMLElement 
+     */
+    private $responseDom;
     private $user;
     private $params;
+    private $error;
 
     /**
      * Crea documento para la solicitud
@@ -53,13 +53,14 @@ class XmlHandler extends HtmlRequest {
     public function load_params($U, $class, $method, $params = null) {
         $this->create_doc();
         $this->user = $U;
+        $this->params = $params;
         $requestNodes = $this->request->getElementsByTagName("request");
         $request = $requestNodes->item(0);
         $request->appendChild($this->request->createElement("class", $class));
         $request->appendChild($this->request->createElement("method", $method));
-        if (is_array($params)) {
+        if (is_array($this->params)) {
             $paramsNode = $this->request->createElement("params");
-            foreach ($params as $k => $v) {
+            foreach ($this->params as $k => $v) {
                 $paramsNode->appendChild($this->request->createElement($k, $v));
             }
             $request->appendChild($paramsNode);
@@ -69,6 +70,7 @@ class XmlHandler extends HtmlRequest {
 
     /**
      * Envia request al aplication
+     * @return boolean exito al parsear.
      */
     public function send_request() {
         $requestTS = $this->request->saveXML();
@@ -79,20 +81,83 @@ class XmlHandler extends HtmlRequest {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $requestTS);
         curl_setopt($ch, CURLOPT_POSTREDIR, 3);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $data = curl_exec($ch);
         curl_close($ch);
-        echo "SOLICITUD:<br/>";
-        echo $requestTS;
-        echo "RESPUESTA:<br/>";
-        echo $data;
+        $this->response = $data;
+        return $this->load_response();
     }
 
     /**
-     * Devuelve el XML
+     * Carga respuesta en dom
+     * @return boolean error
      */
-    public function get_response() {
-        
+    private function load_response() {
+        try {
+            $this->responseDom = new SimpleXMLElement($this->response);
+            $this->error = null;
+            return $this->check_error();
+        } catch (Exception $e) {
+            $this->error = $e->getMessage();
+            $this->responseDom = null;
+            $this->input = null;
+            return false;
+        }
+    }
+
+    /**
+     * Analiza error en xml desde el aplication
+     * @return boolean true->no hay error
+     */
+    private function check_error() {
+        $this->error=$this->get_respose("error");
+        if($this->error){
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * Devuelve error
+     * @return string Description error
+     */
+    public function get_error() {
+        return $this->error;
+    }
+
+    /**
+     * Obtener datos de la respuesta
+     * @return array<string> Datos recursivos
+     */
+    public function get_respose($tag) {
+        $resDom = $this->responseDom->response;
+        $gR = $resDom->{$tag};
+        if ($gR) {
+            return $this->XMLtoArray($gR);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 
+     * @param SimpleXMLElement $EL
+     * @return array<string><string>/string array recursivo
+     */
+    private function XMLtoArray($EL) {
+        $ch = $EL->children();
+        if (count($ch)>1) {
+            $i=0;
+            $arr = array(); // tiene hijos devuelve array
+            foreach ($ch as $child) {
+                $arr[$i]["tag"]=$child->getName();
+                $arr[$i]["data"] = $this->XMLtoArray($child); //ejecuta recursivamente para cada elemento (pone id para tags repetidos)
+                $i++;
+            }
+            return $arr;
+        } else {
+            return strip_tags($EL->asXML()); // solo contiene texto
+        }
     }
 
 }

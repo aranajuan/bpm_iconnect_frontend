@@ -1,5 +1,4 @@
 <?php
-
 require_once 'includes/config/init.php'; // Configuraciones DB, Constantes, Direcciones
 
 $U = new USER();

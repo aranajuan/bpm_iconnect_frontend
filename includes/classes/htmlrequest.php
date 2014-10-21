@@ -59,7 +59,7 @@ class HtmlRequest {
      * @param array $exceptions parametros a ignorar por defaul se ignora class y method
      */
     public function get_allparams($exceptions=null){
-        $ignore=array("class","method");
+        $ignore=array("class","method","instancia");
         if(is_array($exceptions)){
             $ignore=  array_merge($ignore,$exceptions);
         }

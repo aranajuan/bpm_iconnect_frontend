@@ -4,7 +4,6 @@ class USER {
 
     private $usr;
     private $instancia;
-    private $dominio;
     private $ip;
     private $hash;
     private $intento;
@@ -13,6 +12,8 @@ class USER {
     private $puesto;
     private $mail;
     private $telefono;
+    private $access;
+    private $accessV;
     private $logged;
 
     /**
@@ -44,7 +45,6 @@ class USER {
     public function load_vec($tmp) {
         $this->usr = $tmp["usr"];
         $this->instancia = $tmp["instancia"];
-        $this->dominio = $tmp["dominio"];
         $this->ip = $tmp["ip"];
         $this->hash = $tmp["hash"];
         $this->intento = $tmp["intento"];
@@ -58,6 +58,8 @@ class USER {
         } else {
             $this->logged = false;
         }
+        $this->access=$tmp["access"];
+        $this->accessV=  explode(",",$this->access);
     }
 
     /**
