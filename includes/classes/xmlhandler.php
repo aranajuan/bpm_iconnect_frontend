@@ -5,6 +5,10 @@
  */
 class XmlHandler {
 
+    /**
+     *
+     * @var SimpleXMLElement 
+     */
     private $request;
     private $response;
 
@@ -56,12 +60,12 @@ class XmlHandler {
         $this->params = $params;
         $requestNodes = $this->request->getElementsByTagName("request");
         $request = $requestNodes->item(0);
-        $request->appendChild($this->request->createElement("class", $class));
-        $request->appendChild($this->request->createElement("method", $method));
+        $request->appendChild($this->create_requestElement("class", xmlEscape($class)));
+        $request->appendChild($this->create_requestElement("method", xmlEscape($method)));
         if (is_array($this->params)) {
-            $paramsNode = $this->request->createElement("params");
+            $paramsNode = $this->create_requestElement("params");
             foreach ($this->params as $k => $v) {
-                $paramsNode->appendChild($this->request->createElement($k, $v));
+                $paramsNode->appendChild($this->create_requestElement($k, $v));
             }
             $request->appendChild($paramsNode);
         }
@@ -69,11 +73,37 @@ class XmlHandler {
     }
 
     /**
+     * Devuelve DOM de request
+     * @return SimpleXMLElement
+     */
+    private function get_requestDOM() {
+        return $this->request;
+    }
+
+    public function create_requestElement($k, $v = null, $CDATA = false) {
+        if ($v) {
+            return $this->get_requestDOM()->createElement($this->make_param($k), $this->make_param($v, $CDATA));
+        } else {
+            return $this->get_requestDOM()->createElement($this->make_param($k));
+        }
+    }
+
+    /**
+     * Escapa caracteres del texto a enviar por xml
+     * @param string $text
+     * @param boolean $CDATA
+     * @return string
+     */
+    private function make_param($text, $CDATA) {
+        return trim(xmlEscape(strip_tags($text), $CDATA));
+    }
+
+    /**
      * Envia request al aplication
      * @return boolean exito al parsear.
      */
     public function send_request() {
-        $requestTS = $this->request->saveXML();
+        $requestTS = $this->request->saveXML(null, LIBXML_NOEMPTYTAG);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, APLICATION_SERVER);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
@@ -110,8 +140,8 @@ class XmlHandler {
      * @return boolean true->no hay error
      */
     private function check_error() {
-        $this->error=$this->get_respose("error");
-        if($this->error){
+        $this->error = $this->get_respose("error");
+        if ($this->error) {
             return false;
         }
         return true;
@@ -147,26 +177,35 @@ class XmlHandler {
     private function XMLtoArray($EL) {
         $ch = $EL->children();
         if (count($ch)) {
-            $i=0;
+            $i = 0;
             $arr = array(); // tiene hijos devuelve array
             foreach ($ch as $child) {
-                if(isset($arr[$child->getName()])){
-                    if($i==0){
-                        $tmp=$arr[$child->getName()];
+                if (isset($arr[$child->getName()])) {
+                    if ($i == 0) {
+                        $tmp = $arr[$child->getName()];
                         unset($arr[$child->getName()]);
-                        $arr[$child->getName()][$i]=$tmp;
+                        $arr[$child->getName()][$i] = $tmp;
                         $i++;
                     }
-                    $arr[$child->getName()][$i]= $this->XMLtoArray($child); 
+                    $arr[$child->getName()][$i] = $this->XMLtoArray($child);
                     $i++;
-                }else{
-                    $arr[$child->getName()]= $this->XMLtoArray($child); 
+                } else {
+                    $arr[$child->getName()] = $this->XMLtoArray($child);
                 }
             }
             return $arr;
         } else {
-            return strip_tags($EL->asXML()); // solo contiene texto
+            return $this->filter_param($EL->asXML()); // solo contiene texto
         }
+    }
+    
+     /**
+     * Devuelve parametro limpio de etiquetas XSS
+     * @param string $param
+     * @return string $param
+     */
+    private function filter_param($value) {
+        return trim(strip_tags(xmlText($value)));
     }
 
 }

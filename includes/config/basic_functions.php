@@ -72,6 +72,29 @@ function space_delete($str) {
 }
 
 /**
+ * Escapa caracteres especiales XML
+ * @param string $string
+ * @param boolean $CDATA
+ * @return string
+ */
+function xmlEscape($string,$CDATA=false) {
+    if($CDATA){
+        str_replace("]]>", "&cdatag;", $string);
+        return "<![CDATA[".$string."]]>";
+    }
+    return str_replace(array('&', '<', '>'), array('&amp;', '&lt;', '&gt;'), $string);
+}
+
+/**
+ * Re genera texto de xml
+ * @param string $string
+ * @return string
+ */
+function xmlText($string){
+    return str_replace(array('&amp;', '&lt;', '&gt;','&cdatag;'),array('&', '<', '>',']]>') , $string);
+}
+
+/**
  * si data es null devuelve default
  */
 function dataDefatult($data, $defaultD) {
