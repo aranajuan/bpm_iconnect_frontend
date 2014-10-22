@@ -58,10 +58,18 @@ class USER {
         } else {
             $this->logged = false;
         }
-        $this->access=$tmp["access"];
-        $this->accessV=  explode(",",$this->access);
+        $this->access = $tmp["access"];
+        $this->accessV = explode(",", $this->access);
     }
 
+    /**
+     * Cambia de instancia
+     * @param string $name
+     */
+    public function set_instance($name){
+        $this->instancia = $name;
+    }
+    
     /**
      * Informa si el usuario se encuentra logueado
      * @return boolean 
@@ -79,9 +87,9 @@ class USER {
     public function check_access($class, $method) {
         if ($class == null || $class == "")
             $class = "PAGE";
-        $valid = $GLOBALS[$this->get_prop("perfil")];
+        $valid = $this->accessV;
         foreach ($valid as $v) {
-            if (strtolower($GLOBALS["access"][$v][1]) == $class && strtolower($GLOBALS["access"][$v][2]) == $method) {
+            if (strtolower($GLOBALS["access"][trim($v)][1]) == $class && strtolower($GLOBALS["access"][trim($v)][2]) == $method) {
                 return true;
             }
         }
@@ -97,10 +105,10 @@ class USER {
         if ($class == null || $class == "")
             $class = "PAGE";
         $ret = array();
-        $valid = $GLOBALS[$this->get_prop("perfil")];
+        $valid = $this->accessV;
         foreach ($valid as $v) {
-            if (strtolower($GLOBALS["access"][$v][1]) == $class) {
-                array_push($ret, strtolower($GLOBALS["access"][$v][2]));
+            if (strtolower($GLOBALS["access"][trim($v)][1]) == $class) {
+                array_push($ret, strtolower($GLOBALS["access"][trim($v)][2]));
             }
         }
         return $ret;
@@ -136,6 +144,8 @@ class USER {
                 return $this->nombre;
             case 'perfil':
                 return $this->perfil;
+            case 'access':
+                return $this->access;
             case 'puesto':
                 return $this->puesto;
             case 'mail':

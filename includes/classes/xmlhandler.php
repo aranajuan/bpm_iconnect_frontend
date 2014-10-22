@@ -17,6 +17,11 @@ class XmlHandler {
      * @var SimpleXMLElement 
      */
     private $responseDom;
+    
+    /**
+     *
+     * @var USER
+     */
     private $user;
     private $params;
     private $error;
@@ -206,6 +211,14 @@ class XmlHandler {
      */
     private function filter_param($value) {
         return trim(strip_tags(xmlText($value)));
+    }
+    
+    /**
+     * Usuario ejecuta
+     * @return USER
+     */
+    public function get_user(){
+        return $this->user;
     }
 
 }

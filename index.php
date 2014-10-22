@@ -4,12 +4,17 @@ require_once 'includes/config/init.php'; // Configuraciones DB, Constantes, Dire
 $U = new USER();
 $R = new HtmlRequest();
 $U->load_session();
+if(($R->get_param("instancia")!=null)){
+    $U->set_instance($R->get_param("instancia"));
+}
+
 
 if ($R->is_set("class")) { // es un request ajax
     $class = $R->get_param("class");
     $method = $R->get_param("method");
     if ($class == "user" && $method == "login") {
-        $U->load_vec(array("usr"=>$R->get_param("usr"),"instancia"=>$R->get_param("instancia")));
+        $U->load_vec(array("usr"=>$R->get_param("usr")));
+        $U->set_instance($R->get_param("instancia"));
         $canAccess=true;
     } else {
         $canAccess = $U->check_access($class, $method);
@@ -18,7 +23,9 @@ if ($R->is_set("class")) { // es un request ajax
         include AJAX_CONTROLLER;
         exit();
     } else {
-        echo "No puedes ejecutar esta funcion, consulta a tu administrador";
+        echo $U->get_prop("access");
+        print_r($U->list_access("user"));
+        echo "No puedes ejecutar esta funcion, consulta a tu administrador ".$U->get_prop("access");
         exit();
     }
 }

@@ -99,25 +99,4 @@ $relations = array(
     array('similar_a_uno_del_equipo',6)
 );
 
-
-
-
-$staff_administrador = array(
-    0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 
-    18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,38,39,40,41,42,43,44,45,46,
-    47,48,50,51,52,53
-);
-
-$anonimo = array();
-
-$staff_teco = array(0, 1,19,25,31,32,33,34,35,36,37,38,39,40,41,42,45,46,48,50);
-$coordinador_staff_teco = array_merge($staff, array(43));
-$gerente_staff_teco = array_merge($staff, array(43));
-$supervisor_teco = array(0,1,25,31,32,33,35,37,39,41,42,45,48,50,44);
-$supervisor_cc3=$supervisor_teco;
-$agente_tp=$supervisor_teco;
-$comisiones_tp=array(0, 1,19,25,33,34,35,36,37,38,39,40,42,45,46,48,50);
-
-$system = array(49,54);
-
 ?>

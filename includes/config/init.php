@@ -5,6 +5,7 @@ ini_set('display_errors', '1');
 include_once 'defines.php';
 
 include_once 'basic_functions.php';
+include_once 'profiles.php';
 require_once 'classes/htmlrequest.php';
 require_once 'classes/user.php';
 
