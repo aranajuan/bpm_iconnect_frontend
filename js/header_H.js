@@ -85,10 +85,9 @@ function ucontact_p(){
 // FIN
 
 $(document).ready(function(){
-    
     //bloquear boton backspace
     $(document).keydown(function(e){ 
-        var elid = $(document.activeElement).is('input[type="text"]:focus, textarea:focus'); 
+        var elid = $(document.activeElement).is('input[type="text"]:focus, textarea:focus,input[type="password"]:focus'); 
         if(e.keyCode === 8 && !elid){ 
             return false; 
         }; 
@@ -149,6 +148,6 @@ $(document).ready(function(){
      
     if(typeof main == 'function')
         main(); // EJECUTA MAIN EN JS DE PAGINA EN INCLUDE
-    notice_information(MSJ_INFORMATION);
+    //notice_information(MSJ_INFORMATION);
 });
 

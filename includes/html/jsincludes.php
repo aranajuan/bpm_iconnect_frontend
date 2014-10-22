@@ -1,8 +1,9 @@
 <link rel="stylesheet" media="all" type="text/css" href="css/base.css" />
 <link rel="stylesheet" media="all" type="text/css" href="css/menu.css" />
+<script src="js/jq/js/jquery-1.6.2.js" type="text/javascript"></script>
 <script src="js/menu.js" type="text/javascript"></script>
 <script src="js/header_H.js" type="text/javascript"></script>
-<script src="js/jq/js/jquery-1.6.2.js" type="text/javascript"></script>
+
 
 <script src="js/jq/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
 

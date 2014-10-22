@@ -1,6 +1,6 @@
 <?php
 
-define("DOMAINS","TELECOM,CCPI,ITRACKER");
+define("INSTANCES","TELECOMCCT,AGENTESTP");
 
 // Configuraciones Base
 

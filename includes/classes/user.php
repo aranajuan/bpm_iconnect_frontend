@@ -10,6 +10,7 @@ class USER {
     private $nombre;
     private $perfil;
     private $puesto;
+    private $ubicacion;
     private $mail;
     private $telefono;
     private $access;
@@ -47,10 +48,10 @@ class USER {
         $this->instancia = $tmp["instancia"];
         $this->ip = $tmp["ip"];
         $this->hash = $tmp["hash"];
-        $this->intento = $tmp["intento"];
         $this->nombre = $tmp["nombre"];
         $this->perfil = $tmp["perfil"];
         $this->puesto = $tmp["puesto"];
+        $this->ubicacion = $tmp["ubicacion"];
         $this->mail = $tmp["mail"];
         $this->telefono = $tmp["usr"];
         if ($this->hash != "" && $this->hash != null) {
@@ -63,13 +64,43 @@ class USER {
     }
 
     /**
+     * Devuelve la cantidad de intentos de logueo
+     * @return int intentos
+     */
+    public function get_try() {
+        if (!isset($_SESSION["intento"]))
+            return 0;
+        return $_SESSION["intento"];
+    }
+
+    /**
+     * Agrega intento de logueo
+     * @return int intentos
+     */
+    public function add_try() {
+        if (!isset($_SESSION["intento"])) {
+            $_SESSION["intento"] = 1;
+            return 1;
+        }
+        $_SESSION["intento"]++;
+        return $this->get_try();
+    }
+
+    /**
+     * Resetea contador de logueo
+     */
+    public function reset_try() {
+        unset($_SESSION["intento"]);
+    }
+
+    /**
      * Cambia de instancia
      * @param string $name
      */
-    public function set_instance($name){
+    public function set_instance($name) {
         $this->instancia = $name;
     }
-    
+
     /**
      * Informa si el usuario se encuentra logueado
      * @return boolean 
@@ -86,7 +117,8 @@ class USER {
      */
     public function check_access($class, $method) {
         if ($class == null || $class == "")
-            $class = "PAGE";
+            $class = "page";
+        $class=  strtolower($class);
         $valid = $this->accessV;
         foreach ($valid as $v) {
             if (strtolower($GLOBALS["access"][trim($v)][1]) == $class && strtolower($GLOBALS["access"][trim($v)][2]) == $method) {
@@ -101,25 +133,37 @@ class USER {
      * @param type $class 
      * @return array<string> lista de metodos
      */
-    public function list_access($class) {
+    public function list_access($class=null) {
         if ($class == null || $class == "")
-            $class = "PAGE";
+            $class = "page";
         $ret = array();
         $valid = $this->accessV;
         foreach ($valid as $v) {
             if (strtolower($GLOBALS["access"][trim($v)][1]) == $class) {
-                array_push($ret, strtolower($GLOBALS["access"][trim($v)][2]));
+                array_push($ret, $GLOBALS["access"][trim($v)]);
             }
         }
         return $ret;
     }
 
     /**
+     * @return string pagina inicio
+     */
+    public function get_home(){
+        $arr = $this->list_access();
+        return $arr[0][2];
+    }
+    
+    /**
      * Genera menu en html
      * @return string
      */
     public function get_menu() {
-        return "";
+        $al = $this->list_access();
+        foreach($al as $a){
+            echo "<a class=\"ObjElem\" href=\"?L=".$a[2]."&m=menu\"<b>".$a[3]."</b></a><br>";
+        }
+        echo "<a class=\"ObjElem\" href=\"?L=logout&m=menu\"<b>SALIR</b></a><br>";
     }
 
     /**
@@ -148,6 +192,8 @@ class USER {
                 return $this->access;
             case 'puesto':
                 return $this->puesto;
+            case 'ubicacion':
+                return $this->ubicacion;
             case 'mail':
                 return $this->mail;
             case 'telefono':

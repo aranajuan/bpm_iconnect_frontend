@@ -3,6 +3,16 @@ require_once 'includes/config/init.php'; // Configuraciones DB, Constantes, Dire
 
 $U = new USER();
 $R = new HtmlRequest();
+
+/**
+ * TESTING
+ */
+if($R->get_param("L")=="logout"){
+    session_destroy();
+    header("Location: " . HTML_CONTROLLER . "/?L=login&m=loguedout");
+    exit();
+}
+
 $U->load_session();
 if(($R->get_param("instancia")!=null)){
     $U->set_instance($R->get_param("instancia"));
@@ -13,6 +23,9 @@ if ($R->is_set("class")) { // es un request ajax
     $class = $R->get_param("class");
     $method = $R->get_param("method");
     if ($class == "user" && $method == "login") {
+        if($U->get_try()>=3){
+            //echo "Se debe validar captcha";
+        }
         $U->load_vec(array("usr"=>$R->get_param("usr")));
         $U->set_instance($R->get_param("instancia"));
         $canAccess=true;
@@ -23,9 +36,7 @@ if ($R->is_set("class")) { // es un request ajax
         include AJAX_CONTROLLER;
         exit();
     } else {
-        echo $U->get_prop("access");
-        print_r($U->list_access("user"));
-        echo "No puedes ejecutar esta funcion, consulta a tu administrador ".$U->get_prop("access");
+        echo "No puedes ejecutar esta funcion, consulta a tu administrador ";
         exit();
     }
 }
@@ -36,7 +47,7 @@ if ($R->is_set("class")) { // es un request ajax
  */
 if (!$R->is_set("L")) {
     if ($U->is_logged()) {
-        header("Location: " . HTML_CONTROLLER . "/?L=index&m=redirected"); //usuario logueado, a pagina default
+        header("Location: " . HTML_CONTROLLER . "/?L=".$U->get_home()."&m=redirected"); //usuario logueado, a pagina default
     } else {
         header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged"); // usuario no logueado    
     }
