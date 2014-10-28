@@ -1,5 +1,5 @@
 <?php
-
+include "handler_functions.php";
 include "classes/xmlhandler.php";
 $params = $R->get_allparams();
 $XML = new XmlHandler();
@@ -8,7 +8,7 @@ $XML->send_request();
 include 'handlers/' . $class . "/" . $method . ".php";
 $result = GO($XML);
 if($result["type"]=="array"){
-    echo json_encode($result);
+    return json_encode($result);
 }elseif($result["type"]=="html"){
-    echo $result["html"];
+    return json_encode($result);
 }

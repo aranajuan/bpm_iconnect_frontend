@@ -17,7 +17,7 @@ class XmlHandler {
      * @var SimpleXMLElement 
      */
     private $responseDom;
-    
+
     /**
      *
      * @var USER
@@ -85,6 +85,13 @@ class XmlHandler {
         return $this->request;
     }
 
+    /**
+     * Crea elemento en request dom
+     * @param string $k key
+     * @param string $v value
+     * @param boolean $CDATA is cdata
+     * @return SimpleXMLElement elemento creado
+     */
     public function create_requestElement($k, $v = null, $CDATA = false) {
         if ($v) {
             return $this->get_requestDOM()->createElement($this->make_param($k), $this->make_param($v, $CDATA));
@@ -133,7 +140,7 @@ class XmlHandler {
             $this->error = null;
             return $this->check_error();
         } catch (Exception $e) {
-            $this->error = $e->getMessage();
+            $this->error = $e->getMessage() . ";" . $this->response;
             $this->responseDom = null;
             $this->input = null;
             return false;
@@ -203,8 +210,8 @@ class XmlHandler {
             return $this->filter_param($EL->asXML()); // solo contiene texto
         }
     }
-    
-     /**
+
+    /**
      * Devuelve parametro limpio de etiquetas XSS
      * @param string $param
      * @return string $param
@@ -212,12 +219,12 @@ class XmlHandler {
     private function filter_param($value) {
         return trim(strip_tags(xmlText($value)));
     }
-    
+
     /**
      * Usuario ejecuta
      * @return USER
      */
-    public function get_user(){
+    public function get_user() {
         return $this->user;
     }
 
