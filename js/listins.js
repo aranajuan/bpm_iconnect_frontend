@@ -98,12 +98,15 @@ function show_delete(id) {
                             id: DelID
                         },
                 function(data) {
-                    refresh_List();
-                    alert_p(data.result, "Error");
+                    if (data.result === "ok") {
+                        refresh_List();
+                    } else {
+                        alert_p(data.result, "Error");
+                    }
 
                 },
                         function(data) {
-                            alert(data);
+                            alert_p(data, "Error");
                         }
                 );
             }
@@ -142,15 +145,19 @@ function reg_update() {
                 cc: $("#txt_cc").val()
             },
     function(data) {
-        refresh_List();
-        alert_p(data.result, "Error");
+        if (data.result === "ok") {
+            refresh_List();
+            close_details();
+        } else {
+            alert_p(data.result, "Error");
+        }
 
     },
             function(data) {
-                alert(data);
+                alert_p(data, "Error");
             }
     );
-    
+
 }
 
 /**
@@ -170,12 +177,16 @@ function reg_insert() {
                 cc: $("#txt_cc").val()
             },
     function(data) {
-        refresh_List();
-        alert_p(data.result, "Error");
+        if (data.result === "ok") {
+            refresh_List();
+            close_details();
+        } else {
+            alert_p(data.result, "Error");
+        }
 
     },
             function(data) {
-                alert(data);
+                alert_p(data, "Error");
             }
     );
 
