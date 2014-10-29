@@ -21,7 +21,7 @@ $access = array(
     array(0,"PAGE", "index", "Pagina inicial"),
     array(1,"PAGE","listins", "Administracion de Listines"),
     array(2,"LISTIN", "insert", "Alta listin"),
-    array(3,"LISTIN","LISTIN", "listABM", "Lista de listines"),
+    array(3,"LISTIN","listABM","Lista de listines"),
     array(4,"LISTIN","delete", "Listin delete"),
     array(5,"LISTIN","update", "Listin update"),
     array(6,"LISTIN","listinSelect", "Listin select"),
@@ -77,26 +77,6 @@ $access = array(
     array(48,"TREE","get_filter", "Arbol para filtros"),
      
     
-);
-
-
-/**
- * Relaciones
- */
-$relations = array(
-    // titulo costo_calculo
-    array('tomado_por_usuario',1),
-    array('tomado_por_otro_usuario',1),
-    array('sin_tomar',0),
-    array('en_equipo',2),
-    array('generado_por_usuario',1),
-    array('generado_por_equipo_de_usuario',2),
-    array('equipo_visible',4),
-    array('derivado',3),
-    array('master_de_tkt_usr',3),
-    array('master_de_tkt_equipo',4),
-    array('similar_a_uno_del_usr',5),
-    array('similar_a_uno_del_equipo',6)
 );
 
 ?>

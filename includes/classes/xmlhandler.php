@@ -153,6 +153,9 @@ class XmlHandler {
      */
     private function check_error() {
         $this->error = $this->get_respose("error");
+        if($this->error==="ejecution::Usuario no logeado"){
+            $this->get_user()->logout();
+        }
         if ($this->error) {
             return false;
         }

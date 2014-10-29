@@ -25,6 +25,10 @@ class USER {
         $this->logged = false;
     }
 
+    public function logout(){
+        session_destroy();
+    }
+    
     /**
      * Carga datos de la session, devuelve true si esta iniciada
      * @return boolean hay session 

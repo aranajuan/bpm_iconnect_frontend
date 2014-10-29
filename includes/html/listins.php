@@ -1,7 +1,3 @@
-<?
-    require_once   'header.php';
-?>
-
 <div style="float:left;padding-left: 10px; ">
     <div><h2>ABM LISTINES</h2></div>
 </div>
@@ -33,7 +29,3 @@
     <div id="List">
     </div>
 </div>
-
-<?
-    require_once   'footer.php';
-?>

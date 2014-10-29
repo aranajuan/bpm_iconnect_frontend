@@ -9,7 +9,7 @@ $R = new HtmlRequest();
  * TESTING
  */
 if ($R->get_param("L") == "logout") {
-    session_destroy();
+    $U->logout();
     header("Location: " . HTML_CONTROLLER . "/?L=login&m=loguedout");
     exit();
 }
@@ -42,16 +42,14 @@ if ($R->is_set("class")) { // es un request ajax
     }
 }
 
+if (!$U->is_logged() && $R->get_param("L") != "login") {
+    header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged"); // usuario no logueado 
+    exit();
+}
 
-/**
- *  Navegacion por webs
- */
-if (!$R->is_set("L")) {
-    if ($U->is_logged()) {
+if (!$R->is_set("L")) { //enviar a home
         header("Location: " . HTML_CONTROLLER . "/?L=" . $U->get_home() . "&m=redirected"); //usuario logueado, a pagina default
-    } else {
-        header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged"); // usuario no logueado    
-    }
+        exit();
 }
 
 if ($R->get_param("L") == "login") { // permite siempre acceso a login
