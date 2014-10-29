@@ -1,38 +1,35 @@
 <link rel="stylesheet" media="all" type="text/css" href="css/base.css" />
 <link rel="stylesheet" media="all" type="text/css" href="css/menu.css" />
-<script src="js/jq/js/jquery-1.6.2.js" type="text/javascript"></script>
+
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/jui/themes/smoothness/jquery-ui.css" />
+<script src="js/classes/jui/external/jquery/jquery.js" type="text/javascript"></script>
+<script src="js/classes/jui/jquery-ui.js" type="text/javascript"></script>
+
+<script src="js/classes/FileUploader/js/vendor/jquery.ui.widget.js"></script>
+<script src="js/classes/FileUploader/js/jquery.iframe-transport.js"></script>
+<script src="js/classes/FileUploader/js/jquery.fileupload.js"></script>
+<script src="js/classes/datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="js/classes/FileUploader/fileuploader.js" type="text/javascript"></script>
+<script src="js/classes/multiselect/src/jquery.multiselect.js" type="text/javascript"></script>
+<script src="js/classes/multiselect/src/jquery.multiselect.filter.js" type="text/javascript"></script>
+<script src="js/classes/idSEL/idSEL.js" type="text/javascript"></script>
+<script src="js/classes/tinymce/jscripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+<script src="js/classes/tinyscrollbar.js" type="text/javascript"></script>
+<script src="js/classes/timepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+
+<script src="js/classes/basic_functions.js" type="text/javascript"></script>
+<script src="js/classes/notify_functions.js" type="text/javascript"></script>
+<script src="js/classes/postcontrol.js" type="text/javascript"></script>
+<script src="js/classes/user.js" type="text/javascript"></script>
+
+
 <script src="js/menu.js" type="text/javascript"></script>
 <script src="js/header_H.js" type="text/javascript"></script>
 
-
-<script src="js/jq/js/jquery-ui-1.8.23.custom.min.js" type="text/javascript"></script>
-
-<script src="js/jq/FileUploader/js/vendor/jquery.ui.widget.js"></script>
-<script src="js/jq/FileUploader/js/jquery.iframe-transport.js"></script>
-<script src="js/jq/FileUploader/js/jquery.fileupload.js"></script>
-
-<script src="js/jq/datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.css" />
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.filter.css" />
 
 
-<script src="js/jq/FileUploader/fileuploader.js" type="text/javascript"></script>
-
-
-<script src="js/jq/multiselect/src/jquery.multiselect.js" type="text/javascript"></script>
-<script src="js/jq/multiselect/src/jquery.multiselect.filter.js" type="text/javascript"></script>
-
-<script src="js/jq/idSEL/idSEL.js" type="text/javascript"></script>
-
-<script src="js/jq/tinymce/jscripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
-<script src="js/jq/tinyscrollbar.js" type="text/javascript"></script>
-
-
-<link rel="stylesheet" media="all" type="text/css" href="js/jq/multiselect/jquery.multiselect.css" />
-<link rel="stylesheet" media="all" type="text/css" href="js/jq/multiselect/jquery.multiselect.filter.css" />
-<link rel="stylesheet" media="all" type="text/css" href="js/jq/css/cupertino/jquery-ui-1.8.23.custom.css" />
-<link rel="stylesheet" media="all" type="text/css" href="js/jq/css/custom-theme/jquery.ui.theme.css" />
-
-
-<script src="js/jq/timepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
 <link rel="stylesheet" media="all" type="text/css" href="js/jq/timepicker/timepicker.css" />
 
 <style>
@@ -45,10 +42,7 @@
 </style>
 
 
-<script src="js/jq/basic_functions.js" type="text/javascript"></script>
-<script src="js/jq/notify_functions.js" type="text/javascript"></script>
-<script src="js/jq/postcontrol.js" type="text/javascript"></script>
-<script src="js/jq/user.js" type="text/javascript"></script>
+
 <script>
     user.id = '<?= $U->get_prop("usr"); ?>';
     user.name = '<?= $U->get_prop("nombre"); ?>';
