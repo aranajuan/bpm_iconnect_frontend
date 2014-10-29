@@ -30,7 +30,7 @@ function refresh_List() {
             'listinlist',
             {
                 class: 'listin',
-                method: 'listabm'
+                method: 'list'
             },
     function(data) {
         $("#List").html(data.html);

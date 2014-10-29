@@ -21,7 +21,7 @@ $access = array(
     array(0,"PAGE", "index", "Pagina inicial"),
     array(1,"PAGE","listins", "Administracion de Listines"),
     array(2,"LISTIN", "insert", "Alta listin"),
-    array(3,"LISTIN","listABM","Lista de listines"),
+    array(3,"LISTIN","list","Lista de listines"),
     array(4,"LISTIN","delete", "Listin delete"),
     array(5,"LISTIN","update", "Listin update"),
     array(6,"LISTIN","listinSelect", "Listin select"),
