@@ -30,10 +30,10 @@
 <link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.filter.css" />
 
 
-<link rel="stylesheet" media="all" type="text/css" href="js/jq/timepicker/timepicker.css" />
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/timepicker/timepicker.css" />
 
 <style>
-    @import "js/jq/datatable/css/demo_table_jui.css";
+    @import "js/classes/datatable/css/demo_table_jui.css";
     .dataTables_info { padding-top: 0; }
     .dataTables_paginate { padding-top: 0; }
     .css_right { float: right; }

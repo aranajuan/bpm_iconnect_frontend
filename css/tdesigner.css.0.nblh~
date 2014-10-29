@@ -1,0 +1,83 @@
+.MAINDV{
+
+    
+    position:relative;
+
+
+}
+.TITLEDV{
+    float:left;
+    background-color: #2779aa;
+    padding-left: 0px;
+
+
+}
+.SUBOBJDV{
+    float:left;
+
+    margin-left: 100px;
+}
+
+
+.element{
+    padding: 12px;
+    color:black;
+    width: 150px;
+    position: relative;
+    font-size:13px;
+    z-index:24;
+    cursor: pointer;
+    background-color: white;
+ 
+}
+
+.element:hover{
+    background-color: #1b911b;
+    opacity:0.9;
+    filter:alpha(opacity=90);
+}
+
+.question{
+    color: black;
+    border:2px solid red;
+    
+}
+
+.option{
+    color: black;
+    border:1px solid blue;
+    
+}
+
+/** Z-INDEX **/
+
+._jsPlumb_connector { z-index:100; }
+._jsPlumb_endpoint { z-index:110; }
+._jsPlumb_overlay { z-index:20; }
+._jsPlumb_connector._jsPlumb_hover {
+    z-index:21 !important;
+}
+._jsPlumb_endpoint._jsPlumb_hover {
+    z-index:22 !important;
+}
+._jsPlumb_overlay._jsPlumb_hover {
+    z-index:23 !important;
+}
+
+path, ._jsPlumb_endpoint { cursor:pointer; }
+
+.dragActive { border:2px dotted orange; }
+.dropHover { border:1px dotted red; }
+
+
+/* A TEST 
+._jsPlumb_element_dragging path {    
+    z-index:21 !important;
+    stroke:green;
+}
+
+._jsPlumb_endpoint._jsPlumb_element_dragging * {
+    fill:green;
+}
+
+*/
