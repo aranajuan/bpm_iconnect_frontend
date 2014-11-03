@@ -84,17 +84,21 @@ function confirm_p(msj,title,sifunc,nofunc){
         resizable:false,
         modal:true,
         buttons:{
-            "SI": function(){
+            "SI":{
+            text:"SI",
+            click: function(){
                 close_p();
-                if(typeof sifunc == "function")
+                if(typeof sifunc === "function")
                     sifunc();
-            },
-            "NO": function(){
+            }},
+            "NO":{
+            text:"NO",
+            click: function(){
                 close_p();
-                if(typeof nofunc == "function")
+                if(typeof nofunc ==="function")
                     nofunc();
+                }
             }
-        },
-        close: function(event, ui) {}
+            }
     });
 }

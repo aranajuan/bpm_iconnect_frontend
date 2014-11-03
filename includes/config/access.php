@@ -49,7 +49,7 @@ $access = array(
 
     array(25,"PAGE","systems", "Administracion de Sistemas"),
     array(26,"SYSTEM","insert", "Sistema insert"),
-    array(27,"SYSTEM","listABM", "Lista de sistemas"),
+    array(27,"SYSTEM","list", "Lista de sistemas"),
     array(28,"SYSTEM","delete", "Sistema delete"),
     array(29,"SYSTEM","update", "Sistema update"),
     

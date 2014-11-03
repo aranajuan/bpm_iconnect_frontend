@@ -103,7 +103,6 @@ function show_delete(id) {
                     if (data.type === "array") {
                         if (data.result === "ok") {
                             refresh_List();
-                            close_details();
                         } else {
                             alert_p(data.result, "Error");
                         }

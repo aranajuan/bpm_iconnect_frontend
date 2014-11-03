@@ -15,9 +15,9 @@ function GO($XML,$output="html") {
     }
     
     $list = $XML->get_respose("list");
-    $listins = $list["LISTIN"];
+    $listins = $list["SYSTEM"];
     
-    $HTML=arrayToTable(array("id","nombre","too","cc"), $listins, array("id","nombre","too","cc"), "id", false, true, false, "listaListin", "class=\"display\"");
+    $HTML=arrayToTable(array("id","nombre"), $listins, array("id","nombre"), "id", false, true, false, "tablelist", "class=\"display\"");
     
     return array("type" => "html", "html" => $HTML);
 }
