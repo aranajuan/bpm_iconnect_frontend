@@ -15,6 +15,10 @@ if ($R->get_param("L") == "logout") {
 }
 
 $U->load_session();
+
+/**
+ * Setea la instancia a conectar
+ */
 if (($R->get_param("instancia") != null)) {
     $U->set_instance($R->get_param("instancia"));
 }

@@ -155,6 +155,9 @@ class USER {
      */
     public function get_home(){
         $arr = $this->list_access();
+        if(count($arr)==0){ // no tiene ningun acceso
+            return "noacces";
+        }
         return $arr[0][2];
     }
     
