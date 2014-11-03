@@ -89,8 +89,8 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
             foreach ($updateFields as $uf){
                 $jsArray[trim($uf)]=$el[$uf];
             }
-            $javaTxt=  json_encode($jsArray);
-            $HTML.="<td><img src=\"img/b_edit.png\" class=\"img_lnk\" onclick=\"show_update(".strToJava($javaTxt).")\" /> </td>";
+            $javaTxt=  str_replace("\"", "&quot;",json_encode($jsArray));
+            $HTML.="<td><img src=\"img/b_edit.png\" class=\"img_lnk\" onclick=\"show_update(".$javaTxt.")\" /> </td>";
         }
         if ($isDelete) {
             $HTML.="<td><img src=\"img/b_drop.png\" class=\"img_lnk\"  onclick=\"show_delete('".$el[$idField]."')\" /> </td>";

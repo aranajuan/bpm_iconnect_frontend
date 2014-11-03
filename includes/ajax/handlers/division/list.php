@@ -15,9 +15,9 @@ function GO($XML,$output="html") {
     }
     
     $list = $XML->get_respose("list");
-    $listV = $list["LISTIN"];
+    $listV = $list["DIVISION"];
     
-    $HTML=arrayToTable(array("id","nombre","too","cc"), $listV, array("id","nombre","too","cc"), "id", false, true, false, "tablelist", "class=\"display\"");
+    $HTML=arrayToTable(array("id","nombre","linkwi"), $listV, array("id","nombre","linkwi"), "id", false, true, false, "tablelist", "class=\"display\"");
     
     return array("type" => "html", "html" => $HTML);
 }

@@ -1,5 +1,7 @@
 <?php
 
+
+
 /**
  * Busca recursivamente en un array
  */
@@ -105,6 +107,7 @@ function dataDefatult($data, $defaultD) {
 
 function strToSQL($txt) {
     $tmp = str_replace("'", "''", $txt);
+    $tmp = str_replace("\\", "\\\\", $tmp);
     return $tmp;
 }
 

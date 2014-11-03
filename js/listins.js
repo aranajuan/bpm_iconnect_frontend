@@ -34,15 +34,17 @@ function refresh_List() {
             },
     function(data) {
         $("#List").html(data.html);
-        $("#listaListin").dataTable(
+        $("#tablelist").dataTable(
                 {
                     "bJQueryUI": true,
                     "sPaginationType": "full_numbers",
                     "bAutoWidth": false
                 });
     },
-            null
-            );
+            function(data) {
+                $("#List").html(data);
+            }
+    );
 
 }
 
@@ -98,10 +100,15 @@ function show_delete(id) {
                             id: DelID
                         },
                 function(data) {
-                    if (data.result === "ok") {
-                        refresh_List();
+                    if (data.type === "array") {
+                        if (data.result === "ok") {
+                            refresh_List();
+                            close_details();
+                        } else {
+                            alert_p(data.result, "Error");
+                        }
                     } else {
-                        alert_p(data.result, "Error");
+                        alert_p(data.html, "Error");
                     }
 
                 },
@@ -145,11 +152,15 @@ function reg_update() {
                 cc: $("#txt_cc").val()
             },
     function(data) {
-        if (data.result === "ok") {
-            refresh_List();
-            close_details();
+        if (data.type === "array") {
+            if (data.result === "ok") {
+                refresh_List();
+                close_details();
+            } else {
+                alert_p(data.result, "Error");
+            }
         } else {
-            alert_p(data.result, "Error");
+            alert_p(data.html, "Error");
         }
 
     },
@@ -177,11 +188,15 @@ function reg_insert() {
                 cc: $("#txt_cc").val()
             },
     function(data) {
-        if (data.result === "ok") {
-            refresh_List();
-            close_details();
+        if (data.type === "array") {
+            if (data.result === "ok") {
+                refresh_List();
+                close_details();
+            } else {
+                alert_p(data.result, "Error");
+            }
         } else {
-            alert_p(data.result, "Error");
+            alert_p(data.html, "Error");
         }
 
     },

@@ -167,7 +167,11 @@ class XmlHandler {
      * @return string Description error
      */
     public function get_error() {
-        return $this->error;
+        if($this->error){
+            return "(app)".$this->error;
+        }else{
+            return null;
+        }
     }
 
     /**

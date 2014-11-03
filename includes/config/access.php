@@ -26,9 +26,9 @@ $access = array(
     array(5,"LISTIN","update", "Listin update"),
     array(6,"LISTIN","listinSelect", "Listin select"),
 
-    array(7,"PAGE", "division", "Administracion de Direcciones"),
+    array(7,"PAGE", "divisions", "Administracion de Direcciones"),
     array(8,"DIVISION","insert", "Alta Direcciones"),
-    array(9,"DIVISION","listABM", "Lista de Direcciones"),
+    array(9,"DIVISION","list", "Lista de Direcciones"),
     array(10,"DIVISION","delete", "Direcciones delete"),
     array(11,"DIVISION","update", "Direcciones update"),
     array(12,"DIVISION","divisionsSelect", "Direcciones select"),
