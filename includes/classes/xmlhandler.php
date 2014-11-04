@@ -26,6 +26,9 @@ class XmlHandler {
     private $params;
     private $error;
 
+    /*array*/
+    private $params_sent;
+    
     /**
      * Crea documento para la solicitud
      */
@@ -69,7 +72,9 @@ class XmlHandler {
         $request->appendChild($this->create_requestElement("method", xmlEscape($method)));
         if (is_array($this->params)) {
             $paramsNode = $this->create_requestElement("params");
+            $this->params_sent=null;
             foreach ($this->params as $k => $v) {
+                $this->params_sent[$k]=$this->make_param($v);
                 $paramsNode->appendChild($this->create_requestElement($k, $v));
             }
             $request->appendChild($paramsNode);
@@ -77,6 +82,15 @@ class XmlHandler {
         $this->make_header();
     }
 
+    /**
+     * Devuelve parametro enviado
+     * @param string $key
+     * @return string
+     */
+    public function get_paramSent($key){
+        return $this->params_sent[$key];
+    }
+    
     /**
      * Devuelve DOM de request
      * @return SimpleXMLElement

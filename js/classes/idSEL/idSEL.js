@@ -1,42 +1,86 @@
-jQuery.fn.idSEL = function(options,callback) {
-    var obj=this[0];
-    var idObj=$(obj).attr("id");
-    if($("#"+idObj+"cont")!=undefined) //si ya esta creado el select se elimina
+/**
+ * Arma idsel
+ * @param {class,method,checkedlist,whitelist,blacklist,multiple,params,closeF} options
+ * @param {function} callback
+ * @returns {html}
+ */
+jQuery.fn.idSEL = function(options, callback) {
+
+    var obj = this[0];
+    var htmlid = $(obj).attr("id");
+    var classC = "";
+    var method = "";
+    var checkedlist = "";
+    var whitelist = "";
+    var blacklist = "";
+    var multiple = "";
+
+    if ($("#" + htmlid + "cont") != undefined) //si ya esta creado el select se elimina
     {
-        $("#"+idObj+"cont").empty();
-        $("#"+idObj+"cont").attr("id",idObj);
-        obj=$("#"+idObj); 
+        $("#" + htmlid + "cont").empty();
+        $("#" + htmlid + "cont").attr("id", htmlid);
+        obj = $("#" + htmlid);
     }
-    if(!options)
-        {$(obj).html("Error JQ.");}
-    else{
-            if(options=="clear"){
-                $("#"+idObj+"cont").empty();
-                $("#"+idObj+"cont").attr("id",idObj);
-                return;
-            }
-            if(!options.validos)
-                options.validos="ALL";
+    if (!options)
+    {
+        $(obj).html("Error JQ.");
+    }
+    else {
+        if (options == "clear") { // clear elimina objeto
+            $("#" + htmlid + "cont").empty();
+            $("#" + htmlid + "cont").attr("id", idObj);
+            return;
+        }
 
-            if(!options.vnames)
-                options.vnames=0;
-            else
-                options.vnames=1;
-            options.htmlid =idObj;
-            $(obj).html('<img src="'+ HIMG_DIR+'/loading.gif" width="20" height="20" alt="cargando.." />');
-            $.post("includes/js/jq/idSEL/"+options.table+".php",
-                
-                    options
-
-                ,function(data){
-                    $(obj).html(data);
-                    $(obj).attr("id", $(obj).attr("id")+"cont");
-                    build_buttons();
-                    if(options.closeF)
-                        $(obj).bind("multiselectclose", function(event, ui){options.closeF();});
-                    if(callback)
-                        callback();
+        /* PREPARAR VARIABLES */
+        if (!options.class) {
+            $(obj).html(JAVA_ERROR);
+            return;
+        }
+        classC = options.class;
+        if (!options.method) {
+            $(obj).html(JAVA_ERROR);
+            return;
+        }
+        method = options.method;
+        checkedlist = varTodef(options.checkedlist, null);
+        whitelist = varTodef(options.whitelist, null);
+        blacklist = varTodef(options.blacklist, null);
+        multiple = varTodef(options.multiple, false);
+        $(obj).html(JAVA_LOADING);
+        postControl.sendRequest(
+                false,
+                '',
+                {
+                    class: classC,
+                    method: method,
+                    htmlid:htmlid,
+                    checkedlist: checkedlist,
+                    whitelist: whitelist,
+                    blacklist: blacklist,
+                    multiple: multiple,
+                    params: options.params
+                },
+                function(data){ //func ok
+                    if(data.status==="ok"){
+                        $(obj).html(data.html);
+                        $(obj).attr("id", $(obj).attr("id") + "cont");
+                        build_buttons();
+                        if (options.closeF)
+                            $(obj).bind("multiselectclose", function(event, ui) {
+                                options.closeF();
+                            });
+                        if (callback)
+                            callback();    
+                    }else{
+                        $(obj).html(JAVA_ERROR+data.error);
+                    }
+                },
+                function(data){ //fun error
+                    $(obj).html(JAVA_ERROR+data);
                 }
-            );
+        );
+
+
     }
 };

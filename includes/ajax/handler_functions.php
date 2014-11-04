@@ -6,18 +6,52 @@
  * @param XmlHandler $XML
  * @param string    $output //html
  */
-function normal_GO($XML,$output="html") {
+function normal_GO($XML, $output = "html") {
+    if ($XML->get_error()) {
+        return array("type" => "html", "html" => $XML->get_error(), "status" => "error");
+    }
+
+    if ($output != "html") {
+        return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
+    }
+
+    $result = $XML->get_respose("result");
+
+    return array("type" => "array", "result" => $result, "status" => "ok");
+}
+
+/**
+ * 
+ * @param XmlHandler $XML
+ * @param string $objname
+ * @param array $cols
+ * @param string $output
+ * @return array
+ */
+function normal_idsel($XML,$objname,$cols, $output = "html"){
     if($XML->get_error()){
-        return array("type" => "html", "html" => $XML->get_error());
+        return array("type" => "html", "html" => $XML->get_error(),"status"=>"error");
     }
     
     if($output!="html"){
-        return array("type" => "html", "html" => "Formato no soportado.");
+        return array("type" => "html", "html" => "Formato no soportado.","status"=>"error");
     }
     
-    $result = $XML->get_respose("result");
+    $list = $XML->get_respose("list");
+    $listV = $list[$objname];
     
-    return array("type" => "array", "result" => $result);
+    
+    $HTML=  arrayToSelect(
+            $listV, 
+            $cols,
+            $XML->get_paramSent("htmlid"), 
+            $XML->get_paramSent("multiple"), 
+            arrayornull(",",$XML->get_paramSent("checkedlist")), 
+            arrayornull(",",$XML->get_paramSent("whitelist")), 
+            arrayornull(",",$XML->get_paramSent("blacklist")) 
+    );
+    
+    return array("type" => "html", "html" => $HTML,"status"=>"ok");
 }
 
 /**
@@ -82,18 +116,18 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
         }
         //update,open,delete
         if ($isOpen) {
-            $HTML.="<td><img src=\"img/b_details.png\" class=\"img_lnk\" onclick=\"show_details('".$el[$idField]."')\" /> </td>";
+            $HTML.="<td><img src=\"img/b_details.png\" class=\"img_lnk\" onclick=\"show_details('" . $el[$idField] . "')\" /> </td>";
         }
         if (is_array($updateFields)) {
-            $jsArray=array();
-            foreach ($updateFields as $uf){
-                $jsArray[trim($uf)]=$el[$uf];
+            $jsArray = array();
+            foreach ($updateFields as $uf) {
+                $jsArray[trim($uf)] = $el[$uf];
             }
-            $javaTxt=  str_replace("\"", "&quot;",json_encode($jsArray));
-            $HTML.="<td><img src=\"img/b_edit.png\" class=\"img_lnk\" onclick=\"show_update(".$javaTxt.")\" /> </td>";
+            $javaTxt = str_replace("\"", "&quot;", json_encode($jsArray));
+            $HTML.="<td><img src=\"img/b_edit.png\" class=\"img_lnk\" onclick=\"show_update(" . $javaTxt . ")\" /> </td>";
         }
         if ($isDelete) {
-            $HTML.="<td><img src=\"img/b_drop.png\" class=\"img_lnk\"  onclick=\"show_delete('".$el[$idField]."')\" /> </td>";
+            $HTML.="<td><img src=\"img/b_drop.png\" class=\"img_lnk\"  onclick=\"show_delete('" . $el[$idField] . "')\" /> </td>";
         }
 
         $HTML.="</tr>";
@@ -109,6 +143,50 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
 // idem anterior
 function arrayToExcel() {
     
+}
+
+/**
+ * 
+ * @param array $arr
+ * @param array{value,text} $cols
+ * @param string $htmlid
+ * @param boolean $multiple
+ * @param array $checkedlist
+ * @param array $whitelist
+ * @param array $blacklist
+ * @return string htmlselect
+ */
+function arrayToSelect($arr, $cols, $htmlid, $multiple, $checkedlist, $whitelist, $blacklist) {
+
+    if ($multiple == "true") {
+        $multipleAttr = "MULTIPLE";
+        $multiple_class = "multiple";
+    } else {
+        $multipleAttr = "";
+        $multiple_class = "simple";
+    }
+
+    $HTML = "<select id=\"$htmlid\" class=\"multiselect_$multiple_class\"  $multipleAttr>";
+    foreach ($arr as $el) {
+        $show = true;
+        if (is_array($blacklist) && in_array($el[$cols[0]], $blacklist)) {
+            $show = false;
+        }
+
+        if (is_array($whitelist) && !in_array($el[$cols[0]], $whitelist)) {
+            $show = false;
+        }
+
+        if ($show) {
+            $selected = "";
+            if (is_array($checkedlist) && in_array($el[$cols[0]], $checkedlist)) {
+                $selected = "SELECTED";
+            }
+            $HTML .= "<option $selected value=\"" . $el[$cols[0]] . "\">" . $el[$cols[1]] . "</option>";
+        }
+    }
+    $HTML .="</select>";
+    return $HTML;
 }
 
 ?>

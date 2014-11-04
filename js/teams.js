@@ -2,7 +2,24 @@ var DelID=0;
 var UpdID=0;
 var mode_details=0;
 
+
 function main(){
+    $("#txt_direccion").idSEL(
+            {
+                class:'division',
+                method:'idsel_list',
+                multiple:true,
+                blacklist:'1'
+                
+            }
+    );
+    $("#reg_details").dialog({
+        title:'Detalles del equipo',
+        resizable:false ,
+        width:490,
+        height:300
+    });
+    /*
     $("#nuevo").click(function(){
         clear_popup();
         show_details();
@@ -14,8 +31,9 @@ function main(){
             reg_insert();
     });
     refresh_List();
+    */
 }
-
+/*
 function refresh_List(){
     if(!postControl.setIfClear()) return false;
     $.post("includes/ajaxQ/TEAM_listABM.php",{
@@ -168,3 +186,4 @@ function reg_insert(){
     }
     );    
 }
+*/

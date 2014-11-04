@@ -1,7 +1,3 @@
-<?
-    require_once   'header.php';
-?>
-
 <div style="float:left;padding-left: 10px; ">
     <div><h2>ABM EQUIPOS</h2></div>
 </div>
@@ -26,9 +22,8 @@
                 <td>Tipo</td>
                 <td>
                     <select id="sel_tipo" class="multiselect_simple">
-                        <option value="1"><?= TEAM::$TIPOS[1];?></option>
-                        <option value="2"><?= TEAM::$TIPOS[2];?></option>
-                        <option value="3"><?= TEAM::$TIPOS[3];?></option>
+                        <option value="1">TEMP</option>
+
                     </select>
                 </td>
             </tr>
@@ -63,7 +58,3 @@
     <div id="List">
     </div>
 </div>
-
-<?
-    require_once   'footer.php';
-?>

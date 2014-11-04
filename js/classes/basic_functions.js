@@ -12,7 +12,12 @@ function IsNumeric(n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-
+function varTodef(varval,defval){
+    if(varval)
+        return varval;
+    else
+        return defval;
+}
 
 /*
  * get from java

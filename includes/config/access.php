@@ -31,7 +31,7 @@ $access = array(
     array(9,"DIVISION","list", "Lista de Direcciones"),
     array(10,"DIVISION","delete", "Direcciones delete"),
     array(11,"DIVISION","update", "Direcciones update"),
-    array(12,"DIVISION","divisionsSelect", "Direcciones select"),
+    array(12,"DIVISION","idsel_list", "Direcciones select"),
 
     array(13,"PAGE", "teams", "Administracion de Equipos"),
     array(14,"TEAM","insert", "Equipo insert"),
