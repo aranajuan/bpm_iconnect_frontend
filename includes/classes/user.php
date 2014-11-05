@@ -57,7 +57,7 @@ class USER {
         $this->puesto = $tmp["puesto"];
         $this->ubicacion = $tmp["ubicacion"];
         $this->mail = $tmp["mail"];
-        $this->telefono = $tmp["usr"];
+        $this->telefono = $tmp["telefono"];
         if ($this->hash != "" && $this->hash != null) {
             $this->logged = true;
         } else {

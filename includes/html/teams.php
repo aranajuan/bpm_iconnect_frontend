@@ -19,18 +19,9 @@
                 <td><input id="txt_conformidad" type="text" size="5" value="02:00" /></td>
             </tr>
             <tr>
-                <td>Tipo</td>
-                <td>
-                    <select id="sel_tipo" class="multiselect_simple">
-                        <option value="1">TEMP</option>
-
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <td>Relaciona(deriva) con:</td>
                 <td>
-                        <div id="txt_equiposrelacion"></div>
+                        <div id="txt_equiposderiva"></div>
                 </td>
             </tr>
             <tr>

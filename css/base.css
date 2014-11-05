@@ -31,12 +31,10 @@ h2{
 
 .main_content{
     width: 910px;
-    
-
 }
 .main_content_TD{
     padding:5px;
-    background-color: #f1f4fc ;
+    background-color: #edecec ;
     background-repeat: repeat-x;
 }
 table{

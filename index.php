@@ -41,7 +41,7 @@ if ($R->is_set("class")) { // es un request ajax
         echo include AJAX_CONTROLLER;
         exit();
     } else {
-        echo "No puedes ejecutar esta funcion, consulta a tu administrador ";
+        echo "No puedes ejecutar esta funcion, consulta a tu administrador";
         exit();
     }
 }

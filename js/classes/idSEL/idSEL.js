@@ -73,7 +73,7 @@ jQuery.fn.idSEL = function(options, callback) {
                         if (callback)
                             callback();    
                     }else{
-                        $(obj).html(JAVA_ERROR+data.error);
+                        $(obj).html(JAVA_ERROR+data.html);
                     }
                 },
                 function(data){ //fun error

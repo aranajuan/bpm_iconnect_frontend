@@ -6,7 +6,7 @@
         <? require_once 'html/jsincludes.php'; // Jquery, css, UI, complementos JQ, js base ?>
         
     </head>
-    <body style="background-image: url('img/base/background.gif');">
+    <body style="background-color: white;">
         <div class="menuButton">
             <img src="img/base/menu_bt.png" />
         </div>

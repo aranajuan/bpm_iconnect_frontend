@@ -1,20 +1,5 @@
 <?php
 
-// PERFILES
-$PROFILES = array(
-    "anonimo",
-    "staff_administrador",
-    "staff_teco",
-    "coordinador_staff_teco",
-    "supervisor_teco",
-    "gerente_staff_teco",
-    "system",
-    "supervisor_cc3",
-    "agente_tp", //8
-    "comisiones_tp"); //9
-//Accesos por perfil
-
-
 $access = array(
     // id - clase - funcion - descripcion
     //0
@@ -24,7 +9,7 @@ $access = array(
     array(3,"LISTIN","list","Lista de listines"),
     array(4,"LISTIN","delete", "Listin delete"),
     array(5,"LISTIN","update", "Listin update"),
-    array(6,"LISTIN","listinSelect", "Listin select"),
+    array(6,"LISTIN","idsel_list", "Listin select"),
 
     array(7,"PAGE", "divisions", "Administracion de Direcciones"),
     array(8,"DIVISION","insert", "Alta Direcciones"),
@@ -35,10 +20,10 @@ $access = array(
 
     array(13,"PAGE", "teams", "Administracion de Equipos"),
     array(14,"TEAM","insert", "Equipo insert"),
-    array(15,"TEAM","listABM", "Lista de Equipos"),
+    array(15,"TEAM","list", "Lista de Equipos"),
     array(16,"TEAM","delete", "Equipo delete"),
     array(17,"TEAM","update", "Equipo update"),
-    array(18,"TEAM","teams_typeSelect", "Team select"),
+    array(18,"TEAM","idsel_listall", "Team select full admin"),
 
     array(19,"PAGE", "users", "Administracion de Usuarios"),
     array(20,"USER","insert", "Usuario insert"),

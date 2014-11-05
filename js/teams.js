@@ -1,189 +1,284 @@
-var DelID=0;
-var UpdID=0;
-var mode_details=0;
+var DelID = 0;
+var UpdID = 0;
+var mode_details = 0;
 
 
-function main(){
-    $("#txt_direccion").idSEL(
-            {
-                class:'division',
-                method:'idsel_list',
-                multiple:true,
-                blacklist:'1'
-                
-            }
-    );
-    $("#reg_details").dialog({
-        title:'Detalles del equipo',
-        resizable:false ,
-        width:490,
-        height:300
-    });
-    /*
-    $("#nuevo").click(function(){
+function main() {
+
+
+    $("#nuevo").click(function() {
         clear_popup();
         show_details();
     });
-    $("#details_ok").click(function(){
-        if(mode_details)
+
+    $("#details_ok").click(function() {
+        if (mode_details)
             reg_update();
         else
             reg_insert();
     });
+
     refresh_List();
-    */
-}
-/*
-function refresh_List(){
-    if(!postControl.setIfClear()) return false;
-    $.post("includes/ajaxQ/TEAM_listABM.php",{
-        a:1
-    },
-    function(data){
-        postControl.clearPosting();
-        $("#List").html(data);
-        $("#ABM_List").dataTable(
-        {
-            "bJQueryUI": true,
-            "sPaginationType": "full_numbers",
-            "bAutoWidth":true
-        });
-    }
-    );
-    return true;
-}
-function clear_popup(){
-    mode_details=0;
-    $("#txt_nombre").val("");
-    $("#txt_direccion").idSEL({
-        table:'divisions'
-    });
-    $("#txt_listin").idSEL({
-        table:'listin'
-    });
-    $("#txt_conformidad").val("02:00");
-    $("#txt_equiposrelacion").idSEL({
-        table:'teams_type',
-        multiple:'true'
-    });
-    $("#txt_equiposvisible").idSEL({
-        table:'teams_type',
-        multiple:'true'
-    });
-    
-    $("#sel_tipo").val("1");
-    
-}
-function show_details(){
-    $("#reg_details").dialog({
-        title:'Detalles del equipo',
-        resizable:false ,
-        width:490,
-        height:300
-    });
-}
-function close_details(){
-    $("#reg_details").dialog('close');
-}
-function reg_delete(id){
-    
-    
-    DelID=id;
-    confirm_p("Desea eliminar?","Confirmar",
-        function(){
-            if(!postControl.setIfClear()) return;
-            $.post("includes/ajaxQ/TEAM_delete.php",
-            {
-                id:DelID
-            },
-            function(data){
-                postControl.clearPosting();
-                if(data=="ok")
-                    refresh_List();
-                else
-                    alert_p(data, "Error");
-            }
-            ); 
-           
-        }
-        );
-    
+
+
+
 }
 
-function load_update(id,nombre,t_conformidad,iddireccion,idsequiposrelacion,idsequiposvisible,idlistin,tipo){
-    UpdID=id;
-    $("#txt_nombre").val(nombre);
-    $("#txt_direccion").idSEL({
-        table:'divisions',
-        defaultID:iddireccion
+/**
+ * Prepara popup para insert
+ * @returns {undefined}
+ */
+function clear_popup() {
+    mode_details = 0;
+    $("#txt_direccion").idSEL(
+            {
+                class: 'division',
+                method: 'idsel_list',
+                multiple: false
+
+            }
+    );
+
+    $("#txt_equiposderiva").idSEL(
+            {
+                class: 'team',
+                method: 'idsel_listall',
+                multiple: true
+
+            }
+    );
+    $("#txt_equiposvisible").idSEL(
+            {
+                class: 'team',
+                method: 'idsel_listall',
+                multiple: true
+
+            }
+    );
+
+    $("#txt_listin").idSEL(
+            {
+                class: 'listin',
+                method: 'idsel_list',
+                multiple: false
+
+            }
+    );
+
+}
+
+/**
+ * Abre popup
+ * @returns {undefined}
+ */
+function show_details() {
+    $("#reg_details").dialog({
+        title: 'Detalles del equipo',
+        resizable: false,
+        width: 490,
+        height: 300
     });
-    $("#txt_listin").idSEL({
-        table:'listin',
-        defaultID:idlistin
-    });
-    $("#txt_equiposrelacion").idSEL({
-        table:'teams_type',
-        multiple:'true',
-        defaultID:idsequiposrelacion
-    });
-    $("#txt_equiposvisible").idSEL({
-        table:'teams_type',
-        multiple:'true',
-         defaultID:idsequiposvisible
-    });
-    $("#txt_conformidad").val(t_conformidad);
-    $("#sel_tipo").val(tipo);
-    mode_details=1;
+}
+
+
+function show_update(data) {
+    UpdID = data.id;
+    $("#txt_nombre").val(data.nombre);
+
+    $("#txt_direccion").idSEL(
+            {
+                class: 'division',
+                method: 'idsel_list',
+                multiple: false,
+                checkedlist: data.iddireccion
+
+            }
+    );
+
+    $("#txt_equiposderiva").idSEL(
+            {
+                class: 'team',
+                method: 'idsel_listall',
+                multiple: true,
+                checkedlist: data.idsequiposderiva
+
+            }
+    );
+    $("#txt_equiposvisible").idSEL(
+            {
+                class: 'team',
+                method: 'idsel_listall',
+                multiple: true,
+                checkedlist: data.idsequiposvisible
+
+            }
+    );
+
+    $("#txt_listin").idSEL(
+            {
+                class: 'listin',
+                method: 'idsel_list',
+                multiple: false,
+                checkedlist: data.idlistin
+
+            }
+    );
+
+
+    $("#txt_conformidad").val(data.t_conformidad);
+
+    mode_details = 1;
     show_details();
 }
 
-function reg_update(){
-    if(!postControl.setIfClear()) return;
-    $.post("includes/ajaxQ/TEAM_update.php",
-    {
-        id:UpdID,
-        nombre:$("#txt_nombre").val(),
-        t_conformidad:$("#txt_conformidad").val(),
-        iddireccion:$("#txt_direccion").val(),
-        idlistin:$("#txt_listin").val(),
-        tipo:$("#sel_tipo").val(),
-        idequipos_relacion:array_txt($("#txt_equiposrelacion").val()),
-        idequipos_visible:array_txt($("#txt_equiposvisible").val())
+/**
+ * Carga tabla
+ * @returns {undefined}
+ */
+function refresh_List() {
+    postControl.sendRequest(
+            true,
+            'teamlist',
+            {
+                class: 'team',
+                method: 'list'
+            },
+    function(data) {
+        $("#List").html(data.html);
+        $("#tablelist").dataTable(
+                {
+                    "bJQueryUI": true,
+                    "sPaginationType": "full_numbers",
+                    "bAutoWidth": false
+                });
     },
-    function(data){
-        postControl.clearPosting();
-        if(data=="ok")
-        {
-            refresh_List();
-            close_details();
-        }
-        else
-            alert_p(data, "Error");
-    }
-    );    
+            function(data) {
+                $("#List").html(data);
+            }
+    );
 }
-function reg_insert(){
-    if(!postControl.setIfClear()) return;
-    $.post("includes/ajaxQ/TEAM_insert.php",
-    {
-        nombre:$("#txt_nombre").val(),
-        t_conformidad:$("#txt_conformidad").val(),
-        iddireccion:$("#txt_direccion").val(),
-        idlistin:$("#txt_listin").val(),
-        tipo:$("#sel_tipo").val(),
-        idequipos_relacion:array_txt($("#txt_equiposrelacion").val()),
-        idequipos_visible:array_txt($("#txt_equiposvisible").val())
+
+
+/**
+ * Cierra popup
+ * @returns {undefined}
+ */
+function close_details() {
+    $("#reg_details").dialog('close');
+}
+
+
+/**
+ * Elimina registro
+ * @param {type} id
+ * @returns {undefined}
+ */
+function show_delete(id) {
+    DelID = id;
+    confirm_p("Desea eliminar?", "Confirmar",
+            function() {
+                postControl.sendRequest(
+                        true,
+                        'teamdelete',
+                        {
+                            class: 'team',
+                            method: 'delete',
+                            id: DelID
+                        },
+                function(data) {
+                    if (data.type === "array") {
+                        if (data.result === "ok") {
+                            refresh_List();
+                        } else {
+                            alert_p(data.result, "Error");
+                        }
+                    } else {
+                        alert_p(data.html, "Error");
+                    }
+
+                },
+                        function(data) {
+                            alert_p(data, "Error");
+                        }
+                );
+            }
+    );
+
+}
+
+/**
+ * Actualiza registro
+ * @returns {unresolved}
+ */
+function reg_update() {
+    postControl.sendRequest(
+            true,
+            'teamupdate',
+            {
+                class: 'team',
+                method: 'update',
+                id: UpdID,
+                nombre: $("#txt_nombre").val(),
+                t_conformidad: $("#txt_conformidad").val(),
+                iddireccion: $("#txt_direccion").val(),
+                idlistin: $("#txt_listin").val(),
+                idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+            },
+    function(data) {
+        if (data.type === "array") {
+            if (data.result === "ok") {
+                refresh_List();
+                close_details();
+            } else {
+                alert_p(data.result, "Error");
+            }
+        } else {
+            alert_p(data.html, "Error");
+        }
+
     },
-    function(data){
-        postControl.clearPosting();
-        if(data=="ok")
-        {
-            refresh_List();
-            close_details();
-        }
-        else
-            alert_p(data, "Error");
-    }
-    );    
+            function(data) {
+                alert_p(data, "Error");
+            }
+    );
 }
-*/
+
+/**
+ * Inserta registro
+ * @returns {unresolved}
+ */
+function reg_insert() {
+
+    postControl.sendRequest(
+            true,
+            'teaminsert',
+            {
+                class: 'team',
+                method: 'insert',
+                nombre: $("#txt_nombre").val(),
+                t_conformidad: $("#txt_conformidad").val(),
+                iddireccion: $("#txt_direccion").val(),
+                idlistin: $("#txt_listin").val(),
+                tipo: $("#sel_tipo").val(),
+                idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+            },
+    function(data) {
+        if (data.type === "array") {
+            if (data.result === "ok") {
+                refresh_List();
+                close_details();
+            } else {
+                alert_p(data.result, "Error");
+            }
+        } else {
+            alert_p(data.html, "Error");
+        }
+
+    },
+            function(data) {
+                alert_p(data, "Error");
+            }
+    );
+}
