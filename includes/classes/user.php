@@ -125,6 +125,7 @@ class USER {
         $class=  strtolower($class);
         $valid = $this->accessV;
         foreach ($valid as $v) {
+            //echo strtolower($GLOBALS["access"][trim($v)][1])."/".strtolower($GLOBALS["access"][trim($v)][2])."<br/>";
             if (strtolower($GLOBALS["access"][trim($v)][1]) == $class && strtolower($GLOBALS["access"][trim($v)][2]) == $method) {
                 return true;
             }

@@ -1,12 +1,13 @@
 <?php
 
+
 $access = array(
     // id - clase - funcion - descripcion
     //0
     array(0,"PAGE", "index", "Pagina inicial"),
     array(1,"PAGE","listins", "Administracion de Listines"),
     array(2,"LISTIN", "insert", "Alta listin"),
-    array(3,"LISTIN","list","Lista de listines"),
+    array(3,"LISTIN","list",  "Lista de listines"),
     array(4,"LISTIN","delete", "Listin delete"),
     array(5,"LISTIN","update", "Listin update"),
     array(6,"LISTIN","idsel_list", "Listin select"),
@@ -27,7 +28,7 @@ $access = array(
 
     array(19,"PAGE", "users", "Administracion de Usuarios"),
     array(20,"USER","insert", "Usuario insert"),
-    array(21,"USER","listABM", "Lista de usuarios"),
+    array(21,"USER","list", "Lista de usuarios"),
     array(22,"USER","delete", "Usuario delete"),
     array(23,"USER","update", "Usuario update"),
     array(24,"USER","ucontact_Update", "Actualizar datos de contacto"),
@@ -39,10 +40,15 @@ $access = array(
     array(29,"SYSTEM","update", "Sistema update"),
     
     array(30,"PAGE","newtkt", "Nuevo TKT"),
+    
     array(31,"TREE","get_open", "TREE get"),
+    
     array(32,"ACTION","ejecute_action", "Ejecutar accion TKT"),
+    
     array(33,"PAGE","staffhome", "Home Staff"),
+    
     array(34,"USER","user_teamsSelect", "Equipos de usuario"),
+    
     array(35,"TKT","listToTeam", "Lista de tkts filtrada"),
     array(36,"TKT","getH", "Detalle del ticket"),
     array(37,"TREE","getSimilars", "TKT similares"),
@@ -60,8 +66,36 @@ $access = array(
     
     array(47,"PAGE","reports", "Reportes"),
     array(48,"TREE","get_filter", "Arbol para filtros"),
+    
+    array(49,"USER","idsel_domains","Lista de dominios validos"),
+    array(50,"USER","idsel_myadmteams","Lista de equipos que administra"),
+    array(51,"USER","idsel_profiles","Lista de perfiles validos"),
+    
+    array(52,"INSTANCE","idsel_listfronts","Lista de fronts validos")
      
     
 );
+
+
+/**
+ * Relaciones
+ */
+$relations = array(
+    // titulo costo_calculo
+    array('tomado_por_usuario',1),
+    array('tomado_por_otro_usuario',1),
+    array('sin_tomar',0),
+    array('en_equipo',2),
+    array('generado_por_usuario',1),
+    array('generado_por_equipo_de_usuario',2),
+    array('equipo_visible',4),
+    array('derivado',3),
+    array('master_de_tkt_usr',3),
+    array('master_de_tkt_equipo',4),
+    array('similar_a_uno_del_usr',5),
+    array('similar_a_uno_del_equipo',6)
+);
+
+
 
 ?>

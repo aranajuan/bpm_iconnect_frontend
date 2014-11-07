@@ -17,7 +17,21 @@ function GO($XML,$output="html") {
     $list = $XML->get_respose("list");
     $users = $list["USER"];
     
-    $HTML=arrayToTable(array("usr=>usuario","telefono=>telefono"), $users, array("usr","telefono"), "usr", false, false, true, "listaUsr", "");
+    foreach ($users as &$u){
+        $u["_usrd"]=$u["dominio"]."/<b>".$u["usr"]."</b>";
+    }
+    
+    $HTML=arrayToTable(
+            array("_usrd=>usuario","nombre","perfilT=>perfil",'equiposname=>equipos'),
+            $users,
+            array("dominio","usr","nombre","mail","telefono","puesto","ubicacion","fronts","perfil","idsequipos"),
+            "usr",
+            false,
+            true,
+            false,
+            "tablelist",
+            "class=\"display\""
+    );
     
     return array("type" => "html", "html" => $HTML);
 }

@@ -28,30 +28,23 @@ function normal_GO($XML, $output = "html") {
  * @param string $output
  * @return array
  */
-function normal_idsel($XML,$objname,$cols, $output = "html"){
-    if($XML->get_error()){
-        return array("type" => "html", "html" => $XML->get_error(),"status"=>"error");
+function normal_idsel($XML, $objname, $cols, $output = "html") {
+    if ($XML->get_error()) {
+        return array("type" => "html", "html" => $XML->get_error(), "status" => "error");
     }
-    
-    if($output!="html"){
-        return array("type" => "html", "html" => "Formato no soportado.","status"=>"error");
+
+    if ($output != "html") {
+        return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
-    
+
     $list = $XML->get_respose("list");
     $listV = $list[$objname];
-    
-    
-    $HTML=  arrayToSelect(
-            $listV, 
-            $cols,
-            $XML->get_paramSent("htmlid"), 
-            $XML->get_paramSent("multiple"), 
-            arrayornull(",",$XML->get_paramSent("checkedlist")), 
-            arrayornull(",",$XML->get_paramSent("whitelist")), 
-            arrayornull(",",$XML->get_paramSent("blacklist")) 
+
+    $HTML = arrayToSelect(
+            $listV, $cols, $XML->get_paramSent("htmlid"), $XML->get_paramSent("multiple"), arrayornull(",", $XML->get_paramSent("checkedlist")), arrayornull(",", $XML->get_paramSent("whitelist")), arrayornull(",", $XML->get_paramSent("blacklist"))
     );
-    
-    return array("type" => "html", "html" => $HTML,"status"=>"ok");
+
+    return array("type" => "html", "html" => $HTML, "status" => "ok");
 }
 
 /**
@@ -73,7 +66,11 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
     $colsAlias = array();
 
     $i = 0;
-
+    if (!isset($arr[0])) {
+        $tmp = $arr;
+        $arr = array();
+        $arr[0] = $tmp;
+    }
     foreach ($cols as $c) {
         $cE = explode("=>", $c);
         if (count($cE) > 1) {
@@ -164,6 +161,12 @@ function arrayToSelect($arr, $cols, $htmlid, $multiple, $checkedlist, $whitelist
     } else {
         $multipleAttr = "";
         $multiple_class = "simple";
+    }
+
+    if (!isset($arr[0])) {
+        $tmp = $arr;
+        $arr = array();
+        $arr[0] = $tmp;
     }
 
     $HTML = "<select id=\"$htmlid\" class=\"multiselect_$multiple_class\"  $multipleAttr>";

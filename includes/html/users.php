@@ -3,37 +3,62 @@
 </div>
 
 <div id="reg_details" class="popup">
-        <table>
-            <tr>
-                <td>Legajo:</td>
-                <td><input id="txt_id" type="text" size="20" /></td>
-            </tr>
-            <tr>
-                <td>Equipos:</td>
-                <td>
-                        <div id="txt_equipo"></div>
-                </td>
-            </tr>
-            <tr>
-                <td>Perfil:</td>
-                <td>
-                    <select id="txt_perfil" class="multiselect_simple filter">
-                        <?
-                            foreach($PROFILES as $id => $perfil){
-                        ?>
-                        <option value="<?=$id?>"><?=$perfil?></option>
-                        <?
-                            }
-                        ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <input id="details_ok" type="button" class="button" value="guardar" />
-                </td>
-            </tr>
-        </table>
+    <table>
+        <tr>
+            <td>Dominio:</td>
+            <td>
+                <div id="txt_dominio"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Usuario:</td>
+            <td><input id="txt_usr" type="text" size="20" /></td>
+        </tr>
+        <tr>
+            <td>Nombre:</td>
+            <td><input id="txt_nombre" type="text" size="20" /></td>
+        </tr>
+        <tr>
+            <td>Mail:</td>
+            <td><input id="txt_mail" type="text" size="20" /></td>
+        </tr>
+        <tr>
+            <td>Telefono:</td>
+            <td><input id="txt_telefono" type="text" size="20" /></td>
+        </tr>
+        <tr>
+            <td>Puesto:</td>
+            <td><input id="txt_puesto" type="text" size="20" /></td>
+        </tr>
+        <tr>
+            <td>Ubicacion:</td>
+            <td><input id="txt_ubicacion" type="text" size="20" /></td>
+        </tr>
+        <tr>
+            <td>Fronts:</td>
+            <td>
+                <div id="txt_fronts"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Perfil:</td>
+            <td>
+                <div id="txt_perfil"></div>
+            </td>
+        </tr>
+        <tr>
+            <td>Equipos:</td>
+            <td>
+                <div id="txt_equipos"></div>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input id="details_ok" type="button" class="button" value="guardar" />
+            </td>
+        </tr>
+    </table>
 </div>
 <br /><br /><br /><br /><br /><br />
 <div style="text-align: left;padding-left: 10px;padding-right: 10px;">
