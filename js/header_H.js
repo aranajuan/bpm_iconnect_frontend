@@ -14,7 +14,6 @@ function build_buttons(){
         noneSelectedText: "Seleccione una opcion", 
         selectedList: 1 
     });
-    //$(".filter").multiselectfilter();
     $(".button").button(); 
     if(arguments[0]=="txthtml"){
         tinyMCE.init({  

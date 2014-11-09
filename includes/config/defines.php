@@ -4,7 +4,7 @@ define("INSTANCES","TELECOMCCT,AGENTESTP");
 
 // Configuraciones Base
 
-define('BASE_DIR',str_replace('\\', '/',realpath(dirname(realpath(dirname(__FILE__)).'\\..\\..\\..\\'))));
+define('BASE_DIR',realpath(dirname(realpath(dirname(__FILE__)).'/../../../')));
 define('ROOT_DIR',BASE_DIR.'');
 define("FRONT_NAME","LOCAL");
 define("APLICATION_SERVER","http://localhost/itracker_app");
@@ -24,5 +24,5 @@ define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx");
 
 
 
-ini_set('include_path',ini_get('include_path').'./;'.INCLUDE_DIR);
+ini_set('include_path',ini_get('include_path').'./'.PATH_SEPARATOR.INCLUDE_DIR);
 ?>

@@ -37,6 +37,26 @@
                 </td>
             </tr>
             <tr>
+                <td>Vista inbox:</td>
+                <td>
+                    <input id="txt_vistainbox" type="text" size="40" />
+                </td>
+            </tr>
+            <tr>
+                <td>Vista mytkts:</td>
+                <td>
+                    <input id="txt_vistamytkts" type="text" size="40" />
+                    <br/><i>campo=alias,funcion_parametro=alias</i>
+                </td>
+            </tr>
+            <tr>
+                <td>Adms</td>
+                <td>
+                    <input id="txt_adms" type="text" size="40" />
+                    <br/><i>Separar(,)</i>
+                </td>
+            </tr>
+            <tr>
                 <td colspan="2">
                     <input id="details_ok" type="button" class="button" value="guardar" />
                 </td>

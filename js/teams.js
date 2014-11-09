@@ -6,12 +6,12 @@ var mode_details = 0;
 function main() {
 
 
-    $("#nuevo").click(function() {
+    $("#nuevo").click(function () {
         clear_popup();
         show_details();
     });
 
-    $("#details_ok").click(function() {
+    $("#details_ok").click(function () {
         if (mode_details)
             reg_update();
         else
@@ -64,7 +64,10 @@ function clear_popup() {
 
             }
     );
-
+    $("#txt_nombre").val("");
+    $("#txt_vistainbox").val("");
+    $("#txt_vistamytkts").val("");
+    $("#txt_adms").val("");
 }
 
 /**
@@ -76,7 +79,7 @@ function show_details() {
         title: 'Detalles del equipo',
         resizable: false,
         width: 490,
-        height: 300
+        height: 400
     });
 }
 
@@ -127,6 +130,10 @@ function show_update(data) {
 
     $("#txt_conformidad").val(data.t_conformidad);
 
+    $("#txt_vistainbox").val(data.staffhome_vista);
+    $("#txt_vistamytkts").val(data.mytkts_vista);
+    $("#txt_adms").val(data.idsadms);
+
     mode_details = 1;
     show_details();
 }
@@ -143,7 +150,7 @@ function refresh_List() {
                 class: 'team',
                 method: 'list'
             },
-    function(data) {
+    function (data) {
         $("#List").html(data.html);
         $("#tablelist").dataTable(
                 {
@@ -152,7 +159,7 @@ function refresh_List() {
                     "bAutoWidth": false
                 });
     },
-            function(data) {
+            function (data) {
                 $("#List").html(data);
             }
     );
@@ -176,7 +183,7 @@ function close_details() {
 function show_delete(id) {
     DelID = id;
     confirm_p("Desea eliminar?", "Confirmar",
-            function() {
+            function () {
                 postControl.sendRequest(
                         true,
                         'teamdelete',
@@ -185,7 +192,7 @@ function show_delete(id) {
                             method: 'delete',
                             id: DelID
                         },
-                function(data) {
+                function (data) {
                     if (data.type === "array") {
                         if (data.result === "ok") {
                             refresh_List();
@@ -197,7 +204,7 @@ function show_delete(id) {
                     }
 
                 },
-                        function(data) {
+                        function (data) {
                             alert_p(data, "Error");
                         }
                 );
@@ -222,10 +229,13 @@ function reg_update() {
                 t_conformidad: $("#txt_conformidad").val(),
                 iddireccion: $("#txt_direccion").val(),
                 idlistin: $("#txt_listin").val(),
+                idsadms: $("#txt_adms").val(),
+                mytkts_vista: $("#txt_vistamytkts").val(),
+                staffhome_vista: $("#txt_vistainbox").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
                 idsequipos_visible: array_txt($("#txt_equiposvisible").val())
             },
-    function(data) {
+    function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 refresh_List();
@@ -238,7 +248,7 @@ function reg_update() {
         }
 
     },
-            function(data) {
+            function (data) {
                 alert_p(data, "Error");
             }
     );
@@ -260,11 +270,14 @@ function reg_insert() {
                 t_conformidad: $("#txt_conformidad").val(),
                 iddireccion: $("#txt_direccion").val(),
                 idlistin: $("#txt_listin").val(),
+                idsadms: $("#txt_adms").val(),
+                mytkts_vista: $("#txt_vistamytkts").val(),
+                staffhome_vista: $("#txt_vistainbox").val(),
                 tipo: $("#sel_tipo").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
                 idsequipos_visible: array_txt($("#txt_equiposvisible").val())
             },
-    function(data) {
+    function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 refresh_List();
@@ -277,7 +290,7 @@ function reg_insert() {
         }
 
     },
-            function(data) {
+            function (data) {
                 alert_p(data, "Error");
             }
     );

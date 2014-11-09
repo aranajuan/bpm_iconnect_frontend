@@ -1,15 +1,16 @@
 var DelID = 0;
 var UpdID = 0;
 var mode_details = 0;
+
 function main() {
-    $("#nuevo").click(function() {
+    $("#nuevo").click(function () {
         clear_popup();
         show_details();
     });
 
-    $("#details_ok").click(function() {
+    $("#details_ok").click(function () {
         if (mode_details) {
-            //reg_update();
+            reg_update();
         }
         else
             reg_insert();
@@ -17,6 +18,11 @@ function main() {
     });
     refresh_List();
 }
+
+/**
+ * Actualiza lista de usuario que administra el usuario
+ * @returns {undefined}
+ */
 function refresh_List() {
     postControl.sendRequest(
             true,
@@ -25,7 +31,7 @@ function refresh_List() {
                 class: 'user',
                 method: 'list'
             },
-    function(data) {
+    function (data) {
         $("#List").html(data.html);
         $("#tablelist").dataTable(
                 {
@@ -38,9 +44,13 @@ function refresh_List() {
             );
 }
 
-
+/**
+ * Limpia popup para insert
+ * @returns {undefined}
+ */
 function clear_popup() {
     mode_details = 0;
+    $("#txt_usr").prop("disabled", false);
     $("#txt_nombre").val("");
     $("#txt_mail").val("");
     $("#txt_telefono").val("");
@@ -82,19 +92,32 @@ function clear_popup() {
 
 }
 
+/**
+ * Muestra popup
+ * @returns {undefined}
+ */
 function show_details() {
     $("#reg_details").dialog({title: 'Detalles del equipo', resizable: false, width: 370, height: 410});
 }
 
-
+/**
+ * Cierra popup
+ * @returns {undefined}
+ */
 function close_details() {
     $("#reg_details").dialog('close');
 }
 
+/**
+ * Carga datos para update y muestra popup
+ * @param {type} data
+ * @returns {undefined}
+ */
 function show_update(data) {
 
     mode_details = 1;
     UpdID = data.usr;
+    $("#txt_usr").prop("disabled", true);
     $("#txt_nombre").val(data.nombre);
     $("#txt_mail").val(data.mail);
     $("#txt_telefono").val(data.telefono);
@@ -141,26 +164,29 @@ function show_update(data) {
 }
 
 
-
+/**
+ * Ejecuta insert
+ * @returns {undefined}
+ */
 function reg_insert() {
-        postControl.sendRequest(
+    postControl.sendRequest(
             true,
             'userinsert',
             {
                 class: 'user',
                 method: 'insert',
-                usr:$("#txt_usr").val(),
+                usr: $("#txt_usr").val(),
                 dominio: $("#txt_dominio").val(),
                 nombre: $("#txt_nombre").val(),
-                mail:$("#txt_mail").val(),
-                tel:$("#txt_telefono").val(),
-                puesto:$("#txt_puesto").val(),
-                ubicacion:$("#txt_ubicacion").val(),
-                perfil:$("#txt_perfil").val(),
-                fronts:array_txt($("#txt_fronts").val()),
-                idsequipos:array_txt($("#txt_equipos").val())
+                mail: $("#txt_mail").val(),
+                tel: $("#txt_telefono").val(),
+                puesto: $("#txt_puesto").val(),
+                ubicacion: $("#txt_ubicacion").val(),
+                perfil: $("#txt_perfil").val(),
+                fronts: array_txt($("#txt_fronts").val()),
+                idsequipos: array_txt($("#txt_equipos").val())
             },
-    function(data) {
+    function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 refresh_List();
@@ -173,63 +199,87 @@ function reg_insert() {
         }
 
     },
-            function(data) {
+            function (data) {
                 alert_p(data, "Error");
             }
     );
 }
 
-/*
- function reg_delete(id) {
- DelID = id;
- confirm_p("Desea eliminar?", "Confirmar",
- function() {
- if (!postControl.setIfClear())
- return;
- $.post("includes/ajaxQ/USER_delete.php",
- {
- id: DelID
- },
- function(data) {
- postControl.clearPosting();
- if (data == "ok")
- refresh_List();
- else
- alert_p(data, "Error");
- }
- );
- }
- );
- }
- function load_update(id, idequipo, perfil) {
- UpdID = id;
- $("#txt_id").val(id);
- $("#txt_id").attr("disabled", "disabled");
- $("#txt_equipo").idSEL({table: 'teams_type', defaultID: idequipo, multiple: 'true'});
- $("#txt_perfil").val(perfil);
- mode_details = 1;
- show_details();
- }
- 
- function reg_update() {
- if (!postControl.setIfClear())
- return;
- $.post("includes/ajaxQ/USER_update.php",
- {
- id: UpdID,
- idsequipos: array_txt($("#txt_equipo").val()),
- perfil: $("#txt_perfil").val()
- },
- function(data) {
- postControl.clearPosting();
- if (data == "ok")
- {
- refresh_List();
- close_details();
- }
- else
- alert_p(data, "Error");
- }
- );
- }
+/**
+ * Ejecuta update en db
+ * @returns {undefined}
  */
+function reg_update() {
+    postControl.sendRequest(
+            true,
+            'userupdate',
+            {
+                class: 'user',
+                method: 'update',
+                usr: UpdID,
+                dominio: $("#txt_dominio").val(),
+                nombre: $("#txt_nombre").val(),
+                mail: $("#txt_mail").val(),
+                tel: $("#txt_telefono").val(),
+                puesto: $("#txt_puesto").val(),
+                ubicacion: $("#txt_ubicacion").val(),
+                perfil: $("#txt_perfil").val(),
+                fronts: array_txt($("#txt_fronts").val()),
+                idsequipos: array_txt($("#txt_equipos").val())
+            },
+    function (data) {
+        if (data.type === "array") {
+            if (data.result === "ok") {
+                refresh_List();
+                close_details();
+            } else {
+                alert_p(data.result, "Error");
+            }
+        } else {
+            alert_p(data.html, "Error");
+        }
+
+    },
+            function (data) {
+                alert_p(data, "Error");
+            }
+    );
+}
+
+/**
+ * Elimina registro / todos los equipos del logueado
+ */
+function show_delete(id) {
+    DelID = id;
+    confirm_p("Desea eliminar?", "Confirmar",
+            function() {
+                postControl.sendRequest(
+                        true,
+                        'userdelete',
+                        {
+                            class: 'user',
+                            method: 'delete',
+                            usr: DelID
+                        },
+                function(data) {
+                    if (data.type === "array" && data.status==="ok") {
+                        if (data.result.ejecute === "ok") {
+                            if(data.result.msj){
+                                alert_p(data.result.msj, "Informacion");
+                            }
+                            refresh_List();
+                        } else {
+                            alert_p(data.result.msj, "Error");
+                        }
+                    } else {
+                        alert_p(data.html, "Error");
+                    }
+
+                },
+                        function(data) {
+                            alert_p(data, "Error");
+                        }
+                );
+            }
+    );
+};
