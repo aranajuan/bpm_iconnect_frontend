@@ -7,20 +7,27 @@ function main(){
     load_tree("");       
 }
 
+/**
+ * Carga opciones del arbol
+ * @param {type} path
+ * @returns {undefined}
+ */
 function load_tree(path){
-    if(!postControl.setIfClear()) return;
-    $("#tree").html("Cargando..."); 
-    $.post("includes/ajaxQ/TREE_get_open.php",{
-        path:path
+     postControl.sendRequest(
+            true,
+            'treeoptions',
+            {
+                class: 'tkt',
+                method: 'get_tree_options',
+                path:path
+            },
+    function(data) {
+        $("#tree").html(data.html);
     },
-    function(data){
-        postControl.clearPosting();
-        $("#tree").html(data); 
-        build_buttons();
-    }
+            function(data) {
+                $("#tree").html(data);
+            }
     );
-    
-   
 }
 
 function go(path){

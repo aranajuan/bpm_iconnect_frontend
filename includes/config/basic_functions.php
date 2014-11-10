@@ -14,6 +14,19 @@ function arrayornull($spliter,$str){
 }
 
 /**
+ * Si no es una array lo convierte
+ * @param type $arr
+ */
+function make_arrayobj($arr){
+    if (!isset($arr[0])) {
+        $tmp = $arr;
+        $arr = array();
+        $arr[0] = $tmp;
+    }
+    return $arr;
+}
+
+/**
  * Busca recursivamente en un array
  */
 function array_get_key_val($key, $heystack) {
@@ -153,7 +166,7 @@ function filter_bar($content, $style = "") {
     $html = "
     <table style=\"$style\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" >
         <tr>
-            <td style=\"background-color: #b2c8f2; padding: 3px;height: 100%;\">
+            <td style=\"background-color: white padding: 3px;height: 100%;\">
                 $content
             </td>
         </tr>
@@ -187,13 +200,13 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
     $html = "
         <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
             <div style='float:left;'>
-                <img src=\"" . HIMG_DIR . "/base/but_i_$styleN.png\" />
+                <img src=\"img/base/but_i_$styleN.png\" />
             </div>
             <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
                 " . htmltoupper($text) . "
             </div>
             <div style='float:right;'>
-                <img src=\"" . HIMG_DIR . "/base/but_d_$styleN.png\" />
+                <img src=\"img/base/but_d_$styleN.png\" />
             </div>
         </div>
     ";

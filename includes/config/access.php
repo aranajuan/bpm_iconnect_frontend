@@ -39,13 +39,13 @@ $access = array(
     array(28,"SYSTEM","delete", "Sistema delete"),
     array(29,"SYSTEM","update", "Sistema update"),
     
-    array(30,"PAGE","newtkt", "Nuevo TKT"),
+    array(30,"PAGE","newtkt", "Nuevo"),
     
-    array(31,"TREE","get_open", "TREE get"),
+    array(31,"TKT","get_tree_options", "Opciones del arbol e historicas"),
     
     array(32,"ACTION","ejecute_action", "Ejecutar accion TKT"),
     
-    array(33,"PAGE","staffhome", "Home Staff"),
+    array(33,"PAGE","staffhome", "Inbox"),
     
     array(34,"USER","user_teamsSelect", "Equipos de usuario"),
     
@@ -53,7 +53,7 @@ $access = array(
     array(36,"TKT","getH", "Detalle del ticket"),
     array(37,"TREE","getSimilars", "TKT similares"),
     array(38,"TKT","listChilds", "TKT childs"),
-    array(39,"PAGE","mytkts", "Mis Tickets"),
+    array(39,"PAGE","mytkts", "Generados"),
     array(40,"TKT","listMy", "Lista mistkts"),
     array(41,"TEAM","teams_usersSelect", "Usuarios de equipo"),
     array(42,"TREE","designer", "Arbol preguntas"),

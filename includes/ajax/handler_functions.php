@@ -163,11 +163,7 @@ function arrayToSelect($arr, $cols, $htmlid, $multiple, $checkedlist, $whitelist
         $multiple_class = "simple";
     }
 
-    if (!isset($arr[0])) {
-        $tmp = $arr;
-        $arr = array();
-        $arr[0] = $tmp;
-    }
+    $arr= make_arrayobj($arr);
 
     $HTML = "<select id=\"$htmlid\" class=\"multiselect_$multiple_class\"  $multipleAttr>";
     foreach ($arr as $el) {

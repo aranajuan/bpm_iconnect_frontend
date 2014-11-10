@@ -145,6 +145,14 @@ class XmlHandler {
     }
 
     /**
+     * Funcion para debug
+     * @return string
+     */
+    public function plain_response(){
+        return $this->response;
+    }
+    
+    /**
      * Carga respuesta en dom
      * @return boolean error
      */
