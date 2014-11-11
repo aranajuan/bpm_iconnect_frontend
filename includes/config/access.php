@@ -43,7 +43,7 @@ $access = array(
     
     array(31,"TKT","get_tree_options", "Opciones del arbol e historicas"),
     
-    array(32,"ACTION","ejecute_action", "Ejecutar accion TKT"),
+    array(32,"ACTION","ejecute", "Ejecutar accion TKT"),
     
     array(33,"PAGE","staffhome", "Inbox"),
     

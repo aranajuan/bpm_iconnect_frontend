@@ -4,7 +4,21 @@ var mode_details=0;
 var go_status="clear";
 
 function main(){
-    load_tree("");       
+    load_tree("WceWye42/Syg21pnvVdAmxLFfDuA1DWBoE+oeqpIpiE=");   
+}
+
+/**
+ * Serializa los datos del form para enviarlos
+ * @returns {JSON}
+ */
+function serialize_form(){
+    var formS = Array();
+    var i=0;
+    $(".openform").each(function(){
+        formS[i]={id:$(this).attr("id"),value:$(this).val()};
+        i++;
+    });
+    return JSON.stringify(formS);
 }
 
 /**
@@ -13,7 +27,7 @@ function main(){
  * @returns {undefined}
  */
 function load_tree(path){
-     postControl.sendRequest(
+    postControl.sendRequest(
             true,
             'treeoptions',
             {
@@ -23,6 +37,7 @@ function load_tree(path){
             },
     function(data) {
         $("#tree").html(data.html);
+        build_buttons();
     },
             function(data) {
                 $("#tree").html(data);
@@ -31,6 +46,25 @@ function load_tree(path){
 }
 
 function go(path){
+    postControl.sendRequest(
+            true,
+            'tktopen',
+            {
+                class: 'action',
+                method: 'ejecute',
+                action: 'abrir',
+                path:path,
+                form:serialize_form()
+            },
+    function(data) {
+       alert(data.html);
+    },
+            function(data) {
+               alert(data);
+            }
+    );
+    serialize_form();
+    /*
     var valid;
     if(!postControl.ifClear()) return;
     valid=is_valid();
@@ -79,7 +113,7 @@ function go(path){
     else{
         alert_p(valid,"Error");
     }
-    
+    */
 }
 
 function open_tkt(path,idmaster){

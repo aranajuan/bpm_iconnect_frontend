@@ -131,7 +131,7 @@ $(document).ready(function(){
         weekHeader: 'Sem',
         dateFormat: 'dd-mm-yy',
         firstDay: 0,
-        isRTL: true,
+        isRTL: false,
         showMonthAfterYear: false,
         yearSuffix: ''
     };
