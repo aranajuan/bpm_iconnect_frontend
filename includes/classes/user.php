@@ -26,6 +26,7 @@ class USER {
     }
 
     public function logout() {
+        $this->delete_file_tmp();
         session_destroy();
     }
 

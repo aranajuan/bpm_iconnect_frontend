@@ -1,17 +1,5 @@
-<?
-require_once 'header.php';
-require_once 'clases/form_checker.php';
-require_once 'clases/notify.php';
-
-$f = new form_checker();
-echo $f->get_java_valid();
-?>
-
-<script src="<?= HINCLUDE_DIR; ?>/js/actions.js" type="text/javascript"></script>
-<link rel="stylesheet" media="all" type="text/css" href="<?=HINCLUDE_DIR;?>/css/tkt_details.css" />
-
 <div >
-    <div><h2>CONSULTA DE TICKETS</h2></div>
+    <div><h2>GENERADOS</h2></div>
 </div>
 
 <div class="popup" id="popup_detalles"></div>
@@ -81,7 +69,3 @@ echo $f->get_java_valid();
 </div>
 
 <div id="ListClosed"></div>
-
-<?
-require_once 'footer.php';
-?>

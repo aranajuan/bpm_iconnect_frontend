@@ -47,14 +47,14 @@ $access = array(
     
     array(33,"PAGE","staffhome", "Inbox"),
     
-    array(34,"USER","user_teamsSelect", "Equipos de usuario"),
+    array(34,"USER","idsel_listteams", "Equipos de usuario"),
     
     array(35,"TKT","listToTeam", "Lista de tkts filtrada"),
     array(36,"TKT","getH", "Detalle del ticket"),
     array(37,"TREE","getSimilars", "TKT similares"),
     array(38,"TKT","listChilds", "TKT childs"),
     array(39,"PAGE","mytkts", "Generados"),
-    array(40,"TKT","listMy", "Lista mistkts"),
+    array(40,"TKT","listmy", "Lista mistkts"),
     array(41,"TEAM","teams_usersSelect", "Usuarios de equipo"),
     array(42,"TREE","designer", "Arbol preguntas"),
     array(43,"TKT","listMyClosed","Lista de cerrados propios"),

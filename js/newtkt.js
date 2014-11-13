@@ -4,7 +4,7 @@ var mode_details=0;
 var go_status="clear";
 
 function main(){
-    load_tree("WceWye42/Syg21pnvVdAmxLFfDuA1DWBoE+oeqpIpiE=");   
+    load_tree("");   
 }
 
 /**
@@ -58,7 +58,23 @@ function go(path){
                 form:serialize_form()
             },
     function(data) {
-       alert(data.html);
+        //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
+        if(data.status=="ok"){
+            var result=data.result;
+            if(result.result==="ok"){
+                if(result.tkth=="ok"){
+                    $("#tree").html("generado ok "+result.id);
+                }else{
+                    $("#tree").html("generado itracker "+result.id+"<br/>No se pudo guardar el evento, verifique en sus ticktes");
+                }
+            }else{
+                alert_p(result.msj,"Error");
+            }
+        }else{
+            if(data.html){
+                alert_p(data.html,"Error");
+            }
+        }
     },
             function(data) {
                alert(data);
