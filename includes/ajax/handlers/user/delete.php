@@ -14,7 +14,7 @@ function GO($XML, $output = "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
 
-    $result = $XML->get_respose("result");
+    $result = $XML->get_response("result");
 
     return array("type" => "array", "result" => $result, "status" => "ok");
 }

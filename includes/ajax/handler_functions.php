@@ -15,7 +15,7 @@ function normal_GO($XML, $output = "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
 
-    $result = $XML->get_respose("result");
+    $result = $XML->get_response("result");
 
     return array("type" => "array", "result" => $result, "status" => "ok");
 }
@@ -37,7 +37,7 @@ function normal_idsel($XML, $objname, $cols, $output = "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
 
-    $list = $XML->get_respose("list");
+    $list = $XML->get_response("list");
     $listV = $list[$objname];
 
     $HTML = arrayToSelect(

@@ -40,7 +40,10 @@ class UploadHandler
 
     protected $image_objects = array();
 
+    private $user;
+    
     function __construct($options = null, $initialize = true, $error_messages = null) {
+        $this->user=$GLOBALS["U"]->get_prop("usr");
         $this->options = array(
             'script_url' => $this->get_full_url().'/',
             'upload_dir' => FILEUP_TMP_FOLDER."/",
@@ -1028,7 +1031,7 @@ class UploadHandler
         while ($archivo = readdir($directorio)){
             $archName= explode (".",$archivo);
             $uC = explode ("_",$archName[0]);
-            if(count($uC)>1 && $uC[0]==$GLOBALS[UL]->get_prop("id")){
+            if(count($uC)>1 && $uC[0]==$this->user){
                 $foundIDs[$uC[1]]="X";
                 $i++; 
             }
@@ -1047,7 +1050,7 @@ class UploadHandler
     protected function handle_file_upload($uploaded_file, $name, $size, $type, $error,
         $index = null, $content_range = null) {
         $ext=explode(".",$name);
-        $name= $GLOBALS[UL]->get_prop("id")."_".$this->fileNRO.".".$ext[count($ext)-1];
+        $name= $this->user."_".$this->fileNRO.".".$ext[count($ext)-1];
         $file = new stdClass();
         $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,
             $index, $content_range);
@@ -1086,8 +1089,8 @@ class UploadHandler
             if ($file_size === $file->size) {
                 $file->url = $this->get_download_url($file->name);
                 if ($this->is_valid_image_file($file_path)) {
-                    $file->thumbnail=1;
-                    $this->handle_image_file($file_path, $file);
+                    $file->thumbnail=0;
+                    //$this->handle_image_file($file_path, $file);
                 }
             } else {
                 $file->size = $file_size;

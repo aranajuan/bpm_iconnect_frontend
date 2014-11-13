@@ -14,7 +14,7 @@ function GO($XML,$output="html") {
         return array("type" => "html", "html" => "Formato no soportado.");
     }
     
-    $list = $XML->get_respose("list");
+    $list = $XML->get_response("list");
     $listins = $list["SYSTEM"];
     
     $HTML=arrayToTable(array("id","nombre"), $listins, array("id","nombre"), "id", false, true, false, "tablelist", "class=\"display\"");

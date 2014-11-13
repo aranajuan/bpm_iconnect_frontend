@@ -62,6 +62,11 @@ if ($R->get_param("L") == "login") { // permite siempre acceso a login
     $canAccess = $U->check_access("PAGE", $R->get_param("L"));
 }
 
+if($U->is_logged() && $R->get_param("L") == "fileuploader"){
+    include 'classes/fileuploader/index.php';
+    exit();
+}
+
 if ($canAccess === false) {
     if ($U->is_logged()) {
         $HeaderMsjUser = "No tienes acceso a este sitio."; // usuario sin acceso al sitio

@@ -55,7 +55,7 @@ function class_postControl(){
                     funcOK(ans);
                 }catch(e){
                     if(typeof(funcErr) === "function"){
-                        funcErr(data);
+                        funcErr(e+"--"+data);
                     }
                 }
             }

@@ -53,6 +53,7 @@ function go(path){
                 class: 'action',
                 method: 'ejecute',
                 action: 'abrir',
+                sendfiles:'true',
                 path:path,
                 form:serialize_form()
             },

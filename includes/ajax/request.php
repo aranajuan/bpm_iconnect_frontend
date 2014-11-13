@@ -6,7 +6,7 @@ $XML = new XmlHandler();
 $XML->load_params($U, $class, $method, $params);
 $XML->send_request();
 include 'handlers/' . $class . "/" . $method . ".php";
-//return print_r($XML->get_respose("list"),true);
+//return print_r($XML->get_response("list"),true);
 $result = GO($XML);
 if($result["type"]=="array"){
     return json_encode($result);

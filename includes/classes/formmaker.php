@@ -56,6 +56,12 @@ class formmaker {
                     case "select":
                         $html.=$this->make_select($el);
                         break;
+                    case "hidden":
+                        $html.=$this->make_hide($el);
+                        break;
+                    case "fileupl":
+                        $html.=$this->make_fileupl($el);
+                        break;
                     default:
                         $html.=$this->putintable("error campo", print_r($el, true), "consulte a su administrador");
                 }
@@ -72,7 +78,7 @@ class formmaker {
 
     private function putintable($label, $field, $comment = null) {
         if ($comment == null) {
-            return "<tr><td>" . $label . "&nbsp;</td colspan='2'><td>" . $field . "</td></tr>";
+            return "<tr><td>" . $label . "&nbsp;</td><td colspan='2'>" . $field . "</td></tr>";
         }
         return "<tr><td>" . $label . "&nbsp;</td><td>" . $field . "</td><td>" . $comment . "&nbsp;</td></tr>";
     }
@@ -106,16 +112,25 @@ class formmaker {
     }
 
     private function make_link($el) {
-        return $this->putintable($el["label"], "<a target='_blank' href='?download=".$el["path"]."'>".$el["text"]."</a>",$el["comment"]);
-    }
-    
-    private function make_select($el) {
-        $select="<select id='" . $el["id"] . "' class='" . $el["formclass"] . "'>";
-        foreach($el["option"] as $o){
-            $select.="<option value='" . $o["value"] . "' >".$o["text"]."</option>";
-        }
-        $select.="</select>";
-        return $this->putintable($el["label"], $select,$el["comment"]);
+        return $this->putintable($el["label"], "<a target='_blank' href='?download=" . $el["path"] . "'>" . $el["text"] . "</a>", $el["comment"]);
     }
 
+    private function make_select($el) {
+        $select = "<select id='" . $el["id"] . "' class='" . $el["formclass"] . "'>";
+        foreach ($el["option"] as $o) {
+            $select.="<option value='" . $o["value"] . "' >" . $o["text"] . "</option>";
+        }
+        $select.="</select>";
+        return $this->putintable($el["label"], $select, $el["comment"]);
+    }
+
+    private function make_hide($el) {
+        return "<tr><td colspan'3'><input type='hidden' id='" . $el["id"] . "' class='" . $el["formclass"] . "'/></td></tr>";
+    }
+    
+    private function make_fileupl($el) {
+        return $this->putintable($el["label"], "<div id='" . $el["id"] . "' class='FILEUPL " . $el["formclass"] . "'></div>");
+    }
+
+    
 }

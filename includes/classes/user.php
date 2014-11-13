@@ -25,10 +25,10 @@ class USER {
         $this->logged = false;
     }
 
-    public function logout(){
+    public function logout() {
         session_destroy();
     }
-    
+
     /**
      * Carga datos de la session, devuelve true si esta iniciada
      * @return boolean hay session 
@@ -86,7 +86,7 @@ class USER {
             $_SESSION["intento"] = 1;
             return 1;
         }
-        $_SESSION["intento"]++;
+        $_SESSION["intento"] ++;
         return $this->get_try();
     }
 
@@ -122,7 +122,7 @@ class USER {
     public function check_access($class, $method) {
         if ($class == null || $class == "")
             $class = "page";
-        $class=  strtolower($class);
+        $class = strtolower($class);
         $valid = $this->accessV;
         foreach ($valid as $v) {
             //echo strtolower($GLOBALS["access"][trim($v)][1])."/".strtolower($GLOBALS["access"][trim($v)][2])."<br/>";
@@ -138,7 +138,7 @@ class USER {
      * @param type $class 
      * @return array<string> lista de metodos
      */
-    public function list_access($class=null) {
+    public function list_access($class = null) {
         if ($class == null || $class == "")
             $class = "page";
         $ret = array();
@@ -154,22 +154,22 @@ class USER {
     /**
      * @return string pagina inicio
      */
-    public function get_home(){
+    public function get_home() {
         $arr = $this->list_access();
-        if(count($arr)==0){ // no tiene ningun acceso
+        if (count($arr) == 0) { // no tiene ningun acceso
             return "noacces";
         }
         return $arr[0][2];
     }
-    
+
     /**
      * Genera menu en html
      * @return string
      */
     public function get_menu() {
         $al = $this->list_access();
-        foreach($al as $a){
-            echo "<a class=\"ObjElem\" href=\"?L=".$a[2]."&m=menu\"<b>".$a[3]."</b></a><br>";
+        foreach ($al as $a) {
+            echo "<a class=\"ObjElem\" href=\"?L=" . $a[2] . "&m=menu\"<b>" . $a[3] . "</b></a><br>";
         }
         echo "<a class=\"ObjElem\" href=\"?L=logout&m=menu\"<b>SALIR</b></a><br>";
     }
@@ -208,6 +208,58 @@ class USER {
                 return $this->telefono;
             default:
                 return "Propiedad invalida.";
+        }
+    }
+
+    /**
+     *  Cuenta los archivos temporales
+     * @return  int
+     */
+    public function user_files() {
+        $ret = array();
+        $i = 0;
+        $dirs = array(FILEUP_TMP_FOLDER . "/", FILEUP_TMP_FOLDER . "/thumbnail/");
+        foreach ($dirs as $dir) {
+            if (is_dir($dir)) {
+                if ($dh = opendir($dir)) {
+                    $archivos = glob($dir . $this->get_prop("usr") . "_*.*");
+                    foreach ($archivos as $archivo) {
+                        $exp = explode("_", $archivo);
+                        $usr=explode("/",$exp[0]);
+                        if ($usr[count($usr)-1] == $this->get_prop("usr")) {
+                            $ret[$i] = $archivo;
+                            $i++;
+                        }
+                    }
+                    closedir($dh);
+                }
+            }
+        }
+        return $ret;
+    }
+
+    /**
+     * Elimina temporal especifico
+     * @param string $file
+     * @return string
+     */
+    public function delete_tmp($file) {
+        $list = $this->user_files();
+        foreach ($list as $f) {
+            if (strpos($f, $file)) {
+                unlink($f);
+            }
+        }
+        return "ok";
+    }
+
+    /**
+     * Elimina temporales de fileuploader 
+     */
+    public function delete_file_tmp() {
+        $list = $this->user_files();
+        foreach ($list as $f) {
+            unlink($f);
         }
     }
 

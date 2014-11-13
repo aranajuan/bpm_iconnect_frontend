@@ -55,8 +55,25 @@ class XmlHandler {
         }
         $header->appendChild($this->request->createElement("ip", $_SERVER['REMOTE_ADDR']));
         $header->appendChild($this->request->createElement("front", FRONT_NAME));
+        
     }
 
+    /**
+     *  Archivos a xml
+     * @return array Array de archivos comprimidos
+     */
+    private function get_tempfiles(){
+        $base64F=array();
+        $files = $this->user->user_files();
+        foreach($files as $f){
+            $im = file_get_contents($f);
+            $imdata = base64_encode($im);
+            $fname=explode("/",$f);
+            array_push($base64F, array("name"=>$fname[count($fname)-1],"data"=>$imdata));
+        }
+        return $base64F;  
+    }
+    
     /**
      * Carga los parametros necesarios para ejecutar la consulta
      * @param USER $u
@@ -70,6 +87,15 @@ class XmlHandler {
         $request = $requestNodes->item(0);
         $request->appendChild($this->create_requestElement("class", xmlEscape($class)));
         $request->appendChild($this->create_requestElement("method", xmlEscape($method)));
+        if($this->params["sendfiles"]=="true"){
+            $files=$this->get_tempfiles();
+            $filesNode = $this->create_requestElement("files");
+            foreach($files as $f){
+                $filesNode->appendChild($this->create_requestElement($f["name"], $f["data"]));
+            }
+            $request->appendChild($filesNode); 
+        }
+        
         if (is_array($this->params)) {
             $paramsNode = $this->create_requestElement("params");
             $this->params_sent=null;
@@ -160,6 +186,7 @@ class XmlHandler {
         try {
             $this->responseDom = new SimpleXMLElement($this->response);
             $this->error = null;
+            $this->clear_files();
             return $this->check_error();
         } catch (Exception $e) {
             $this->error = $e->getMessage() . ";" . $this->response;
@@ -170,11 +197,27 @@ class XmlHandler {
     }
 
     /**
+     * Elimina archivos si corresponde
+     * @return string
+     */
+    private function clear_files(){
+        if($this->params["sendfiles"]=="true"){
+            $ret = $this->get_response("data");
+            if($ret["sendfiles"]=="ok"){
+                $this->user->delete_file_tmp();
+            }else{
+                return "No se recibieron archivos correctamente";
+            }
+        }
+        return "ok";
+    }
+    
+    /**
      * Analiza error en xml desde el aplication
      * @return boolean true->no hay error
      */
     private function check_error() {
-        $this->error = $this->get_respose("error");
+        $this->error = $this->get_response("error");
         if($this->error==="ejecution::Usuario no logeado"){
             $this->get_user()->logout();
         }
@@ -200,7 +243,7 @@ class XmlHandler {
      * Obtener datos de la respuesta
      * @return array<string> Datos recursivos
      */
-    public function get_respose($tag) {
+    public function get_response($tag) {
         $resDom = $this->responseDom->response;
         $gR = $resDom->{$tag};
         if ($gR) {

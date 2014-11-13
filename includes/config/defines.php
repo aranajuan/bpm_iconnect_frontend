@@ -20,8 +20,8 @@ date_default_timezone_set ( 'America/Argentina/Buenos_Aires' );
 //adjuntos TKT
 define("FILEUP_MAX_FILES",3);
 define("FILEUP_MAX_FILES_SIZE",1024*1024*3);
-define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx");
-
+define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx|pdf");
+define("FILEUP_TMP_FOLDER","usertmp/fileuploader");
 
 
 ini_set('include_path',ini_get('include_path').'./'.PATH_SEPARATOR.INCLUDE_DIR);

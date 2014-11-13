@@ -14,7 +14,7 @@ function GO($XML,$output="html") {
         return array("type" => "html", "html" => "Formato no soportado.");
     }
     
-    $list = $XML->get_respose("list");
+    $list = $XML->get_response("list");
     $users = $list["USER"];
     
     foreach ($users as &$u){

@@ -17,7 +17,7 @@ function GO($XML, $output = "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
 
-    $arr = $XML->get_respose("tree");
+    $arr = $XML->get_response("tree");
     //return array("type" => "html", "html" => "<pre>".print_r($arr,true)."</pre>", "status" => "error");
     if (isset($arr["previous"]["OPTION"])) {
         $prev = make_arrayobj($arr["previous"]["OPTION"]);
@@ -48,14 +48,18 @@ function GO($XML, $output = "html") {
 
 
     if ($arr["previous"]["back"] != "none") {
-        $backbutton= option_button("VOLVER", 450, 1, "load_tree('" . $arr["previous"]["back"] . "');") . "</br>";
+        $backbutton = option_button("VOLVER", 450, 1, "load_tree('" . $arr["previous"]["back"] . "');") . "</br>";
     }
-    
+
 
     if (isset($arr["opendata"])) {
-        $fm = new formmaker("openform");
-        $fm->load_vector($arr["opendata"]["itform"]["element"]);
-        $html.=$fm->get_html();
+        if (isset($arr["opendata"]["msj"])) {
+            $html.=$arr["opendata"]["msj"];
+        } else {
+            $fm = new formmaker("openform");
+            $fm->load_vector($arr["opendata"]["itform"]["element"]);
+            $html.=$fm->get_html();
+        }
         $html.="<br/></br>";
         $html.=option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');") . "</br>";
         $html.=$backbutton;
@@ -81,7 +85,7 @@ function GO($XML, $output = "html") {
         $html.="</div>";
     }
 
-    
+
 
 
     return array("type" => "array", "result" => "ok", "html" => $html);
