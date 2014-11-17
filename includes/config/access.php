@@ -57,12 +57,12 @@ $access = array(
     array(40,"TKT","listmy", "Lista mistkts"),
     array(41,"TEAM","teams_usersSelect", "Usuarios de equipo"),
     array(42,"TREE","designer", "Arbol preguntas"),
-    array(43,"TKT","listMyClosed","Lista de cerrados propios"),
+    array(43,"TKT","listmyclose","Lista de cerrados propios"), //anulado?
     array(44,"PAGE","actionhelp", "Ayuda Acciones"),
     
     array(45,"TKT_EXT","getStatus","Consulta BIT"),
 
-    array(46,"TKT","listFromTeam", "Lista tkts equipo"),
+    array(46,"TKT","listmyteams", "Lista tkts equipo"),
     
     array(47,"PAGE","reports", "Reportes"),
     array(48,"TREE","get_filter", "Arbol para filtros"),

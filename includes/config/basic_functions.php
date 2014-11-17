@@ -197,20 +197,29 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
     $size = array(28, 28);
     $Maxlenght = round($width / 8);
     $text = maxLenShow($text, $Maxlenght);
+    /*
+      $html = "
+      <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
+      <div style='float:left;'>
+      <img src=\"" . HIMG_DIR . "/base/but_i_$styleN.png\" />
+      </div>
+      <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
+      " . htmltoupper($text) . "
+      </div>
+      <div style='float:right;'>
+      <img src=\"" . HIMG_DIR . "/base/but_d_$styleN.png\" />
+      </div>
+      </div>
+      "; */
     $html = "
         <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
-            <div style='float:left;'>
-                <img src=\"img/base/but_i_$styleN.png\" />
-            </div>
+
             <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
                 " . htmltoupper($text) . "
             </div>
-            <div style='float:right;'>
-                <img src=\"img/base/but_d_$styleN.png\" />
-            </div>
+
         </div>
     ";
-
     return $html;
 }
 

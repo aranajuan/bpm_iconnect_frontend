@@ -96,7 +96,7 @@ class formmaker {
     }
 
     private function make_month($el) {
-        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " monthselector' id='" . $el["id"] . "' />", $el["comment"]);
+        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " monthpck' id='" . $el["id"] . "' />", $el["comment"]);
     }
 
     private function make_date($el) {

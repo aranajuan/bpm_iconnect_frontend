@@ -46,8 +46,8 @@ function listmy() {
                 class: 'tkt',
                 method: 'listmy',
                 status: $("#txt_filtro_estado").val(),
-                fecha_d: $("#fecha_d").val(),
-                fecha_h: $("#fecha_h").val()
+                cfrom: $("#fecha_d").val(),
+                cto: $("#fecha_h").val()
             },
     function (data) {
         $("#List").html(data.html);
@@ -77,9 +77,9 @@ function listfromteam() {
                 class: 'tkt',
                 method: 'listmyteams',
                 status: $("#txt_filtro_estado").val(),
-                fecha_d: $("#fecha_d").val(),
-                fecha_h: $("#fecha_h").val(),
-                team: array_txt($("#txt_filtro_equipo").val())
+                cfrom: $("#fecha_d").val(),
+                cto: $("#fecha_h").val(),
+                teams: array_txt($("#txt_filtro_equipo").val())
             },
     function (data) {
         $("#List").html(data.html);
@@ -135,7 +135,7 @@ function refresh_listClose() {
                 });
     },
             function (data) {
-                $("#List").html(data);
+                $("#ListClosed").html(data);
             }
     );
 

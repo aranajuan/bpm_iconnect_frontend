@@ -46,7 +46,7 @@
                 <td>Vista mytkts:</td>
                 <td>
                     <input id="txt_vistamytkts" type="text" size="40" />
-                    <br/><i>campo=alias,funcion_parametro=alias</i>
+                    <br/><i>campo=>alias,funcion:parametro=>alias,objeto.prop=>alias</i>
                 </td>
             </tr>
             <tr>

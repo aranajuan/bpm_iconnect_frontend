@@ -66,6 +66,11 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
     $colsAlias = array();
 
     $i = 0;
+    
+    if (!is_array($arr)) {
+        return TABLE_EMPTY;
+    }
+
     if (!isset($arr[0])) {
         $tmp = $arr;
         $arr = array();
@@ -163,7 +168,7 @@ function arrayToSelect($arr, $cols, $htmlid, $multiple, $checkedlist, $whitelist
         $multiple_class = "simple";
     }
 
-    $arr= make_arrayobj($arr);
+    $arr = make_arrayobj($arr);
 
     $HTML = "<select id=\"$htmlid\" class=\"multiselect_$multiple_class\"  $multipleAttr>";
     foreach ($arr as $el) {

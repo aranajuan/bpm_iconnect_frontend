@@ -28,7 +28,7 @@ function GO($XML,$output="html") {
             true,
             false,
             false,
-            "tablelist",
+            "tablelistC",
             "class=\"display\""
     );
     
