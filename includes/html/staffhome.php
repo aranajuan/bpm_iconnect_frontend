@@ -1,7 +1,7 @@
 <?
     require_once   'header.php';
 ?>
-<script src="<?=HINCLUDE_DIR;?>/js/actions.js" type="text/javascript"></script>
+<script src="js/actions.js" type="text/javascript"></script>
 <link rel="stylesheet" media="all" type="text/css" href="<?=HINCLUDE_DIR;?>/css/tkt_details.css" />
 
 <div>

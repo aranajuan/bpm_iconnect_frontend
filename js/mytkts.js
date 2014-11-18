@@ -140,3 +140,25 @@ function refresh_listClose() {
     );
 
 }
+
+function show_details(id) {
+    TKTID=id;
+    postControl.sendRequest(
+            false,
+            'openview',
+            {
+                class: 'tkt',
+                method: 'geth',
+                id: id
+            },
+    function (data) {
+        $("#popup_detalles").html(data.result);
+        $("#popup_detalles").dialog({width:"1000px"});
+
+    },
+            function (data) {
+                alert(data);
+            }
+    );
+
+}

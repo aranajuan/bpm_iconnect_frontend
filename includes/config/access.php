@@ -39,19 +39,19 @@ $access = array(
     array(28,"SYSTEM","delete", "Sistema delete"),
     array(29,"SYSTEM","update", "Sistema update"),
     
-    array(30,"PAGE","newtkt", "Nuevo"),
+    array(30,"PAGE","newtkt", "Nuevo"), //usado
     
-    array(31,"TKT","get_tree_options", "Opciones del arbol e historicas"),
+    array(31,"TKT","get_tree_options", "Opciones del arbol e historicas"), //usado
     
-    array(32,"ACTION","ejecute", "Ejecutar accion TKT"),
+    array(32,"ACTION","ejecute", "Ejecutar accion TKT"), //usado
     
-    array(33,"PAGE","staffhome", "Inbox"),
+    array(33,"PAGE","staffhome", "Inbox"), //usado
     
-    array(34,"USER","idsel_listteams", "Equipos de usuario"),
+    array(34,"USER","idsel_listteams", "Equipos de usuario"), //usado
     
     array(35,"TKT","listToTeam", "Lista de tkts filtrada"),
-    array(36,"TKT","getH", "Detalle del ticket"),
-    array(37,"TREE","getSimilars", "TKT similares"),
+    array(36,"TKT","geth", "Detalle del ticket"), //usado
+    array(37,"ACTION","getform", "Obtiene formulario"), //usado
     array(38,"TKT","listChilds", "TKT childs"),
     array(39,"PAGE","mytkts", "Generados"),
     array(40,"TKT","listmy", "Lista mistkts"),
