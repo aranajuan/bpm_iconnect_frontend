@@ -1,6 +1,5 @@
 <?php
 
-error_reporting(E_ALL | E_STRICT);
 $function = $R->get_param('function');
 if ($function == "empty") {
     echo count($U->user_files());

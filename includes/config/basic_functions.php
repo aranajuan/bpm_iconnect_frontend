@@ -18,7 +18,7 @@ function arrayornull($spliter,$str){
  * @param type $arr
  */
 function make_arrayobj($arr){
-    if (!isset($arr[0])) {
+    if (!isset($arr[0]) || !is_array($arr)) {
         $tmp = $arr;
         $arr = array();
         $arr[0] = $tmp;

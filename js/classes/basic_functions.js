@@ -1,3 +1,18 @@
+/**
+ * Serializa los datos del form para enviarlos
+ * @param {string} classe clase a serializar
+ * @returns {JSON}
+ */
+function serialize_form(classe){
+    var formS = Array();
+    var i=0;
+    $("."+classe).each(function(){
+        formS[i]={id:$(this).attr("id"),value:$(this).val()};
+        i++;
+    });
+    return JSON.stringify(formS);
+}
+
 /*
  * is checked to 1/0
  */

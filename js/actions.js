@@ -1,8 +1,14 @@
-var TKTID=0;
+var TKTID = 0;
 
-
-function getform(accion){
-        postControl.sendRequest(
+/**
+ * Accion para cargar formulario
+ * @param {string} accion
+ * @returns {undefined}
+ */
+function getform(accion) {
+    $("#popup_form").html(JAVA_LOADING);
+    $("#popup_form").dialog();
+    postControl.sendRequest(
             true,
             'tktgetform',
             {
@@ -10,28 +16,37 @@ function getform(accion){
                 method: 'getform',
                 action: accion
             },
-    function(data) {
-        //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
-        if(data.status=="ok"){
-            var result=data.result;
-            if(result.result==="ok"){
-                alert_p(result.html,"ok");
-            }else{
-                alert_p(result.msj,"Error");
-            }
-        }else{
-            if(data.html){
-                alert_p(data.html,"Error");
-            }
+    function (data) {
+        if (data.result === "ok") {
+            $("#popup_form").html(data.html);
+            $("#popup_form").dialog({
+                title: "Actualizar itracker " + TKTID + " -> "+accion,
+                resizable: false,
+                width: 800,
+                height: 'auto',
+                modal: true,
+                draggable: true
+            });
+            build_buttons();
+        } else {
+            $("#popup_form").dialog('close');
+            alert_p(data.html, "Error");
+
         }
     },
-            function(data) {
-               alert(data);
+            function (data) {
+                $("#popup_form").dialog('close');
+                alert_p(data,"Error");
             }
     );
 }
 
-function go(accion){
+/**
+ * Ejecuta accion
+ * @param {string} accion
+ * @returns {undefined}
+ */
+function go(accion) {
     postControl.sendRequest(
             true,
             'tktaction',
@@ -39,25 +54,76 @@ function go(accion){
                 class: 'action',
                 method: 'ejecute',
                 action: accion,
-                idtkt:TKTID
+                idtkt: TKTID,
+                sendfiles:'true',
+                form:serialize_form('actionform')
+                
             },
-    function(data) {
+    function (data) {
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
-        if(data.status=="ok"){
-            var result=data.result;
-            if(result.result==="ok"){
-                alert_p("ok","ok");
-            }else{
-                alert_p(result.msj,"Error");
+        if (data.status === "ok") {
+            var result = data.result;
+            if (result.result === "ok") {
+                show_details(TKTID);
+                try{
+                    $("#popup_form").dialog('close');
+                }catch(e){}
+            } else {
+                alert_p(result.msj, "Error");
             }
-        }else{
-            if(data.html){
-                alert_p(data.html,"Error");
+        } else {
+            if (data.html) {
+                alert_p(data.html, "Error");
             }
         }
     },
-            function(data) {
-               alert(data);
+            function (data) {
+                alert(data);
             }
     );
+}
+
+/**
+ * Carga detalles en #popup_detalles
+ * @param {int} id
+ * @returns {undefined}
+ */
+function show_details(id) {
+    $("#popup_detalles").html(JAVA_LOADING);
+    $("#popup_detalles").dialog();
+    TKTID = id;
+    postControl.sendRequest(
+            false,
+            'openview',
+            {
+                class: 'tkt',
+                method: 'geth',
+                id: id
+            },
+    function (data) {
+        if (data.result === "ok") {
+            $("#popup_detalles").html('<div id="div_contenido" style="width:100%;height:100%">' + data.html + "</div>");
+            $("#popup_detalles").dialog('close');
+            $("#popup_detalles").dialog({
+                title: "itracker " + TKTID,
+                resizable: false,
+                width: 800,
+                height: 500,
+                modal: true,
+                draggable: true
+            });
+            $("#div_contenido").tinyscrollbar();
+            build_buttons();
+        } else {
+            $("#popup_detalles").dialog('close');
+            alert_p(data.html, "error");
+        }
+
+    },
+            function (data) {
+                $("#popup_detalles").dialog('close');
+                alert_p(data, "error");
+            }
+    );
+
 }

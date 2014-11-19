@@ -8,20 +8,6 @@ function main(){
 }
 
 /**
- * Serializa los datos del form para enviarlos
- * @returns {JSON}
- */
-function serialize_form(){
-    var formS = Array();
-    var i=0;
-    $(".openform").each(function(){
-        formS[i]={id:$(this).attr("id"),value:$(this).val()};
-        i++;
-    });
-    return JSON.stringify(formS);
-}
-
-/**
  * Carga opciones del arbol
  * @param {type} path
  * @returns {undefined}
@@ -55,7 +41,7 @@ function go(path){
                 action: 'abrir',
                 sendfiles:'true',
                 path:path,
-                form:serialize_form()
+                form:serialize_form('actionform')
             },
     function(data) {
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}

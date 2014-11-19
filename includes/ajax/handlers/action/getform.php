@@ -18,9 +18,12 @@ function GO($XML, $output = "html") {
     }
 
     $form = $XML->get_response("itform");
+    $formel=  make_arrayobj($form["element"]);
+    
+    
     $fm = new formmaker("actionform");
-    $fm->load_vector($form);
-    $html=$fm->get_html();
-
+    $fm->load_vector($formel);
+    $html = $fm->get_html();
+    $html.="<input type=\"button\" class=\"button\" value=\"GUARDAR\" onclick=\"go('" . $XML->get_paramSent("action") . "')\"  />";
     return array("type" => "array", "result" => "ok", "html" => $html);
 }

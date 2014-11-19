@@ -3,11 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/opt/lampp/htdocs/itracker_front/js/teams.js</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/config/access.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/html/mytkts.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/tkt/listmy.php</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/tkt/get_tree_options.php</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/js/actions.js</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/action/getform.php</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/includes/classes/formmaker.php</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/includes/config/basic_functions.php</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/js/classes/FileUploader/fileuploader.js</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/includes/classes/fileuploader/index.php</file>
             <file>file:/opt/lampp/htdocs/itracker_front/js/mytkts.js</file>
+            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/tkt/geth.php</file>
         </group>
     </open-files>
 </project-private>

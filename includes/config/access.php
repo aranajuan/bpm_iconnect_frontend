@@ -71,7 +71,8 @@ $access = array(
     array(50,"USER","idsel_myadmteams","Lista de equipos que administra"),
     array(51,"USER","idsel_profiles","Lista de perfiles validos"),
     
-    array(52,"INSTANCE","idsel_listfronts","Lista de fronts validos")
+    array(52,"INSTANCE","idsel_listfronts","Lista de fronts validos"),
+    array(53,"TKT","downloadfile","Descargar archivo de tkt")
      
     
 );

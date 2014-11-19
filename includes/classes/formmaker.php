@@ -89,7 +89,7 @@ class formmaker {
     }
 
     public function get_htmlview() {
-        $html = "<div style='float:left;width:100%'><table>";
+        $html = "<div style='width:100%'><table>";
         foreach ($this->vector as &$el) {
             if (in_array($el["id"], $this->vectorIds) || $el["id"] === "" || !isset($el["id"])) {
                 $html.=$this->putintable("error campo", print_r($el, true), "consulte a su administrador");
@@ -146,9 +146,9 @@ class formmaker {
 
     private function putintable($label, $field, $comment = null) {
         if ($comment == null) {
-            return "<tr><td>" . $label . "&nbsp;</td><td colspan='2'>" . $field . "</td></tr>";
+            return "<tr><td><b>" . $label . "&nbsp;</b></td><td colspan='2'>" . $field . "</td></tr>";
         }
-        return "<tr><td>" . $label . "&nbsp;</td><td>" . $field . "</td><td>" . $comment . "&nbsp;</td></tr>";
+        return "<tr><td><b>" . $label . "&nbsp;</b></td><td>" . $field . "</td><td>" . $comment . "&nbsp;</td></tr>";
     }
 
     private function make_input($el) {
@@ -160,7 +160,7 @@ class formmaker {
     }
 
     private function make_inputlong($el) {
-        return $this->putintable($el["label"], "<textarea class='" . $el["formclass"] . "' id='" . $el["id"] . "'></textarea>");
+        return $this->putintable($el["label"], "<textarea rows='4' cols='50' class='" . $el["formclass"] . "' id='" . $el["id"] . "'></textarea>");
     }
 
     private function make_month($el) {

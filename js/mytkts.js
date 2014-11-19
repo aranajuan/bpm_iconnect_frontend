@@ -18,18 +18,18 @@ function main() {
                 method: 'idsel_listteams',
                 multiple: true
             });
-    
-    /*
+
+
     $("#buscar_numero").click(function () {
         if (IsNumeric($('#txt_idtkt').val()))
-            show_details($('#txt_idtkt').val(), 'TKT:' + $('#txt_idtkt').val());
+            show_details($('#txt_idtkt').val());
     });
-    
-    
+
+
     if (IsNumeric($_GET('ID'))) {
-        show_details($_GET('ID'), "TKT: " + $_GET('ID'));
+        show_details($_GET('ID'));
     }
-*/
+
     refresh_list();
     refresh_listClose();
 }
@@ -136,28 +136,6 @@ function refresh_listClose() {
     },
             function (data) {
                 $("#ListClosed").html(data);
-            }
-    );
-
-}
-
-function show_details(id) {
-    TKTID=id;
-    postControl.sendRequest(
-            false,
-            'openview',
-            {
-                class: 'tkt',
-                method: 'geth',
-                id: id
-            },
-    function (data) {
-        $("#popup_detalles").html(data.result);
-        $("#popup_detalles").dialog({width:"1000px"});
-
-    },
-            function (data) {
-                alert(data);
             }
     );
 

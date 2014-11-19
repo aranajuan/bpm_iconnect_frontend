@@ -21,13 +21,20 @@ function GO($XML, $output = "html") {
     $i = 0;
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
-        $res.=$th["action"]["alias"];
+        $res.="<b>" . $th["action"]["alias"] . "</b>(" . $th["action"]["id"] . ")<br/>(" . $th["action"]["usr"] . "-" . $th["action"]["date"] . ")";
         if (isset($th["form"]["element"])) {
             $f = new formmaker($i);
             $f->load_vector(make_arrayobj($th["form"]["element"]));
             $res.=$f->get_htmlview();
         }
-        $res.="<hr>";
+        if (isset($th["files"]["file"])) {
+            $flist = make_arrayobj($th["files"]["file"]);
+            foreach ($flist as $f) {
+                $fv = explode(".", $f);
+                $res.="<a href='?class=tkt&method=downloadfile&type=adjunto&file=$f' target='_blank' ><img src='img/thumbnail/" . $fv[1] . ".png' height='30' /></a>";
+            }
+        }
+        $res.="<br/><hr />";
         $i++;
     }
 
@@ -35,11 +42,11 @@ function GO($XML, $output = "html") {
 
     foreach (make_arrayobj($result["actions"]["action"]) as $A) {
         if ($A["formulario"] == 0) {
-            $res.="<input type=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
+            $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
         } else {
-            $res.="<input type=\"button\" value=\"" . $A["alias"] . "\" onclick=\"getform('" . $A["nombre"] . "')\"  />";
+            $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"getform('" . $A["nombre"] . "')\"  />";
         }
     }
 
-    return array("type" => "array", "result" => $res, "status" => "ok");
+    return array("type" => "array", "result" => "ok", "html" => $res);
 }
