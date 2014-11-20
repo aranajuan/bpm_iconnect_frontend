@@ -27,7 +27,9 @@ class USER {
 
     public function logout() {
         $this->delete_file_tmp();
-        session_destroy();
+        if ($this->usr) {
+            session_destroy();
+        }
     }
 
     /**
@@ -226,8 +228,8 @@ class USER {
                     $archivos = glob($dir . $this->get_prop("usr") . "_*.*");
                     foreach ($archivos as $archivo) {
                         $exp = explode("_", $archivo);
-                        $usr=explode("/",$exp[0]);
-                        if ($usr[count($usr)-1] == $this->get_prop("usr")) {
+                        $usr = explode("/", $exp[0]);
+                        if ($usr[count($usr) - 1] == $this->get_prop("usr")) {
                             $ret[$i] = $archivo;
                             $i++;
                         }

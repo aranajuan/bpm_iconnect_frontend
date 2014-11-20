@@ -48,6 +48,11 @@ function getform(accion) {
  * @returns {undefined}
  */
 function go(accion) {
+    var data = serialize_form('actionform');
+    if(data==-1){
+        alert_p("No puedes utilizar &amp;,< o > en los textos");
+        return;
+    }
     postControl.sendRequest(
             true,
             'tktaction',
@@ -57,7 +62,7 @@ function go(accion) {
                 action: accion,
                 idtkt: TKTID,
                 sendfiles:'true',
-                form:serialize_form('actionform')
+                form:data
                 
             },
     function (data) {

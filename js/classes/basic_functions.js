@@ -6,11 +6,26 @@
 function serialize_form(classe){
     var formS = Array();
     var i=0;
+    var error=false;
     $("."+classe).each(function(){
+        if(!checkval($(this).val())){
+            error=true;
+            return;
+        }
         formS[i]={id:$(this).attr("id"),value:$(this).val()};
         i++;
     });
+    if(error){
+        return -1;
+    }
     return JSON.stringify(formS);
+}
+
+function checkval(str){
+    if(str.indexOf("\&")!=-1 || str.indexOf("<")!=-1 || str.indexOf(">")!=-1){
+        return false;
+    }
+    return true;
 }
 
 /*

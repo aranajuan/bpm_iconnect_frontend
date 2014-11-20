@@ -23,6 +23,8 @@ define("FILEUP_MAX_FILES_SIZE",1024*1024*3);
 define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx|pdf");
 define("FILEUP_TMP_FOLDER","usertmp/fileuploader");
 
+define("TRYMAX",2);
+
 define("TABLE_EMPTY","<div style=\"background-color:white;border: 1px solid #0A266B; padding:3px;margin-top:10px;width:150px;\">
         <img src=\"img/critic_icon.png\" /> <b>No hay registros</b>
     </div>");

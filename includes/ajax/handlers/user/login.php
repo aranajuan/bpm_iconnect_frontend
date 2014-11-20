@@ -9,7 +9,11 @@
 function GO($XML){
     if($XML->get_error()){
         $XML->get_user()->add_try();
-        return array("type"=>"array","result"=>"error","trycount"=>$XML->get_user()->get_try(),"detail"=>$XML->get_error());
+        $reload="false";
+        if($XML->get_user()->get_try()>=TRYMAX){
+            $reload="true";
+        }
+        return array("type"=>"array","result"=>"error","trycount"=>$XML->get_user()->get_try(),"reload"=>$reload,"detail"=>$XML->get_error());
     }
     $arr = $XML->get_response("data");
     $_SESSION["usr"] = $XML->get_user()->get_prop("usr");

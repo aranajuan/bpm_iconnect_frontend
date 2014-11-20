@@ -1,10 +1,10 @@
-var DelID=0;
-var UpdID=0;
-var mode_details=0;
-var go_status="clear";
+var DelID = 0;
+var UpdID = 0;
+var mode_details = 0;
+var go_status = "clear";
 
-function main(){
-    load_tree("");   
+function main() {
+    load_tree("");
 }
 
 /**
@@ -12,26 +12,31 @@ function main(){
  * @param {type} path
  * @returns {undefined}
  */
-function load_tree(path){
+function load_tree(path) {
     postControl.sendRequest(
             true,
             'treeoptions',
             {
                 class: 'tkt',
                 method: 'get_tree_options',
-                path:path
+                path: path
             },
-    function(data) {
+    function (data) {
         $("#tree").html(data.html);
         build_buttons();
     },
-            function(data) {
+            function (data) {
                 $("#tree").html(data);
             }
     );
 }
 
-function go(path){
+function go(path) {
+    var data = serialize_form('actionform');
+    if (data == -1) {
+        alert_p("No puedes utilizar &amp;,< o > en los textos");
+        return;
+    }
     postControl.sendRequest(
             true,
             'tktopen',
@@ -39,31 +44,31 @@ function go(path){
                 class: 'action',
                 method: 'ejecute',
                 action: 'abrir',
-                sendfiles:'true',
-                path:path,
-                form:serialize_form('actionform')
+                sendfiles: 'true',
+                path: path,
+                form: data
             },
-    function(data) {
+    function (data) {
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
-        if(data.status=="ok"){
-            var result=data.result;
-            if(result.result==="ok"){
-                if(result.tkth=="ok"){
-                    $("#tree").html("generado ok "+result.id);
-                }else{
-                    $("#tree").html("generado itracker "+result.id+"<br/>No se pudo guardar el evento, verifique en sus ticktes");
+        if (data.status == "ok") {
+            var result = data.result;
+            if (result.result === "ok") {
+                if (result.tkth == "ok") {
+                    $("#tree").html("<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu lateral.");
+                } else {
+                    $("#tree").html("<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu lateral.");
                 }
-            }else{
-                alert_p(result.msj,"Error");
+            } else {
+                alert_p(result.msj, "Error");
             }
-        }else{
-            if(data.html){
-                alert_p(data.html,"Error");
+        } else {
+            if (data.html) {
+                alert_p(data.html, "Error");
             }
         }
     },
-            function(data) {
-               alert(data);
+            function (data) {
+                alert_p(data);
             }
     );
 }

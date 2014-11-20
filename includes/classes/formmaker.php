@@ -55,9 +55,6 @@ class formmaker {
                     case "datetime":
                         $html.=$this->make_datetime($el);
                         break;
-                    case "file":
-                        $html.=$this->make_file($el);
-                        break;
                     case "link":
                         $html.=$this->make_link($el);
                         break;
@@ -116,9 +113,6 @@ class formmaker {
                     case "datetime":
                         $html.=$this->make_datetime_view($el);
                         break;
-                    case "file":
-                        $html.=$this->make_file_view($el);
-                        break;
                     case "link":
                         $html.=$this->make_link_view($el);
                         break;
@@ -175,12 +169,8 @@ class formmaker {
         return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " tmpck' id='" . $el["id"] . "' />", $el["comment"]);
     }
 
-    private function make_file($el) {
-        return $this->putintable($el["label"], "<div type='text' class='" . $el["formclass"] . " FILEUPL' id='" . $el["id"] . "' />");
-    }
-
     private function make_link($el) {
-        return $this->putintable($el["label"], "<a target='_blank' href='?download=" . $el["path"] . "'>" . $el["text"] . "</a>", $el["comment"]);
+        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."'>" .$el["text"]."</a>"  , $el["comment"]);
     }
 
     private function make_select($el) {
@@ -232,12 +222,8 @@ class formmaker {
         return $this->putintable($el["label"], $el["value"], $el["comment"]);
     }
 
-    private function make_file_view($el) {
-        return "";
-    }
-
     private function make_link_view($el) {
-        return $this->putintable($el["label"], $el["path"] ."->". $el["text"] , $el["comment"]);
+        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."'>" .$el["text"]."</a>"  , $el["comment"]);
     }
 
     private function make_select_view($el) {

@@ -31,11 +31,21 @@
                     </select>   
                 </td>
             </tr>
+            <? if ($U->get_try() >= TRYMAX) { ?>
+                <tr><td>Complete el captcha</td><td>
+                        <img src="?L=captcha"  />
+                        <input type='text' size='10' id='captchatext'/>
+                    </td></tr>
+                <tr><td>&nbsp;</td><td>
+                        <a href="?L=login&m=recaptcha">Recargar captcha</a>
+                    </td></tr>
+            <? }
+            ?>
         </table>
     </div>
     <input type="button" value="Login" id="login" />
     <div style="width: 50%;text-align: center;float:left;">
-        
+
     </div>
 
 </div>
