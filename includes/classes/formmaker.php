@@ -201,8 +201,8 @@ class formmaker {
     }
 
     private function make_idsel($el) {
+        $this->js.="$('#" . $el["id"] . "').idSEL({'class':'" . $el["idselparams"]["class"] . "','method':'" . $el["idselparams"]["method"] . "',params:{idtkt:'" . $this->statics["tkt"]["id"] . "'} });";
         return $this->putintable($el["label"], "<div id='" . $el["id"] . "' class='" . $el["formclass"] . "'></div>");
-        $this->js.="$('#" . $el["id"] . "').idSEL({'class':'" . $el["idselparams"]["class"] . "','method':'" . $el["idselparams"]["method"] . "',idtkt:'" . $this->statics["tkt"]["id"] . "' });";
     }
     
     

@@ -14,7 +14,8 @@ function getform(accion) {
             {
                 class: 'action',
                 method: 'getform',
-                action: accion
+                action: accion,
+                idtkt:TKTID
             },
     function (data) {
         if (data.result === "ok") {

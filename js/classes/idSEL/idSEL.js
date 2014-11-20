@@ -59,13 +59,16 @@ jQuery.fn.idSEL = function(options, callback) {
                     whitelist: whitelist,
                     blacklist: blacklist,
                     multiple: multiple,
-                    params: options.params
+                    sel_params: JSON.stringify(options.params)
                 },
                 function(data){ //func ok
                     if(data.status==="ok"){
+                        var cmove = $(obj).attr('class');
                         $(obj).html(data.html);
                         $(obj).attr("id", $(obj).attr("id") + "cont");
+                        $(obj).removeClass(cmove);
                         build_buttons();
+                        $("#"+htmlid).addClass(cmove);
                         if (options.closeF)
                             $(obj).bind("multiselectclose", function(event, ui) {
                                 options.closeF();

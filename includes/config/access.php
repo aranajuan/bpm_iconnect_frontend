@@ -31,13 +31,13 @@ $access = array(
     array(21,"USER","list", "Lista de usuarios"),
     array(22,"USER","delete", "Usuario delete"),
     array(23,"USER","update", "Usuario update"),
-    array(24,"USER","ucontact_Update", "Actualizar datos de contacto"),
+    array(24,"USER","ucontact_Update", "Actualizar datos de contacto"), // pendiente
 
     array(25,"PAGE","systems", "Administracion de Sistemas"),
     array(26,"SYSTEM","insert", "Sistema insert"),
     array(27,"SYSTEM","list", "Lista de sistemas"),
-    array(28,"SYSTEM","delete", "Sistema delete"),
-    array(29,"SYSTEM","update", "Sistema update"),
+    array(28,"SYSTEM","delete", "Sistema delete"),//usado
+    array(29,"SYSTEM","update", "Sistema update"),//usado
     
     array(30,"PAGE","newtkt", "Nuevo"), //usado
     
@@ -49,32 +49,32 @@ $access = array(
     
     array(34,"USER","idsel_listteams", "Equipos de usuario"), //usado
     
-    array(35,"TKT","listToTeam", "Lista de tkts filtrada"),
+    array(35,"TKT","listteam", "Lista de tkts al equipo filtrada"),//usado
     array(36,"TKT","geth", "Detalle del ticket"), //usado
     array(37,"ACTION","getform", "Obtiene formulario"), //usado
     array(38,"TKT","listChilds", "TKT childs"),
-    array(39,"PAGE","mytkts", "Generados"),
-    array(40,"TKT","listmy", "Lista mistkts"),
-    array(41,"TEAM","teams_usersSelect", "Usuarios de equipo"),
+    array(39,"PAGE","mytkts", "Generados"),//usado
+    array(40,"TKT","listmy", "Lista mistkts"),//usado
+    array(41,"TKT","idsel_userasign", "Usuarios de equipo para asignar"), //usado
     array(42,"TREE","designer", "Arbol preguntas"),
-    array(43,"TKT","listmyclose","Lista de cerrados propios"), //anulado?
+    array(43,"TKT","listmyclose","Lista de cerrados propios"), //usado
     array(44,"PAGE","actionhelp", "Ayuda Acciones"),
     
     array(45,"TKT_EXT","getStatus","Consulta BIT"),
 
-    array(46,"TKT","listmyteams", "Lista tkts equipo"),
+    array(46,"TKT","listmyteams", "Lista tkts generados por equipo"),//usado
     
     array(47,"PAGE","reports", "Reportes"),
     array(48,"TREE","get_filter", "Arbol para filtros"),
     
-    array(49,"USER","idsel_domains","Lista de dominios validos"),
-    array(50,"USER","idsel_myadmteams","Lista de equipos que administra"),
-    array(51,"USER","idsel_profiles","Lista de perfiles validos"),
+    array(49,"USER","idsel_domains","Lista de dominios validos"),//usado
+    array(50,"USER","idsel_myadmteams","Lista de equipos que administra"),//usado
+    array(51,"USER","idsel_profiles","Lista de perfiles validos"),//usado
     
-    array(52,"INSTANCE","idsel_listfronts","Lista de fronts validos"),
-    array(53,"TKT","downloadfile","Descargar archivo de tkt")
-     
-    
+    array(52,"INSTANCE","idsel_listfronts","Lista de fronts validos"),//usado
+    array(53,"TKT","downloadfile","Descargar archivo de tkt"), //usado
+    array(54,"TKT","listteamclose","Lista de tickets cerrados recientes por el equipo"), //usado
+    array(55,"TKT","idsel_teamderive","Lista equipos a los que se puede derivar") //usado
 );
 
 

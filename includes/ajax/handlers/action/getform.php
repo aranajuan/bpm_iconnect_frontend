@@ -22,7 +22,7 @@ function GO($XML, $output = "html") {
     
     
     $fm = new formmaker("actionform");
-    $fm->load_vector($formel);
+    $fm->load_vector($formel,array("tkt"=>array("id"=>$XML->get_paramSent("idtkt"))));
     $html = $fm->get_html();
     $html.="<input type=\"button\" class=\"button\" value=\"GUARDAR\" onclick=\"go('" . $XML->get_paramSent("action") . "')\"  />";
     return array("type" => "array", "result" => "ok", "html" => $html);
