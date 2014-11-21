@@ -393,7 +393,6 @@ class SimpleCaptcha {
                     $x+$this->scale, $y+$this->scale,
                     $this->GdShadowColor, $fontfile, $letter);
             }
-            error_log($fontfile);
             $coords = imagettftext($this->im, $fontsize, $degree,
                 $x, $y,
                 $this->GdFgColor, $fontfile, $letter);
@@ -435,7 +434,7 @@ class SimpleCaptcha {
      * Reduce the image to the final size
      */
     protected function ReduceImage() {
-        // Reduzco el tamaño de la imagen
+        // Reduzco el tamaï¿½o de la imagen
         $imResampled = imagecreatetruecolor($this->width, $this->height);
         imagecopyresampled($imResampled, $this->im,
             0, 0, 0, 0,

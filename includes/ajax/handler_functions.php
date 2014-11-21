@@ -66,7 +66,7 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
     $colsAlias = array();
 
     $i = 0;
-    
+
     if (!is_array($arr)) {
         return TABLE_EMPTY;
     }
@@ -114,7 +114,7 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
             $HTML.="<td><input type=\"checkbox\" name=\"table_$tableId\" value=\"" . $el[$idField] . "\" /> </td>";
         }
         foreach ($colsNames as $c) {
-            $HTML.="<td>" . $el[$c] . "</td>";
+            $HTML.="<td>" . get_value($c, $el) . "</td>";
         }
         //update,open,delete
         if ($isOpen) {
@@ -145,6 +145,73 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
 // idem anterior
 function arrayToExcel() {
     
+}
+
+/**
+ * Obtiene valor de funciones complejas
+ * @param string $field funcion:par1:par2:par3
+ * @param   array   $arr    array con valores del fila
+ * @param boolean $html muestra html o excel(campo limpio)
+ * @return string
+ */
+function get_value($field, $arr, $html = true) {
+    $fieldv = explode(":", $field);
+    if (count($fieldv) < 2) {
+        return $arr[$field];
+    }
+    switch (strtolower($fieldv[0])) {
+        case "nextans":
+            return make_nextans($fieldv, $arr);
+            break;
+        case "js":
+            return make_js($fieldv, $arr);
+            break;
+        default:
+            return $field;
+    }
+}
+
+/**
+ * Devuelve JS
+ * Parametros desde campos
+ * js:nombrefuncion:param1,param2,param3
+ * @param type $field
+ * @param type $arr
+ * @return string
+ */
+function make_js($field, $arr) {
+    $len = count($field);
+    if ($len < 4) {
+        return "error js";
+    }
+    $func = $field[1];
+    $params = array();
+    for ($i = 2; $i <= $len - 2; $i++) {
+        array_push($params, "'" . $arr[$field[$i]] . "'");
+    }
+    return "<a href=\"javascript:" . $func . "(" . implode(",", $params) . ")\">" . $arr[$field[$len - 1]] . "</a>";
+}
+
+/**
+ * Devuelve la opcion posterior a cualquiera de los elementos
+ * nextans:D1:S4:03
+ * @param type $field
+ * @param type $arr
+ * @return string
+ */
+function make_nextans($field, $arr) {
+    $options = json_decode($arr["origen_json"]);
+    $found = false;
+    foreach ($options as $o) {
+        if ($found) {
+            return $o->ans;
+        }
+        $pv = explode("-", $o->path);
+        if (count(array_intersect($field, $pv))) {
+            $found = true;
+        }
+    }
+    return "";
 }
 
 /**

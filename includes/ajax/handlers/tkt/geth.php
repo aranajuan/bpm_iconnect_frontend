@@ -51,8 +51,6 @@ function GO($XML, $output = "html") {
         $i++;
     }
 
-    //error_log(print_r($result["actions"]["action"]),true);
-
     foreach (make_arrayobj($result["actions"]["action"]) as $A) {
         if ($A["formulario"] == 0) {
             $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
