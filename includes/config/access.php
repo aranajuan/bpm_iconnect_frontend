@@ -52,7 +52,7 @@ $access = array(
     array(35,"TKT","listteam", "Lista de tkts al equipo filtrada"),//usado
     array(36,"TKT","geth", "Detalle del ticket"), //usado
     array(37,"ACTION","getform", "Obtiene formulario"), //usado
-    array(38,"TKT","listChilds", "TKT childs"),
+    array(38,"TKT","listChilds", "TKT childs"), //usado
     array(39,"PAGE","mytkts", "Generados"),//usado
     array(40,"TKT","listmy", "Lista mistkts"),//usado
     array(41,"TKT","idsel_userasign", "Usuarios de equipo para asignar"), //usado

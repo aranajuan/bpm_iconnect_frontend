@@ -28,6 +28,8 @@ class USER {
     public function logout() {
         $this->delete_file_tmp();
         if ($this->usr) {
+            $LOG = new LOGGER();
+            $LOG->addLine(array($this->usr, "logout"));
             session_destroy();
         }
     }

@@ -11,31 +11,31 @@ var updating = false;
 
 function main() {
     /*
-    var test;
-    $.getScript('includes/js/jq/timer.js',
-            function () {
-                test = new class_timer(5000, function () {
-                    if (popup_showing(0) == false) {
-                        refresh_list();
-                    }
-                    test.start();
-                }, true);
-            });
-
-    user.set_user_activity_change(function () {
-        if (!user.user_active) {
-            notice_msj("Inactivo // se redujo la frecuencia de autoactualizacion a 30 min");
-            test.set_time(1800000);
-            //test.set_time(60000);
-            test.start();
-        } else {
-            test.set_time(5000);
-            notice_msj("");
-            refresh_list();
-            test.start();
-        }
-    });
-*/
+     var test;
+     $.getScript('includes/js/jq/timer.js',
+     function () {
+     test = new class_timer(5000, function () {
+     if (popup_showing(0) == false) {
+     refresh_list();
+     }
+     test.start();
+     }, true);
+     });
+     
+     user.set_user_activity_change(function () {
+     if (!user.user_active) {
+     notice_msj("Inactivo // se redujo la frecuencia de autoactualizacion a 30 min");
+     test.set_time(1800000);
+     //test.set_time(60000);
+     test.start();
+     } else {
+     test.set_time(5000);
+     notice_msj("");
+     refresh_list();
+     test.start();
+     }
+     });
+     */
     $("#List").html(JAVA_LOADING);
     $("#ListRC").html(JAVA_LOADING);
 
@@ -109,7 +109,7 @@ function refresh_list() {
 
 
 function show_childs(id) {
-    $("#popup_childs").html("<img src=\"img/loading.gif\" width=\"10\" heigth=\"10\"/>&nbsp;Cargando... ");
+    $("#popup_childs").html(JAVA_LOADING);
     $("#popup_childs").dialog({
         title: 'Tikets adjuntos',
         resizable: false,
@@ -117,13 +117,16 @@ function show_childs(id) {
         height: 90,
         model: true
     });
-    $.post(
-            "includes/ajaxQ/TKT_listChilds.php",
+    postControl.sendRequest(
+            true,
+            'tktlistchilds',
             {
-                id: id
+                class: 'tkt',
+                method: 'listchilds',
+                idtkt: id
             },
     function (data) {
-        $("#popup_childs").html('<div id="div_contenido_C" style="height:300px; overflow:auto;">' + data + "</div>");
+        $("#popup_childs").html('<div id="div_contenido_C" style="height:300px; overflow:auto;">' + data.html + "</div>");
         $("#popup_childs").dialog('close');
         $("#popup_childs").dialog({
             title: 'Tikets adjuntos',
@@ -131,8 +134,22 @@ function show_childs(id) {
             width: 320,
             height: 350,
             modal: true
-        })
+        });
         $("#div_contenido_C").scrollTop(0);
+    },
+            function (data) {
+                $("#popup_childs").html(data);
+            }
+    );
+
+
+    $.post(
+            "includes/ajaxQ/TKT_listChilds.php",
+            {
+                id: id
+            },
+    function (data) {
+
         build_buttons();
     }
     );

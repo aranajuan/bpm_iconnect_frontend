@@ -15,6 +15,9 @@ function GO($XML, $output = "html") {
     }
 
     $result = $XML->get_response("result");
-
+    if ($result == "ok") {
+        $LOG = new LOGGER();
+        $LOG->addLine(array($XML->get_paramSent("usr"), "baja usuario",$XML->get_paramSent("usr")));
+    }
     return array("type" => "array", "result" => $result, "status" => "ok");
 }

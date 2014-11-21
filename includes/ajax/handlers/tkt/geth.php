@@ -20,20 +20,28 @@ function GO($XML, $output = "html") {
     $res = "";
     $i = 0;
     $tops = make_arrayobj($result["tree"]["option"]);
-    $html_tree = "<br/>Tipificacion:<br/><table>";
+    $html_tree = "<br/><b>Tipificacion:</b><br/><table>";
     foreach ($tops as $t) {
         $html_tree.="<tr><td><b>" . $t["question"] . "</b><td><td>" . $t["ans"] . "</td></tr>";
     }
     $html_tree.="</table>";
-    
+    if(is_numeric($result["master"])){
+        $res.="<div style=\"width: 50%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('".$result["master"]."')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+    }
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
-        $res.="<b>" . $th["action"]["alias"] . "</b>(" . $th["action"]["id"] . ")<br/>(" . $th["action"]["usr"] . "-" . $th["action"]["date"] . ")";
-        
-        if($th["action"]["ejecuta"]==="open"){
-            $res.=$html_tree;
-        }
+        $res.="<div class='master_TH'>";
+        $res.="<div class='header_TH'>";
+        $res.="<div class='title_TH'>" . strtoupper($th["action"]["alias"]) . "</div>";
+        $res.="<div class='date_TH'>" . $th["action"]["date"] . "</div>";
+        $res.="</div>";
 
+        if ($th["action"]["ejecuta"] === "open") {
+            $res.="<div class='element'>";
+            $res.=$html_tree;
+            $res.="</div>";
+        }
+        $res.="<div class='element'>";
         if (isset($th["form"]["element"])) {
             $f = new formmaker($i);
             $f->load_vector(make_arrayobj($th["form"]["element"]));
@@ -46,8 +54,11 @@ function GO($XML, $output = "html") {
                 $res.="<a href='?class=tkt&method=downloadfile&type=adjunto&file=$f' target='_blank' ><img src='img/thumbnail/" . $fv[1] . ".png' height='30' /></a>";
             }
         }
-        $res.="<br/><b>".$th["action"]["value"]."</b>";
-        $res.="<br/><hr />";
+        $res.="</div>";
+        $res.="<div class='element'>";
+        $res.="<b>" . $th["action"]["value"] . "</b>";
+         $res.="</div>";
+        $res.="</div>";
         $i++;
     }
 

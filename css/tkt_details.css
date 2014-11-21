@@ -1,7 +1,7 @@
     .master_TH{
-        border: 1px solid; width:95%;margin:10px;padding:5px;
-
-        background-image: url(http://t0002622801/itracker/includes/js/jq/css/pepper-grinder/images/ui-bg_fine-grain_15_ffffff_60x60.png);
+        border: 1px solid black; 
+        width:95%;margin:10px;padding:5px;
+        background-color:white;
         background-position-x: 50%;
         background-position-y: 50%;
         background-size: initial;
@@ -17,11 +17,10 @@
     .header_TH{
         height:15px;
         font-size:13px;
-        cursor:pointer;
     }
     
     .title_TH{
-        float:left;color:blue;font-weight: bold;
+        float:left;font-weight: bold;
     }
     .subtitle_TH{
         color:red;

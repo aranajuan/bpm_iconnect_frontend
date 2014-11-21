@@ -33,7 +33,7 @@
             </tr>
             <? if ($U->get_try() >= TRYMAX) { ?>
                 <tr><td>Complete el captcha</td><td>
-                        <img src="?L=captcha"  />
+                        <img src="?L=captcha"  /><br/>
                         <input type='text' size='10' id='captchatext'/>
                     </td></tr>
                 <tr><td>&nbsp;</td><td>

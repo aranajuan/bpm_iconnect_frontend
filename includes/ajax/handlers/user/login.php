@@ -7,7 +7,9 @@
  * @return array {type,result}
  */
 function GO($XML){
+    $LOG = new LOGGER();
     if($XML->get_error()){
+        $LOG->addLine(array($XML->get_paramSent("usr"),"login fallido",$XML->get_error()));
         $XML->get_user()->add_try();
         $reload="false";
         if($XML->get_user()->get_try()>=TRYMAX){
@@ -15,6 +17,7 @@ function GO($XML){
         }
         return array("type"=>"array","result"=>"error","trycount"=>$XML->get_user()->get_try(),"reload"=>$reload,"detail"=>$XML->get_error());
     }
+    $LOG->addLine(array($XML->get_paramSent("usr"),"login exitoso"));
     $arr = $XML->get_response("data");
     $_SESSION["usr"] = $XML->get_user()->get_prop("usr");
     $_SESSION["nombre"] = $arr["nombre"];

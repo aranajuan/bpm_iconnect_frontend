@@ -20,6 +20,10 @@ function main() {
                     doLogin();
             }
     );
+    if($_GET("usr")){
+        autoLogin();
+    }
+    
 }
 
 function doLogin() {
@@ -57,3 +61,33 @@ function doLogin() {
     );
 }
 
+
+function autoLogin() {
+    $.post("",
+            {
+                class: 'user',
+                method: 'login',
+                usr: $_GET("usr"),
+                pass: $_GET("pass"),
+                instancia: $_GET("instancia")
+            }, function (data) {
+        try {
+            var obj = jQuery.parseJSON(data);
+            if (obj !== null) {
+                if (obj.result === "ok") {
+                    location.href = "?L=" + obj.home + "&m=login";
+                } else {
+                    if (obj.reload == "true") {
+                        location.href = "?L=login&e=" + encodeURIComponent(obj.detail);
+                    } else {
+                        alert_p(obj.detail, obj.result);
+                    }
+                }
+            }
+        } catch (e) {
+            alert_p(data);
+        }
+
+    }
+    );
+}

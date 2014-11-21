@@ -1,0 +1,48 @@
+21-11-2014 02:17:03	127.0.0.1: usuario	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+21-11-2014 02:17:08	127.0.0.1: usuario2	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+21-11-2014 02:17:17	127.0.0.1: it1	login exitoso
+21-11-2014 02:17:43	127.0.0.1: ASDAS	actualizado usuario	ASDAS
+21-11-2014 02:17:46	127.0.0.1: it1	logout
+21-11-2014 02:35:21	127.0.0.1: it1	login exitoso
+21-11-2014 02:35:29	127.0.0.1: it1	actualizado usuario	ASDAS
+21-11-2014 03:09:15	190.175.110.1: it1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
+21-11-2014 03:12:58	200.3.94.119: it1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
+21-11-2014 03:13:01	200.3.94.119: it1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
+21-11-2014 03:13:40	200.3.95.120: it1	login exitoso
+21-11-2014 03:13:57	200.3.95.120: it1	logout
+21-11-2014 03:21:43	200.43.32.41: it1	login fallido	(app)validation::Error en el origen de la solicitud - #6.3
+21-11-2014 03:21:51	200.43.32.41: it1	login exitoso
+21-11-2014 03:39:13	190.175.110.1: it1	login exitoso
+21-11-2014 04:20:04	190.175.110.1: it1	logout
+21-11-2014 04:20:37	190.175.110.1: it1	login exitoso
+21-11-2014 04:22:41	190.175.110.1: it1	alta usuario	SP1
+21-11-2014 04:22:55	190.175.110.1: it1	actualizado usuario	SP1
+21-11-2014 04:26:43	190.175.110.1: SP1	login fallido	(app)xml_validation::Error en el origen de la solicitud - #6.3
+21-11-2014 04:29:46	190.175.110.1: SP1	login fallido	(app)String could not be parsed as XML;<br />
+<b>Fatal error</b>:  Call to a member function get_alias() on a non-object in <b>/opt/lampp/htdocs/itracker_app/classes/db.php</b> on line <b>35</b><br />
+
+21-11-2014 04:30:51	190.175.110.1: it1	login exitoso
+21-11-2014 04:30:53	190.175.110.1: it1	logout
+21-11-2014 04:30:56	190.175.110.1: SP1	login fallido	(app)String could not be parsed as XML;<br />
+<b>Fatal error</b>:  Call to a member function get_alias() on a non-object in <b>/opt/lampp/htdocs/itracker_app/classes/db.php</b> on line <b>35</b><br />
+
+21-11-2014 04:32:22	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
+21-11-2014 04:32:57	190.175.110.1: it1	login exitoso
+21-11-2014 04:32:59	190.175.110.1: it1	logout
+21-11-2014 04:33:12	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
+21-11-2014 04:34:47	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout
+21-11-2014 04:38:09	190.175.110.1: it1	login exitoso
+21-11-2014 04:38:10	190.175.110.1: it1	logout
+21-11-2014 04:38:13	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout1416598693
+21-11-2014 04:41:37	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout1416598897
+21-11-2014 04:43:01	190.175.110.1: it1	login exitoso
+21-11-2014 04:43:03	190.175.110.1: it1	logout
+21-11-2014 04:43:14	190.175.110.1: SP1	login fallido	(app)fecha invalida
+21-11-2014 04:43:40	190.175.110.1: SP1	login fallido	(app)fecha invalida
+21-11-2014 04:44:04	190.175.110.1: it1	login exitoso
+21-11-2014 04:44:06	190.175.110.1: it1	logout
+21-11-2014 04:44:43	190.175.110.1: SP1	login fallido	(app)fecha invalida
+21-11-2014 04:45:42	190.175.110.1: SP1	login fallido	(app)fecha invalida select fecha from TBL_SESIONES where usr='SP1' and front=2 and hash='hash' and ip='190.175.110.1'
+21-11-2014 04:47:29	190.175.110.1: SP1	login fallido	(app)fecha invalida
+21-11-2014 04:47:45	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout296
+21-11-2014 04:48:47	190.175.110.1: SP1	login exitoso

@@ -1,5 +1,6 @@
 <link rel="stylesheet" media="all" type="text/css" href="css/base.css" />
 <link rel="stylesheet" media="all" type="text/css" href="css/menu.css" />
+<link rel="stylesheet" media="all" type="text/css" href="css/tkt_details.css" />
 
 <link rel="stylesheet" media="all" type="text/css" href="js/classes/jui/themes/smoothness/jquery-ui.css" />
 <script src="js/classes/jui/external/jquery/jquery.js" type="text/javascript"></script>
