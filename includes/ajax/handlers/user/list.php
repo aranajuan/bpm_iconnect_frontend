@@ -16,13 +16,15 @@ function GO($XML,$output="html") {
     
     $list = $XML->get_response("list");
     $users = $list["USER"];
-    
+    if(count($users)>0){
+        $users=  make_arrayobj($users);
+    }
     foreach ($users as &$u){
-        $u["_usrd"]=$u["dominio"]."/<b>".$u["usr"]."</b>";
+        $u["usrd"]=$u["dominio"]."/<b>".$u["usr"]."</b>";
     }
     
     $HTML=arrayToTable(
-            array("_usrd=>usuario","nombre","perfilT=>perfil",'equiposname=>equipos'),
+            array("usrd=>usuario","nombre","perfilT=>perfil",'equiposname=>equipos'),
             $users,
             array("dominio","usr","nombre","mail","telefono","puesto","ubicacion","fronts","perfil","idsequipos"),
             "usr",

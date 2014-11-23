@@ -25,8 +25,8 @@ function GO($XML, $output = "html") {
         $html_tree.="<tr><td><b>" . $t["question"] . "</b><td><td>" . $t["ans"] . "</td></tr>";
     }
     $html_tree.="</table>";
-    if(is_numeric($result["master"])){
-        $res.="<div style=\"width: 50%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('".$result["master"]."')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+    if (is_numeric($result["master"])) {
+        $res.="<div style=\"width: 50%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('" . $result["master"] . "')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
     }
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
@@ -57,18 +57,19 @@ function GO($XML, $output = "html") {
         $res.="</div>";
         $res.="<div class='element'>";
         $res.="<b>" . $th["action"]["value"] . "</b>";
-         $res.="</div>";
+        $res.="</div>";
         $res.="</div>";
         $i++;
     }
 
-    foreach (make_arrayobj($result["actions"]["action"]) as $A) {
-        if ($A["formulario"] == 0) {
-            $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
-        } else {
-            $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"getform('" . $A["nombre"] . "')\"  />";
+    if (isset($result["actions"]["action"])) {
+        foreach (make_arrayobj($result["actions"]["action"]) as $A) {
+            if ($A["formulario"] == 0) {
+                $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
+            } else {
+                $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"getform('" . $A["nombre"] . "')\"  />";
+            }
         }
     }
-
     return array("type" => "array", "result" => "ok", "html" => $res);
 }

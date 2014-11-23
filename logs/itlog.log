@@ -1,48 +1,64 @@
-21-11-2014 02:17:03	127.0.0.1: usuario	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
-21-11-2014 02:17:08	127.0.0.1: usuario2	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
-21-11-2014 02:17:17	127.0.0.1: it1	login exitoso
-21-11-2014 02:17:43	127.0.0.1: ASDAS	actualizado usuario	ASDAS
-21-11-2014 02:17:46	127.0.0.1: it1	logout
-21-11-2014 02:35:21	127.0.0.1: it1	login exitoso
-21-11-2014 02:35:29	127.0.0.1: it1	actualizado usuario	ASDAS
-21-11-2014 03:09:15	190.175.110.1: it1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
-21-11-2014 03:12:58	200.3.94.119: it1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
-21-11-2014 03:13:01	200.3.94.119: it1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
-21-11-2014 03:13:40	200.3.95.120: it1	login exitoso
-21-11-2014 03:13:57	200.3.95.120: it1	logout
-21-11-2014 03:21:43	200.43.32.41: it1	login fallido	(app)validation::Error en el origen de la solicitud - #6.3
-21-11-2014 03:21:51	200.43.32.41: it1	login exitoso
-21-11-2014 03:39:13	190.175.110.1: it1	login exitoso
-21-11-2014 04:20:04	190.175.110.1: it1	logout
-21-11-2014 04:20:37	190.175.110.1: it1	login exitoso
-21-11-2014 04:22:41	190.175.110.1: it1	alta usuario	SP1
-21-11-2014 04:22:55	190.175.110.1: it1	actualizado usuario	SP1
-21-11-2014 04:26:43	190.175.110.1: SP1	login fallido	(app)xml_validation::Error en el origen de la solicitud - #6.3
-21-11-2014 04:29:46	190.175.110.1: SP1	login fallido	(app)String could not be parsed as XML;<br />
-<b>Fatal error</b>:  Call to a member function get_alias() on a non-object in <b>/opt/lampp/htdocs/itracker_app/classes/db.php</b> on line <b>35</b><br />
-
-21-11-2014 04:30:51	190.175.110.1: it1	login exitoso
-21-11-2014 04:30:53	190.175.110.1: it1	logout
-21-11-2014 04:30:56	190.175.110.1: SP1	login fallido	(app)String could not be parsed as XML;<br />
-<b>Fatal error</b>:  Call to a member function get_alias() on a non-object in <b>/opt/lampp/htdocs/itracker_app/classes/db.php</b> on line <b>35</b><br />
-
-21-11-2014 04:32:22	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
-21-11-2014 04:32:57	190.175.110.1: it1	login exitoso
-21-11-2014 04:32:59	190.175.110.1: it1	logout
-21-11-2014 04:33:12	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
-21-11-2014 04:34:47	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout
-21-11-2014 04:38:09	190.175.110.1: it1	login exitoso
-21-11-2014 04:38:10	190.175.110.1: it1	logout
-21-11-2014 04:38:13	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout1416598693
-21-11-2014 04:41:37	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout1416598897
-21-11-2014 04:43:01	190.175.110.1: it1	login exitoso
-21-11-2014 04:43:03	190.175.110.1: it1	logout
-21-11-2014 04:43:14	190.175.110.1: SP1	login fallido	(app)fecha invalida
-21-11-2014 04:43:40	190.175.110.1: SP1	login fallido	(app)fecha invalida
-21-11-2014 04:44:04	190.175.110.1: it1	login exitoso
-21-11-2014 04:44:06	190.175.110.1: it1	logout
-21-11-2014 04:44:43	190.175.110.1: SP1	login fallido	(app)fecha invalida
-21-11-2014 04:45:42	190.175.110.1: SP1	login fallido	(app)fecha invalida select fecha from TBL_SESIONES where usr='SP1' and front=2 and hash='hash' and ip='190.175.110.1'
-21-11-2014 04:47:29	190.175.110.1: SP1	login fallido	(app)fecha invalida
-21-11-2014 04:47:45	190.175.110.1: SP1	login fallido	(app)Usuario o contrase&ntilde;a invalidos. timeout296
-21-11-2014 04:48:47	190.175.110.1: SP1	login exitoso
+22-11-2014 11:16:04	190.175.110.1: it1	login fallido	(app)load_instance::no se puede cargar la instancia.
+22-11-2014 11:16:39	190.175.110.1: it1	login fallido	(app)load_instance::no se puede cargar la instancia.
+22-11-2014 11:16:41	190.175.110.1: it1	login fallido	(app)load_instance::no se puede cargar la instancia.
+22-11-2014 11:18:45	190.175.110.1: it1	login fallido	(app)front::Error en el origen de la solicitud - #6.1
+22-11-2014 11:18:48	190.175.110.1: it1	login fallido	(app)front::Error en el origen de la solicitud - #6.1
+22-11-2014 11:18:49	190.175.110.1: it1	login fallido	(app)front::Error en el origen de la solicitud - #6.1
+22-11-2014 11:19:06	190.175.110.1: it1	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+22-11-2014 11:19:07	190.175.110.1: it1	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+22-11-2014 11:19:09	190.175.110.1: it1	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+22-11-2014 11:19:49	190.175.110.1: fulladm	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+22-11-2014 11:20:07	190.175.110.1: fulladm	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+22-11-2014 11:20:50	190.175.110.1: fulladm	login exitoso
+22-11-2014 11:54:28	190.175.110.1: fulladm	alta usuario	fede
+22-11-2014 12:03:56	190.175.110.1: fulladm	logout
+22-11-2014 12:04:02	190.175.110.1: fede	login exitoso
+22-11-2014 12:06:29	190.175.110.1: fede	logout
+22-11-2014 12:06:36	190.175.110.1: fulladm	login exitoso
+22-11-2014 12:06:57	190.175.110.1: fulladm	logout
+22-11-2014 12:07:01	190.175.110.1: fede	login exitoso
+22-11-2014 12:11:39	190.175.110.1: fede	logout
+22-11-2014 12:15:27	190.175.110.1: fede	login exitoso
+22-11-2014 05:13:27	190.175.110.1: fede	alta usuario	U1AG1
+22-11-2014 05:14:06	190.175.110.1: fede	alta usuario	U2AG1
+22-11-2014 05:14:56	190.175.110.1: fede	alta usuario	U1AG2
+22-11-2014 05:18:09	190.175.110.1: fede	logout
+22-11-2014 05:18:43	190.175.110.1: fulladm	login exitoso
+22-11-2014 05:26:55	190.175.110.1: fulladm	logout
+22-11-2014 05:27:07	190.175.110.1: U1A1	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+22-11-2014 05:27:24	190.175.110.1: U1AG1	login exitoso
+22-11-2014 05:29:39	190.175.110.1: U1AG1	logout
+22-11-2014 05:29:47	190.175.110.1: fulladm	login exitoso
+22-11-2014 05:31:20	190.175.110.1: fulladm	logout
+22-11-2014 05:31:26	190.175.110.1: U1AG1	login exitoso
+22-11-2014 05:42:43	190.175.110.1: u1ag2	login exitoso
+22-11-2014 05:48:51	190.175.110.1: u1ag2	logout
+22-11-2014 05:48:56	190.175.110.1: u2ag1	login exitoso
+22-11-2014 05:50:39	190.175.110.1: u2ag1	logout
+22-11-2014 05:50:45	190.175.110.1: u2ag1	login exitoso
+22-11-2014 06:28:38	190.175.110.1: u2ag1	logout
+22-11-2014 06:28:45	190.175.110.1: U1ag2	login exitoso
+22-11-2014 07:05:51	190.175.110.1: U1AG1	logout
+22-11-2014 07:05:59	190.175.110.1: fulladm	login exitoso
+22-11-2014 07:06:45	190.175.110.1: fulladm	alta usuario	COM1
+22-11-2014 07:07:18	190.175.110.1: fulladm	alta usuario	COMRES
+22-11-2014 07:07:43	190.175.110.1: fulladm	alta usuario	COMGO
+22-11-2014 07:08:14	190.175.110.1: fulladm	actualizado usuario	COMGO
+22-11-2014 07:09:04	190.175.110.1: fulladm	logout
+22-11-2014 07:09:08	190.175.110.1: com1	login exitoso
+22-11-2014 07:22:49	190.175.110.1: U1ag2	logout
+22-11-2014 07:22:58	190.175.110.1: u1ag2	login exitoso
+22-11-2014 07:23:20	190.175.110.1: u1ag2	logout
+22-11-2014 07:23:27	190.175.110.1: u2ag1	login exitoso
+22-11-2014 08:11:13	190.175.110.1: com1	logout
+22-11-2014 08:11:20	190.175.110.1: fulladm	login exitoso
+22-11-2014 08:11:35	190.175.110.1: fulladm	logout
+22-11-2014 08:11:40	190.175.110.1: comgo	login exitoso
+22-11-2014 08:12:44	190.175.110.1: u2ag1	logout
+22-11-2014 08:12:50	190.175.110.1: u1ag1	login exitoso
+22-11-2014 08:13:32	190.175.110.1: u1ag1	logout
+22-11-2014 08:13:57	190.175.110.1: comres	login exitoso
+22-11-2014 08:15:24	190.175.110.1: comres	logout
+22-11-2014 08:15:30	190.175.110.1: u1ag1	login exitoso
+22-11-2014 08:15:42	190.175.110.1: comgo	logout
+22-11-2014 08:15:46	190.175.110.1: fulladm	login exitoso

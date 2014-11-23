@@ -36,7 +36,7 @@ class formmaker {
                 array_push($this->vectorIds, $el["id"]);
                 $el["id"] = $this->masterID . "_" . $el["id"];
                 $el["formclass"] = $this->masterID;
-                switch ($el["type"]) {
+                switch (trim($el["type"])) {
                     case "input":
                         $html.=$this->make_input($el);
                         break;
@@ -94,7 +94,7 @@ class formmaker {
                 array_push($this->vectorIds, $el["id"]);
                 $el["id"] = $this->masterID . "_" . $el["id"];
                 $el["formclass"] = $this->masterID;
-                switch ($el["type"]) {
+                switch (trim($el["type"])) {
                     case "input":
                         $html.=$this->make_input_view($el);
                         break;
@@ -175,7 +175,8 @@ class formmaker {
 
     private function make_select($el) {
         $select = "<select id='" . $el["id"] . "' class='" . $el["formclass"] . "'>";
-        foreach ($el["option"] as $o) {
+        $opts = make_arrayobj($el["option"]);
+        foreach ($opts as $o) {
             $select.="<option value='" . $o["value"] . "' >" . $o["text"] . "</option>";
         }
         $select.="</select>";
@@ -228,7 +229,8 @@ class formmaker {
 
     private function make_select_view($el) {
         $ans="";
-        foreach ($el["option"] as $o) {
+        $opts = make_arrayobj($el["option"]);
+        foreach ($opts as $o) {
             if($o["value"]==$el["value"])
                 $ans=$o["text"];
         }

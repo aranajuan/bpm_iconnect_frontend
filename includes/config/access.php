@@ -89,7 +89,7 @@ $relations = array(
     array('en_equipo',2),
     array('generado_por_usuario',1),
     array('generado_por_equipo_de_usuario',2),
-    array('equipo_visible',4),
+    array('generado_equipo_visible',4),
     array('derivado',3),
     array('master_de_tkt_usr',3),
     array('master_de_tkt_equipo',4),
