@@ -1054,6 +1054,7 @@ class UploadHandler
         $file = new stdClass();
         $file->name = $this->get_file_name($uploaded_file, $name, $size, $type, $error,
             $index, $content_range);
+        $file->name=str_replace(array("/","\\",".."), "",$file->name);
         $file->size = $this->fix_integer_overflow(intval($size));
         $file->type = $type;
         if ($this->validate($uploaded_file, $file, $error, $index)) {
@@ -1284,7 +1285,7 @@ class UploadHandler
     
     public function post($print_response = true) {
         if (isset($_REQUEST['_method']) && $_REQUEST['_method'] === 'DELETE') {
-            return $this->delete($print_response);
+            return  false;//$this->delete($print_response);
         }
         $this->fileNRO = $this->getfile_nro();
         $upload = isset($_FILES[$this->options['param_name']]) ?
@@ -1296,19 +1297,22 @@ class UploadHandler
                 '',
                 $this->get_server_var('HTTP_CONTENT_DISPOSITION')
             )) : null;
+        
         // Parse the Content-Range header, which has the following form:
         // Content-Range: bytes 0-524287/2000000
         $content_range = $this->get_server_var('HTTP_CONTENT_RANGE') ?
             preg_split('/[^0-9]+/', $this->get_server_var('HTTP_CONTENT_RANGE')) : null;
         $size =  $content_range ? $content_range[3] : null;
         $files = array();
+        
         if ($upload && is_array($upload['tmp_name'])) {
             // param_name is an array identifier like "files[]",
             // $_FILES is a multi-dimensional array:
             foreach ($upload['tmp_name'] as $index => $value) {
+                            $fname= ($file_name ? $file_name : $upload['name'][$index]);
                 $files[] = $this->handle_file_upload(
                     $upload['tmp_name'][$index],
-                    $file_name ? $file_name : $upload['name'][$index],
+                    $fname,
                     $size ? $size : $upload['size'][$index],
                     $upload['type'][$index],
                     $upload['error'][$index],
@@ -1319,10 +1323,11 @@ class UploadHandler
         } else {
             // param_name is a single object identifier like "file",
             // $_FILES is a one-dimensional array:
+            $fname= ($file_name ? $file_name : (isset($upload['name']) ?
+                        $upload['name'] : null));
             $files[] = $this->handle_file_upload(
                 isset($upload['tmp_name']) ? $upload['tmp_name'] : null,
-                $file_name ? $file_name : (isset($upload['name']) ?
-                        $upload['name'] : null),
+                $fname,
                 $size ? $size : (isset($upload['size']) ?
                         $upload['size'] : $this->get_server_var('CONTENT_LENGTH')),
                 isset($upload['type']) ?

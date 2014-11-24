@@ -2,16 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/config/defines.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/user/list.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/user/idsel_profiles.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/config/init.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/tkt/downloadfile.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/classes/formmaker.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/config/access.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handlers/tkt/geth.php</file>
-            <file>file:/opt/lampp/htdocs/itracker_front/includes/ajax/handler_functions.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
