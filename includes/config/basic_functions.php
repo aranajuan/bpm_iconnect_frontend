@@ -224,6 +224,30 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
 }
 
 /**
+ * Opciones para menu
+ * @param type $text
+ * @return string
+ */
+function menu_button($text) {
+$styleN=0;
+$width=150;
+    $colors = array("#9bc1f9", "#beb5d8");
+    $fontC = array("5a5a5a", "5a5a5a");
+    $size = array(28, 28);
+    $Maxlenght = round($width / 8);
+    $text = maxLenShow($text, $Maxlenght);
+    $html = "
+        <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;display:inline; margin-right:4px;float:left;' onclick=\"" . $Jfunction . "\">
+            <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:11px;padding-top:8px;text-align:center;'>
+                " . htmltoupper($text) . "
+            </div>
+
+        </div>
+    ";
+    return $html;
+}
+
+/**
  * Bloquea mensajes de error y lo pone en una variable global
  */
 $fatal_error_handler_MSJ = "";
@@ -294,22 +318,6 @@ function microtime_float() {
 function finish() {
 
     
-}
-
-class Encrypter {
-
-    private static $Key = "sistemasdeventas";
-
-    public static function encrypt($input) {
-        $output = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5(Encrypter::$Key), $input, MCRYPT_MODE_CBC, md5(md5(Encrypter::$Key))));
-        return $output;
-    }
-
-    public static function decrypt($input) {
-        $output = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5(Encrypter::$Key), base64_decode($input), MCRYPT_MODE_CBC, md5(md5(Encrypter::$Key))), "\0");
-        return $output;
-    }
-
 }
 
 ?>
