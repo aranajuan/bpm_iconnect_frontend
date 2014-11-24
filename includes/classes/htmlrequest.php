@@ -6,7 +6,7 @@
  */
 class HtmlRequest {
    
-    private static $Svars = array();
+    private static $Svars = array('REQUEST_URI');
     
     /**
      * Devuelve valor de variable enviada por post o get
@@ -84,7 +84,7 @@ class HtmlRequest {
         if(!in_array($name, HtmlRequest::$Svars)){
             return null;
         }
-        return check_param($_SERVER[$name]);
+        return $this->check_param($_SERVER[$name]);
     }
     
 

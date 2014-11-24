@@ -13,22 +13,22 @@ function main() {
                     doLogin();
             }
     );
-    
+
     $("#captchatext").keydown(
             function (e) {
                 if (e.keyCode === 13)
                     doLogin();
             }
     );
-    if($_GET("usr")){
+    if ($_GET("usr")) {
         autoLogin();
     }
-    
+
 }
 
 function doLogin() {
-    if($("#usr").val()=="" || $("#pass").val()==""){
-        alert_p("Complete usuario y contrase&ntilde;a.","Error");
+    if ($("#usr").val() == "" || $("#pass").val() == "") {
+        alert_p("Complete usuario y contrase&ntilde;a.", "Error");
         return;
     }
     $.post("",
@@ -44,7 +44,11 @@ function doLogin() {
             var obj = jQuery.parseJSON(data);
             if (obj !== null) {
                 if (obj.result === "ok") {
-                    location.href = "?L=" + obj.home + "&m=login";
+                    if ($_GET('R')) {
+                        location.href = decodeURIComponent($_GET('R'));
+                    } else {
+                        location.href = "?L=" + obj.home + "&m=login";
+                    }
                 } else {
                     if (obj.reload == "true") {
                         location.href = "?L=login&e=" + encodeURIComponent(obj.detail);

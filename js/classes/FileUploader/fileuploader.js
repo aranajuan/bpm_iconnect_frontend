@@ -116,6 +116,6 @@ function clear_tmp(idObj) {
 function add_pv(fileName, idUpl) {
     var splitName = fileName.split(".");
     var fileNameEXT = splitName[splitName.length - 1].toLowerCase();
-    $('#DIVadded_' + idUpl).append('<div class="FILEPV" id="' + fileName.replace("/", "-") + '" style="margin:5px;width:100px;height:40px;float:left;text-align:center;"><table style="width:100%;height:100%;text-align:center;"><tr><td valign="middle"><a <a href="download.php?path=includes/js/jq/FileUploader/TMP&file=' + fileName + '&internal=1" target="_blank" ><img  height="30" src="img/thumbnail/' + fileNameEXT + '.png" /></a></td></tr><tr><td style="height:10px;"><a href="javascript:file_delete(\'' + fileName.replace("/", "-") + '\')"><img height="15" width="55" src="img/fileuploader_delete.png" /></a></td></tr></table></div>');
+    $('#DIVadded_' + idUpl).append('<div class="FILEPV" id="' + fileName.replace("/", "-") + '" style="margin:5px;width:100px;height:40px;float:left;text-align:center;"><table style="width:100%;height:100%;text-align:center;"><tr><td valign="middle"><img  height="30" src="img/thumbnail/' + fileNameEXT + '.png" /></td></tr><tr><td style="height:10px;"><a href="javascript:file_delete(\'' + fileName.replace("/", "-") + '\')"><img height="15" width="55" src="img/fileuploader_delete.png" /></a></td></tr></table></div>');
 }
 

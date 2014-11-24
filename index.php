@@ -57,7 +57,8 @@ if ($R->is_set("class")) { // es un request ajax
 }
 
 if (!$U->is_logged() && $R->get_param("L") != "login") {
-    header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged"); // usuario no logueado 
+    $Redirect=urlencode($R->get_server('REQUEST_URI'));
+    header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged&R=".$Redirect); // usuario no logueado 
     exit();
 }
 

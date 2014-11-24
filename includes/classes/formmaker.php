@@ -170,7 +170,7 @@ class formmaker {
     }
 
     private function make_link($el) {
-        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."'>" .$el["text"]."</a>"  , $el["comment"]);
+        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."' target='_blank'>" .$el["text"]."</a>"  , $el["comment"]);
     }
 
     private function make_select($el) {
@@ -224,7 +224,7 @@ class formmaker {
     }
 
     private function make_link_view($el) {
-        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."'>" .$el["text"]."</a>"  , $el["comment"]);
+        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."' target='_blank'>" .$el["text"]."</a>"  , $el["comment"]);
     }
 
     private function make_select_view($el) {
