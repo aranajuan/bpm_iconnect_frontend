@@ -22,5 +22,6 @@ function GO($XML, $output = "html") {
         header("Content-Type: application/octet-stream");
     }
     //echo $file["name"];
-    echo base64_decode($file["data"]);
+    return array("type"=>"file", "file"=> base64_decode($file["data"]));
+    //return null;
 }

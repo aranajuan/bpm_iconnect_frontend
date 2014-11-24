@@ -10,7 +10,7 @@ function GO($XML,$output="html") {
         return array("type" => "html", "html" => $XML->get_error());
     }
     
-    if($output!="html"){
+    if($output!="html" && $output!="xls"){
         return array("type" => "html", "html" => "Formato no soportado.");
     }
     $data= $XML->get_response("data");
