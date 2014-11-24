@@ -11,12 +11,19 @@ include 'handlers/' . $class . "/" . $method . ".php";
 
 
 if ($XML->get_paramSent("export") == "xls") {
-    header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
-    header("Content-Disposition: attachment; filename=abc.xls");
-    header("Expires: 0");
-    header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
-    header("Cache-Control: private", false);
     $result = GO($XML, "xls");
+    if ($result["status"] == "ok" && $result["type"] == "xls") {
+        if ($result["html"] != null) {
+            header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
+            header("Content-Disposition: attachment; filename=abc.xls");
+            header("Expires: 0");
+            header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+            header("Cache-Control: private", false);
+            return $result["html"];
+        } else {
+            return "Sin datos para exportar";
+        }
+    }
     return $result["html"];
 } else {
     $result = GO($XML);

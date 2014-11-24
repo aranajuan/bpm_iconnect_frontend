@@ -69,7 +69,7 @@ echo filter_bar('
 
 <br/>
 <br/>
-
+<img src="img/thumbnail/xls.png" height="30" class="img_lnk" onclick="excel_link()" />
 <div id="List"></div>
 
 <div>

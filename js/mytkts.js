@@ -1,3 +1,5 @@
+var showingteam = false;
+
 function main() {
     $("#txt_filtro_estado").change(function () {
         if ($("#txt_filtro_estado").val() == "closed") {
@@ -39,6 +41,8 @@ function main() {
  * @returns {undefined}
  */
 function listmy() {
+    showingteam = false;
+    $("#List").html(JAVA_LOADING);
     postControl.sendRequest(
             true,
             'tktlistmy',
@@ -70,6 +74,8 @@ function listmy() {
  * @returns {undefined}
  */
 function listfromteam() {
+    showingteam = true;
+    $("#List").html(JAVA_LOADING);
     postControl.sendRequest(
             true,
             'tktlistmyteams',
@@ -94,6 +100,25 @@ function listfromteam() {
                 $("#List").html(data);
             }
     );
+}
+
+/**
+ * Abrir ventana de exportacion
+ * @returns {undefined}
+ */
+function excel_link() {
+    if (showingteam) {
+        window.open("?class=tkt&method=listmyteams&export=xls&status=" +
+                $("#txt_filtro_estado").val() +
+                "&cfrom=" + $("#fecha_d").val() +
+                "&cto=" + $("#fecha_h").val())+
+                "&teams="+array_txt($("#txt_filtro_equipo").val());
+    } else {
+        window.open("?class=tkt&method=listmy&export=xls&status=" +
+                $("#txt_filtro_estado").val() +
+                "&cfrom=" + $("#fecha_d").val() +
+                "&cto=" + $("#fecha_h").val());
+    }
 }
 
 /**

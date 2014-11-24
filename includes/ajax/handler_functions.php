@@ -48,6 +48,45 @@ function normal_idsel($XML, $objname, $cols, $output = "html") {
 }
 
 /**
+ * Lista de tickets exportable a excel
+ * @param XmlHandler $XML
+ * @param array $defcol    columnas default si no estan definidas
+ * @param string $id    id de la tabla
+ * @param string $output    html,xls
+ * @return string|null
+ */
+function normal_tktlist($XML,$defcol,$id, $output = "html"){
+    $allow = array("html","xls");
+    if ($XML->get_error()) {
+        return array("type" => "html", "html" => $XML->get_error(), "status" => "error");
+    }
+
+    if (!in_array($output, $allow)) {
+        return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
+    }
+    $data = $XML->get_response("data");
+    $list = $data["list"];
+    $TKL = $list["TKT"];
+    $cols = explode(",", $data["view"]);
+    if (!$cols) {
+        $cols = $defcol;
+    }
+    if ($output == "html") {
+        $HTML = arrayToTable(
+                $cols, $TKL, null, "id", true, false, false, $id, "class=\"display\""
+        );
+        return array("type" => "html", "html" => $HTML, "status" => "ok");
+    }
+    if ($output == "xls") {
+        $HTML = arrayToExcel(
+                $cols, $TKL
+        );
+        return array("type" => "xls", "html" => $HTML, "status" => "ok");
+    }
+    return array("type" => "html", "html" => "Error de formato", "status" => "error");
+}
+
+/**
  * Genera tabla a partir del array input
  * @param array $cols   columnas a mostrar nombre=>alias
  * @param array $arr    array input
@@ -142,9 +181,62 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
     return $HTML;
 }
 
-// idem anterior
-function arrayToExcel() {
-    
+/**
+ * 
+ * @param type $cols
+ * @param type $arr
+ * @return string
+ */
+function arrayToExcel($cols, $arr) {
+    $colsNames = array();
+    $colsAlias = array();
+
+    $i = 0;
+
+    if (!is_array($arr)) {
+        return null;
+    }
+
+    if (!isset($arr[0])) {
+        $tmp = $arr;
+        $arr = array();
+        $arr[0] = $tmp;
+    }
+    foreach ($cols as $c) {
+        $cE = explode("=>", $c);
+        if (count($cE) > 1) {
+            $colsNames[$i] = $cE[0];
+            $colsAlias[$i] = $cE[1];
+        } else {
+            $colsNames[$i] = $c;
+            $colsAlias[$i] = $c;
+        }
+        $i++;
+    }
+
+    $HTML = "<table>";
+    $HTML.="<thead><tr>";
+    foreach ($colsAlias as $cn) {
+        $HTML.="<th>" . $cn . "</th>";
+    }
+    $HTML.="</tr></thead>";
+
+    $HTML.= "<tbody>";
+    foreach ($arr as $el) {
+        $HTML.="<tr>";
+        foreach ($colsNames as $c) {
+            $HTML.="<td>" . get_value($c, $el) . "</td>";
+        }
+        
+
+        $HTML.="</tr>";
+    }
+    $HTML.="</tbody>";
+
+
+    $HTML.="</table>";
+
+    return $HTML;
 }
 
 /**

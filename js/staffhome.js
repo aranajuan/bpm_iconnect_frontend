@@ -60,8 +60,6 @@ function main() {
 
     $("#filtrar").click(function () {
         load_filter();
-        $("#List").html(JAVA_LOADING);
-        $("#ListRC").html(JAVA_LOADING);
     });
 
 
@@ -71,12 +69,23 @@ function main() {
 
 }
 
+/**
+ * Abrir ventana de exportacion
+ * @returns {undefined}
+ */
+function excel_link() {
+        window.open("?class=tkt&method=listteam&export=xls&filter=" +
+                filter_filter +
+                "&cfrom=" + filter_fecha_d +
+                "&cto=" + filter_fecha_h +
+                "&team="+filter_team);  
+}
 
 function refresh_list() {
     if (updating)
         return;
     updating = true;
-
+    $("#List").html(JAVA_LOADING);
     postControl.sendRequest(
             true,
             'tktlistteam',
@@ -156,6 +165,7 @@ function show_childs(id) {
 
 }
 
+
 /**
  * Carga filtro y actualiza listas
  * @returns {undefined}
@@ -165,15 +175,13 @@ function load_filter() {
     filter_filter = $("#txt_filtro").val();
     filter_fecha_d = $("#fecha_d").val();
     filter_fecha_h = $("#fecha_h").val();
-    filter_ext_tipo = $("#ext_type").val();
-    filter_ext_nro = $("#ext_number").val();
 
     refresh_list();
     load_listRC();
 }
 
 function load_listRC() {
-
+    $("#ListRC").html(JAVA_LOADING);
     postControl.sendRequest(
             false,
             'tktlistteamclose',
