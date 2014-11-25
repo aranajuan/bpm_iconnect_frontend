@@ -7,10 +7,6 @@
 
     </head>
     <body style="background-color: white;">
-        <div class="menuButton">
-            <img src="img/base/menu_bt.png" />
-        </div>
-        <? require_once 'html/menu.php'; ?>
         <table id="main" class="status" cellpadding="0" cellspacing="0">
             <tr>
                 <td class="main_bar">&nbsp;</td>
@@ -45,7 +41,7 @@
                                 </div>
                                 <div id="alert_p" class="popup"></div>
                                 <div id="notice_p" style="width: 300px;display: none;"></div>
-                                <div style="width: 900px;;position:absolute;height: 40px;"><?=  menu_button("OPCION 1") .menu_button("OPCION 2");?></div>
+                                <div style="width: 900px;;position:absolute;height: 40px;"><? require_once 'html/menu.php'; ?></div>
                                 <div id="msjs" style="width: 900px;display: none;position:absolute;margin-top: 40px;"></div>
                                 <div id="information" style="width: 150px;display: none;position:absolute;margin-left:750px;margin-top:60px;"></div>
                                 <br/><br/><br/>

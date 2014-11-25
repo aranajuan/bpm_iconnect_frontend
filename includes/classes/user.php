@@ -168,18 +168,6 @@ class USER {
     }
 
     /**
-     * Genera menu en html
-     * @return string
-     */
-    public function get_menu() {
-        $al = $this->list_access();
-        foreach ($al as $a) {
-            echo "<a class=\"ObjElem\" href=\"?L=" . $a[2] . "&m=menu\"<b>" . $a[3] . "</b></a><br>";
-        }
-        echo "<a class=\"ObjElem\" href=\"?L=logout&m=menu\"<b>SALIR</b></a><br>";
-    }
-
-    /**
      * Devuelve el valor de la propiedad solicitada
      * @param string $property 
      */
