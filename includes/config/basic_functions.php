@@ -73,15 +73,6 @@ function DiffBetweenDates($fechaI, $fechaF) {
     return round($seg_dif / 60, 0, PHP_ROUND_HALF_DOWN);
 }
 
-/**
- * convierte HH:MM a MM
- */
-function HsToMin($hs) {
-    $time = explode(":", $hs);
-    if (!is_numeric($time[0]) || !is_numeric($time[1]))
-        return -1;
-    return ($time[0] * 60) + $time[1];
-}
 
 /**
  * elimina todos los espacios del texto (en cualquier lugar)
@@ -127,12 +118,6 @@ function dataDefatult($data, $defaultD) {
     if ($data)
         return $data;
     return $defaultD;
-}
-
-function strToSQL($txt) {
-    $tmp = str_replace("'", "''", $txt);
-    $tmp = str_replace("\\", "\\\\", $tmp);
-    return $tmp;
 }
 
 /**
