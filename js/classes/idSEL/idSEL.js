@@ -33,11 +33,11 @@ jQuery.fn.idSEL = function(options, callback) {
         }
 
         /* PREPARAR VARIABLES */
-        if (!options.class) {
+        if (!options['class']) {
             $(obj).html(JAVA_ERROR);
             return;
         }
-        classC = options.class;
+        classC = options['class'];
         if (!options.method) {
             $(obj).html(JAVA_ERROR);
             return;
@@ -52,7 +52,7 @@ jQuery.fn.idSEL = function(options, callback) {
                 false,
                 '',
                 {
-                    class: classC,
+                    'class': classC,
                     method: method,
                     htmlid:htmlid,
                     checkedlist: checkedlist,

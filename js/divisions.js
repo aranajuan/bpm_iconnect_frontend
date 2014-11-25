@@ -30,7 +30,7 @@ function refresh_List() {
             true,
             'divisionlist',
             {
-                class: 'division',
+                'class': 'division',
                 method: 'list'
             },
     function(data) {

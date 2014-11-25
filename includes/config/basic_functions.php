@@ -197,24 +197,30 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
     $size = array(28, 28);
     $Maxlenght = round($width / 8);
     $text = maxLenShow($text, $Maxlenght);
-    /*
-      $html = "
-      <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
-      <div style='float:left;'>
-      <img src=\"" . HIMG_DIR . "/base/but_i_$styleN.png\" />
-      </div>
-      <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
-      " . htmltoupper($text) . "
-      </div>
-      <div style='float:right;'>
-      <img src=\"" . HIMG_DIR . "/base/but_d_$styleN.png\" />
-      </div>
-      </div>
-      "; */
     $html = "
         <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
 
             <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
+                " . htmltoupper($text) . "
+            </div>
+
+        </div>
+    ";
+    return $html;
+}
+
+/**
+ * Opciones para menu
+ * @param type $text
+ * @return string
+ */
+function menu_button($text,$Jfunction) {
+$width=108;
+    $Maxlenght = round($width / 8);
+    $text = maxLenShow($text, $Maxlenght);
+    $html = "
+        <div style='width:" . $width . "px;height:28px;overflow:hidden;cursor:pointer;display:inline; margin-right:4px;float:left;' onclick=\"" . $Jfunction . "\">
+            <div style='float:left;background-color:#1643ab;color:white;height:100%;width: " . ($width - 13) . "px;font-size:11px;padding-top:8px;text-align:center;'>
                 " . htmltoupper($text) . "
             </div>
 
@@ -294,22 +300,6 @@ function microtime_float() {
 function finish() {
 
     
-}
-
-class Encrypter {
-
-    private static $Key = "sistemasdeventas";
-
-    public static function encrypt($input) {
-        $output = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5(Encrypter::$Key), $input, MCRYPT_MODE_CBC, md5(md5(Encrypter::$Key))));
-        return $output;
-    }
-
-    public static function decrypt($input) {
-        $output = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5(Encrypter::$Key), base64_decode($input), MCRYPT_MODE_CBC, md5(md5(Encrypter::$Key))), "\0");
-        return $output;
-    }
-
 }
 
 ?>

@@ -41,7 +41,7 @@ function main() {
 
     $("#txt_area_select").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_listteams',
                 multiple: false
             }, load_filter);
@@ -90,7 +90,7 @@ function refresh_list() {
             true,
             'tktlistteam',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'listteam',
                 cfrom: filter_fecha_d,
                 cto: filter_fecha_h,
@@ -130,7 +130,7 @@ function show_childs(id) {
             true,
             'tktlistchilds',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'listchilds',
                 idtkt: id
             },
@@ -150,19 +150,6 @@ function show_childs(id) {
                 $("#popup_childs").html(data);
             }
     );
-
-
-    $.post(
-            "includes/ajaxQ/TKT_listChilds.php",
-            {
-                id: id
-            },
-    function (data) {
-
-        build_buttons();
-    }
-    );
-
 }
 
 
@@ -186,7 +173,7 @@ function load_listRC() {
             false,
             'tktlistteamclose',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'listteamclose',
                 team: filter_team
             },

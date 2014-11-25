@@ -12,7 +12,7 @@ function getform(accion) {
             true,
             'tktgetform',
             {
-                class: 'action',
+                'class': 'action',
                 method: 'getform',
                 action: accion,
                 idtkt:TKTID
@@ -57,7 +57,7 @@ function go(accion) {
             true,
             'tktaction',
             {
-                class: 'action',
+                'class': 'action',
                 method: 'ejecute',
                 action: accion,
                 idtkt: TKTID,
@@ -102,7 +102,7 @@ function show_details(id) {
             false,
             'openview',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'geth',
                 id: id
             },

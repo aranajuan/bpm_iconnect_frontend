@@ -29,7 +29,7 @@ function refresh_List() {
             true,
             'listinlist',
             {
-                class: 'listin',
+                'class': 'listin',
                 method: 'list'
             },
     function(data) {
