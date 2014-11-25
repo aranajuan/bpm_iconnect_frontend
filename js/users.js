@@ -28,7 +28,7 @@ function refresh_List() {
             true,
             'userlist',
             {
-                class: 'user',
+                'class': 'user',
                 method: 'list'
             },
     function (data) {
@@ -59,7 +59,7 @@ function clear_popup() {
     $("#txt_usr").val("");
     $("#txt_dominio").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_domains',
                 multiple: false
 
@@ -67,7 +67,7 @@ function clear_popup() {
     );
     $("#txt_fronts").idSEL(
             {
-                class: 'instance',
+                'class': 'instance',
                 method: 'idsel_listfronts',
                 multiple: true
 
@@ -75,7 +75,7 @@ function clear_popup() {
     );
     $("#txt_perfil").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_profiles',
                 multiple: false
 
@@ -83,7 +83,7 @@ function clear_popup() {
     );
     $("#txt_equipos").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_myadmteams',
                 multiple: true
 
@@ -126,7 +126,7 @@ function show_update(data) {
     $("#txt_usr").val(data.usr);
     $("#txt_dominio").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_domains',
                 multiple: false,
                 checkedlist: data.dominio
@@ -135,7 +135,7 @@ function show_update(data) {
     );
     $("#txt_fronts").idSEL(
             {
-                class: 'instance',
+                'class': 'instance',
                 method: 'idsel_listfronts',
                 multiple: true,
                 checkedlist: data.fronts
@@ -144,7 +144,7 @@ function show_update(data) {
     );
     $("#txt_perfil").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_profiles',
                 multiple: false,
                 checkedlist: data.perfil
@@ -153,7 +153,7 @@ function show_update(data) {
     );
     $("#txt_equipos").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_myadmteams',
                 multiple: true,
                 checkedlist: data.idsequipos
@@ -173,7 +173,7 @@ function reg_insert() {
             true,
             'userinsert',
             {
-                class: 'user',
+                'class': 'user',
                 method: 'insert',
                 usr: $("#txt_usr").val(),
                 dominio: $("#txt_dominio").val(),
@@ -214,7 +214,7 @@ function reg_update() {
             true,
             'userupdate',
             {
-                class: 'user',
+                'class': 'user',
                 method: 'update',
                 usr: UpdID,
                 dominio: $("#txt_dominio").val(),
@@ -257,7 +257,7 @@ function show_delete(id) {
                         true,
                         'userdelete',
                         {
-                            class: 'user',
+                            'class': 'user',
                             method: 'delete',
                             usr: DelID
                         },

@@ -17,7 +17,7 @@ function load_tree(path) {
             true,
             'treeoptions',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'get_tree_options',
                 path: path
             },
@@ -41,7 +41,7 @@ function go(path) {
             true,
             'tktopen',
             {
-                class: 'action',
+                'class': 'action',
                 method: 'ejecute',
                 action: 'abrir',
                 sendfiles: 'true',

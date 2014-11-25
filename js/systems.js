@@ -30,7 +30,7 @@ function refresh_List() {
             true,
             'systemlist',
             {
-                class: 'system',
+                'class': 'system',
                 method: 'list'
             },
     function(data) {
@@ -93,7 +93,7 @@ function show_delete(id) {
                         true,
                         'systemdelete',
                         {
-                            class: 'system',
+                            'class': 'system',
                             method: 'delete',
                             id: DelID
                         },
@@ -139,7 +139,7 @@ function reg_update() {
             true,
             'systemupdate',
             {
-                class: 'system',
+                'class': 'system',
                 method: 'update',
                 id: UpdID,
                 nombre: $("#txt_nombre").val()
@@ -174,7 +174,7 @@ function reg_insert() {
             true,
             'systeminsert',
             {
-                class: 'system',
+                'class': 'system',
                 method: 'insert',
                 nombre: $("#txt_nombre").val()
             },

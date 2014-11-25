@@ -229,16 +229,12 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
  * @return string
  */
 function menu_button($text) {
-$styleN=0;
 $width=150;
-    $colors = array("#9bc1f9", "#beb5d8");
-    $fontC = array("5a5a5a", "5a5a5a");
-    $size = array(28, 28);
     $Maxlenght = round($width / 8);
     $text = maxLenShow($text, $Maxlenght);
     $html = "
-        <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;display:inline; margin-right:4px;float:left;' onclick=\"" . $Jfunction . "\">
-            <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:11px;padding-top:8px;text-align:center;'>
+        <div style='width:" . $width . "px;height:28px;overflow:hidden;cursor:pointer;display:inline; margin-right:4px;float:left;' onclick=\"" . $Jfunction . "\">
+            <div style='float:left;background-color:#1643ab;color:white;height:100%;width: " . ($width - 13) . "px;font-size:11px;padding-top:8px;text-align:center;'>
                 " . htmltoupper($text) . "
             </div>
 

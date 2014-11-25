@@ -14,7 +14,7 @@ function main() {
     });
     $("#txt_filtro_equipo").idSEL(
             {
-                class: 'user',
+                'class': 'user',
                 method: 'idsel_listteams',
                 multiple: true
             });
@@ -43,7 +43,7 @@ function listmy() {
             true,
             'tktlistmy',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'listmy',
                 status: $("#txt_filtro_estado").val(),
                 cfrom: $("#fecha_d").val(),
@@ -74,7 +74,7 @@ function listfromteam() {
             true,
             'tktlistmyteams',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'listmyteams',
                 status: $("#txt_filtro_estado").val(),
                 cfrom: $("#fecha_d").val(),
@@ -121,7 +121,7 @@ function refresh_listClose() {
             false,
             'tktlistmyclose',
             {
-                class: 'tkt',
+                'class': 'tkt',
                 method: 'listmyclose'
 
             },

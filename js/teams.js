@@ -32,7 +32,7 @@ function clear_popup() {
     mode_details = 0;
     $("#txt_direccion").idSEL(
             {
-                class: 'division',
+                'class': 'division',
                 method: 'idsel_list',
                 multiple: false
 
@@ -41,7 +41,7 @@ function clear_popup() {
 
     $("#txt_equiposderiva").idSEL(
             {
-                class: 'team',
+                'class': 'team',
                 method: 'idsel_listall',
                 multiple: true
 
@@ -49,7 +49,7 @@ function clear_popup() {
     );
     $("#txt_equiposvisible").idSEL(
             {
-                class: 'team',
+                'class': 'team',
                 method: 'idsel_listall',
                 multiple: true
 
@@ -58,7 +58,7 @@ function clear_popup() {
 
     $("#txt_listin").idSEL(
             {
-                class: 'listin',
+                'class': 'listin',
                 method: 'idsel_list',
                 multiple: false
 
@@ -90,7 +90,7 @@ function show_update(data) {
 
     $("#txt_direccion").idSEL(
             {
-                class: 'division',
+                'class': 'division',
                 method: 'idsel_list',
                 multiple: false,
                 checkedlist: data.iddireccion
@@ -100,7 +100,7 @@ function show_update(data) {
 
     $("#txt_equiposderiva").idSEL(
             {
-                class: 'team',
+                'class': 'team',
                 method: 'idsel_listall',
                 multiple: true,
                 checkedlist: data.idsequiposderiva
@@ -109,7 +109,7 @@ function show_update(data) {
     );
     $("#txt_equiposvisible").idSEL(
             {
-                class: 'team',
+                'class': 'team',
                 method: 'idsel_listall',
                 multiple: true,
                 checkedlist: data.idsequiposvisible
@@ -119,7 +119,7 @@ function show_update(data) {
 
     $("#txt_listin").idSEL(
             {
-                class: 'listin',
+                'class': 'listin',
                 method: 'idsel_list',
                 multiple: false,
                 checkedlist: data.idlistin
@@ -147,7 +147,7 @@ function refresh_List() {
             true,
             'teamlist',
             {
-                class: 'team',
+                'class': 'team',
                 method: 'list'
             },
     function (data) {
@@ -188,7 +188,7 @@ function show_delete(id) {
                         true,
                         'teamdelete',
                         {
-                            class: 'team',
+                            'class': 'team',
                             method: 'delete',
                             id: DelID
                         },
@@ -222,7 +222,7 @@ function reg_update() {
             true,
             'teamupdate',
             {
-                class: 'team',
+                'class': 'team',
                 method: 'update',
                 id: UpdID,
                 nombre: $("#txt_nombre").val(),
@@ -264,7 +264,7 @@ function reg_insert() {
             true,
             'teaminsert',
             {
-                class: 'team',
+                'class': 'team',
                 method: 'insert',
                 nombre: $("#txt_nombre").val(),
                 t_conformidad: $("#txt_conformidad").val(),

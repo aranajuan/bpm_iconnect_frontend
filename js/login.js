@@ -33,7 +33,7 @@ function doLogin() {
     }
     $.post("",
             {
-                class: 'user',
+                'class': 'user',
                 method: 'login',
                 usr: $("#usr").val(),
                 pass: $("#pass").val(),
@@ -69,7 +69,7 @@ function doLogin() {
 function autoLogin() {
     $.post("",
             {
-                class: 'user',
+                'class': 'user',
                 method: 'login',
                 usr: $_GET("usr"),
                 pass: $_GET("pass"),
