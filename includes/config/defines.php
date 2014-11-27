@@ -11,7 +11,7 @@ define("APLICATION_SERVER","http://localhost/itracker_app");
 define('INCLUDE_DIR',ROOT_DIR."/includes"); 
 define('AJAX_CONTROLLER',INCLUDE_DIR."/ajax/request.php"); 
 
-define('HTML_CONTROLLER','https://pcjuan.mooo.com/itracker_front');
+define('HTML_CONTROLLER','https://localhost/itracker_front');
 
 
 //time zone

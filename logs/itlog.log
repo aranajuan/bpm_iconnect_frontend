@@ -76,3 +76,18 @@
 23-11-2014 09:01:43	190.175.110.1: u1ag1	login exitoso
 23-11-2014 09:15:42	190.175.110.1: fulladm	logout
 23-11-2014 09:15:48	190.175.110.1: com1	login exitoso
+26-11-2014 03:07:31	::1: a1ag1	login fallido	(app)conection::no se puede conectar a la base de datos.
+26-11-2014 03:09:59	::1: a1ag1	login fallido	(app)conection::no se puede conectar a la base de datos.
+26-11-2014 03:10:33	::1: u1ag1	login fallido	(app)conection::no se puede conectar a la base de datos.
+26-11-2014 03:11:33	::1: u1ag1	login fallido	(app)conection::no se puede conectar a la base de datos.
+26-11-2014 03:13:59	::1: u1ag1	login fallido	(app)conection::no se puede conectar a la base de datos de la instancia.
+26-11-2014 03:16:06	::1: u1ag1	login fallido	(app)validation::Error en el origen de la solicitud - #6.2
+26-11-2014 03:16:53	::1: u1ag1	login exitoso
+26-11-2014 03:58:10	::1: u1ag1	logout
+26-11-2014 04:59:57	::1: u1ag1	login exitoso
+27-11-2014 10:57:04	::1: u1ag1	login exitoso
+27-11-2014 11:00:16	::1: u1ag1	login exitoso
+27-11-2014 11:00:43	::1: u1ag1	logout
+27-11-2014 01:18:04	::1: u1ag1	login exitoso
+27-11-2014 01:36:07	::1: 567	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos
+27-11-2014 01:36:09	::1: 567	login fallido	(app)validation::Usuario o contrase&ntilde;a invalidos

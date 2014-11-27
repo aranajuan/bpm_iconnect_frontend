@@ -186,7 +186,7 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
         <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
 
             <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
-                " . htmltoupper($text) . "
+                " . mb_strtoupper($text,'utf-8') . "
             </div>
 
         </div>
@@ -206,7 +206,7 @@ $width=108;
     $html = "
         <div style='width:" . $width . "px;height:28px;overflow:hidden;cursor:pointer;display:inline; margin-right:4px;float:left;' onclick=\"" . $Jfunction . "\">
             <div style='float:left;background-color:#1643ab;color:white;height:100%;width: " . ($width - 13) . "px;font-size:11px;padding-top:8px;text-align:center;'>
-                " . htmltoupper($text) . "
+                " .mb_strtoupper($text,'utf-8') . "
             </div>
 
         </div>
