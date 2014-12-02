@@ -67,7 +67,7 @@ function GO($XML, $output = "html") {
         $html.="<div style=\"width:40%;float:left;\">";
         $options = make_arrayobj($arr["options"]["OPTION"]);
 
-        $html.= "<img src=\"img/icon.png \" width=\"15\" height=\"15\" />" . strtoupper($arr["question"]["title"]);
+        $html.= "<img src=\"img/icon.png \" width=\"15\" height=\"15\" />" . mb_strtoupper($arr["question"]["title"],'utf-8');
 
         $html.="<br/></br>";
 

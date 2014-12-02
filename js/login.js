@@ -2,11 +2,6 @@ function main() {
     if ($_GET("e")) {
         alert_p($_GET("e"), "Error");
     }
-    $("#login").click(
-            function () {
-                doLogin();
-            }
-    );
     $("#pass").keydown(
             function (e) {
                 if (e.keyCode === 13)

@@ -15,7 +15,7 @@ if ($XML->get_paramSent("export") == "xls") {
     if ($result["status"] == "ok" && $result["type"] == "xls") {
         if ($result["html"] != null) {
             header("Content-Type:   application/vnd.ms-excel; charset=utf-8");
-            header("Content-Disposition: attachment; filename=abc.xls");
+            header("Content-Disposition: attachment; filename=export.xls");
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
             header("Cache-Control: private", false);

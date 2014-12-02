@@ -303,6 +303,15 @@ function make_nextans($field, $arr) {
             $found = true;
         }
     }
+    foreach($field as $f){
+        if(substr($f, 0, 1)=="P"){
+            $pos=  substr($f, 1);
+            $o=$options[$pos];
+            if($o && $o->ans){
+                return $o->ans;
+            }
+        }
+    }
     return "";
 }
 

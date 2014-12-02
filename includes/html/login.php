@@ -41,11 +41,17 @@
                     </td></tr>
             <? }
             ?>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td> <?= menu_button("Login", "doLogin()")?></td>
+                </tr>
         </table>
+        <br/>
+    <br/>
     </div>
-    <input type="button" value="Login" id="login" />
+    
     <div style="width: 50%;text-align: center;float:left;">
 
     </div>
-
+    
 </div>
