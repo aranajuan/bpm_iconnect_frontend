@@ -15,23 +15,9 @@ function main() {
  * @returns {undefined}
  */
 function report() {
-    postControl.sendRequest(
-            true,
-            'report',
-            {
-                'class': 'report',
-                method: 'report',
-                filter:$("#filter").val(),
-                from:$("#desde").val(),
-                too:$("#hasta").val(),
-                teams:array_txt($("#teams").val())
-            },
-    function (data) {
-        alert(data.html);
-    },
-            function (data) {
-                alert(data);
-            }
-    );
-
+    window.open("?class=report&method=report&export=xls&filter=" +
+            $("#filter").val() +
+            "&from=" + $("#desde").val() +
+            "&too=" + $("#hasta").val() +
+            "&teams=" + array_txt($("#teams").val()));
 }
