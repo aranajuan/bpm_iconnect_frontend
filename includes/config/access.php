@@ -64,7 +64,7 @@ $access = array(
 
     array(46,"TKT","listmyteams", "Lista tkts generados por equipo"),//usado
     
-    array(47,"PAGE","reports", "Reportes"),
+    array(47,"PAGE","reports", "Reportes"), //usado
     array(48,"TREE","get_filter", "Arbol para filtros"),
     
     array(49,"USER","idsel_domains","Lista de dominios validos"),//usado
@@ -74,7 +74,8 @@ $access = array(
     array(52,"INSTANCE","idsel_listfronts","Lista de fronts validos"),//usado
     array(53,"TKT","downloadfile","Descargar archivo de tkt"), //usado
     array(54,"TKT","listteamclose","Lista de tickets cerrados recientes por el equipo"), //usado
-    array(55,"TKT","idsel_teamderive","Lista equipos a los que se puede derivar") //usado
+    array(55,"TKT","idsel_teamderive","Lista equipos a los que se puede derivar"), //usado
+    array(56,"REPORT","report","Ejecuta reportes")//usado
 );
 
 

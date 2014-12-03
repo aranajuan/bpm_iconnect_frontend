@@ -56,8 +56,10 @@ function build_buttons() {
         });
     }
     $(".tmpck").datetimepicker();
+    $('.dtpck').attr("size","10");
     $(".dtpck").datepicker();
     $('.monthpck').monthYearPicker();
+    $('.monthpck').attr("size","9");
     $(".PRINT").each(function() {
         if (!$(this).hasClass("LOADED")) {
             $(this).addClass("LOADED");
