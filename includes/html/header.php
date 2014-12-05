@@ -4,7 +4,7 @@
         <title>iTracker</title>
 
         <? require_once 'html/jsincludes.php'; // Jquery, css, UI, complementos JQ, js base ?>
-
+        <meta charset="UTF-8">
     </head>
     <body style="background-color: white;">
         <table id="main" class="status" cellpadding="0" cellspacing="0">
