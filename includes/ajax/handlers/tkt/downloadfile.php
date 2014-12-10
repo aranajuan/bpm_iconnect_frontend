@@ -14,11 +14,13 @@ function GO($XML, $output = "html") {
     $file = $XML->get_response("file");
 
     $ext = explode(".", $file["name"]);
-    
+    if(isset($file["idtkt"])){
+        $idtkt="_".$file["idtkt"];
+    }
     if (in_array(strtolower($ext[count($ext) - 1]), array("png", "jpg", "jpeg"))) {
         header('Content-type: image/png');
     } else {
-        header("Content-Disposition:attachment; filename= adjunto." . $ext[count($ext) - 1]);
+        header("Content-Disposition:attachment; filename= adjunto".$idtkt."." . $ext[count($ext) - 1]);
         header("Content-Type: application/octet-stream");
     }
     //echo $file["name"];

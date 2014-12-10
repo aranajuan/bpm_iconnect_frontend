@@ -21,3 +21,13 @@
 04-12-2014 02:25:09	10.66.93.46: u1ag1	login exitoso
 04-12-2014 02:27:47	10.66.93.46: u1ag1	logout
 04-12-2014 02:39:55	10.66.93.46: com1	login exitoso
+10-12-2014 09:40:07	10.66.93.46: u1ag1	login exitoso
+10-12-2014 10:26:01	10.66.93.46: u1ag1	logout
+10-12-2014 10:26:06	10.66.93.46: u1ag1	login exitoso
+10-12-2014 10:26:13	10.66.93.46: u1ag1	logout
+10-12-2014 10:26:17	10.66.93.46: com1	login exitoso
+10-12-2014 10:26:21	10.66.93.46: com1	logout
+10-12-2014 10:26:25	10.66.93.46: fulladm	login fallido	(app)Usuario o contrase&ntilde;a invalidos.
+10-12-2014 10:26:29	10.66.93.46: fulladm	login exitoso
+10-12-2014 10:27:15	10.66.93.46: fulladm	logout
+10-12-2014 10:27:50	10.66.93.46: u1ag1	login exitoso
