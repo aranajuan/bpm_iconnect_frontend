@@ -1,6 +1,78 @@
 .submenu{
-    
+    display:none;
+    float:left;
+    background-color: #edecec ;
+    width: 80%;
+    text-align: center;
+    padding:0px;
+    padding-right: 20%;
+    margin:0px;
 }
 .mainmenu{
-    
+    height: 20px;
+    background-color: #edecec ;
+    float:left;
+    width: 100%;
+}
+
+.submenuel{
+    padding:0px;
+    height: 16px;
+    color: #3d3c3c;
+    font-size: 11px;
+    float:right;
+    text-align: center;
+    cursor: pointer;
+    background-color: #edecec ;
+    width: 100%;
+    padding-top:4px;
+}
+
+.submenuel:hover{
+     background-color: #8a0886;
+     color:white;
+}
+
+.menuel{
+    height: 112px;
+    margin:0px;
+    padding:0px;
+    float:left;
+}
+
+.menubutton{
+    padding:0px;
+    height: 20px;
+    border-bottom: 5px solid #0059ac;
+    color: #3d3c3c;
+    font-size: 11px;
+    float:left;
+    text-align: center;
+    margin:0px;
+    margin-top:85px;
+    padding-top:2px;
+    cursor: pointer;
+}
+
+.menubutton:hover{
+    border-bottom: 5px solid #8a0886;
+    background-color: #8a0886;
+    color: white;
+}
+
+.selected{
+    background-color: #0059ac;
+    color: white;
+}
+
+.menubutton_NH{
+    padding:0px;
+    height: 20px;
+    border-bottom: 5px solid #0059ac;
+    color: #3d3c3c;
+    font-size: 11px;
+    float:left;
+    text-align: center;
+    margin-top:85px;
+    padding-top:2px;
 }

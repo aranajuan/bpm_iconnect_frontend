@@ -1,51 +1,31 @@
 <?
-$alist = $U->list_access();
+$HLW=409;   //ancho header left
+$HLEM=60;    //ancho elementos menu
+$HRW=80;    //ancho header right  
+
 $LA = $R->get_param("L");
-$subel = array();
-
-/* menu principal */
-echo "<div id='$id' class='mainmenu' style='display:block;' >";
-foreach ($alist as $link) {
-    $exp = explode("_", $link[3]);
-    $selected = false;
-    if ($LA == $link[2]) {
-        $selected = true;
+$menu = $U->get_menu($LA);
+$menuTOP="<div class=\"menuel\" style=\"background-image: url(img/base/header_left.png);width: ".$HLW."px; \"></div>";
+$menuSUB="";
+$c=0;
+foreach($menu[0] as $tM){
+    $c++;
+    $selected="";
+    if($tM["selected"]){
+        $selected="selected";
     }
-    if (count($exp) == 1) {
-        echo menu_button($link[3], "menu_go('" . $link[2] . "')"); //go
-    } else {
-        if (!isset($subel[$exp[0]])) {
-            echo menu_button($exp[0], "menu_sub('" . $exp[0] . "')"); //showsub
-        }
-        $subel[$exp[0]][$exp[1]] = $link;
+    $menuTOP.="<div class=\"menuel menubutton $selected\" style=\"width:".$HLEM."px\" onclick=\"" . $tM[1] . "\">".strtoupper($tM[0])."</div>";
+}
+$nw=910-$HLW-($c*$HLEM)-$HRW;
+if($nw>0){
+    $menuTOP.="<div class=\"menuel menubutton_NH\" style=\"width:".$nw."px;\"></div>";
+}
+$menuTOP.="<div onclick=\"location.href='?L=logout'\" onmouseover=\"$(this).css('background-image','url(img/base/header_right_over.png)')\" onmouseout=\"$(this).css('background-image','url(img/base/header_right.png)')\" class=\"menuel\" style=\"background-image: url(img/base/header_right.png);width:".$HRW."px;float:right;cursor:pointer; \"></div>";
+$menuSUB.="<div class=\"mainmenu\">&nbsp;</div>";
+foreach($menu[1] as $id=>$tS){
+    $menuSUB.="<div id=\"".$id."\" class=\"submenu\">";
+    foreach($tS as $name => $link){
+        $menuSUB.="<div class=\"submenuel\" style=\"width:".$HLEM."px\" onclick=\"" . $link[2] . "\">".strtoupper($name)."</div>";
     }
+    $menuSUB.="</div>";
 }
-if ($U->is_logged()) {
-    echo menu_button("Salir", "menu_go('logout')");
-}
-echo "</div>";
-
-foreach ($subel as $id => $subm) {
-    echo "<div id='$id' class='submenu' style='display:none;' >";
-    foreach ($subm as $name => $link) {
-        echo menu_button($name, "menu_go('" . $link[2] . "')");
-    }
-    echo menu_button("Volver", "menu_main()");
-    echo "</div>";
-}
-?>
-
-<!--                <div class="menuUser" onclick="ucontact_p();">
-                    <table >
-                        <tr>
-                            <td>
-                                <img src="img/base/menu/but_user.png" />
-                            </td>
-                            <td>
-<? //echo $U->get_prop("nombre");  ?><br />
-<? //echo ucwords($U->get_prop("perfil")); ?>   
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>-->

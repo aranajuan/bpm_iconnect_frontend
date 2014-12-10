@@ -4,6 +4,7 @@
         <title>iTracker</title>
 
         <? require_once 'html/jsincludes.php'; // Jquery, css, UI, complementos JQ, js base ?>
+        <? require_once 'html/menu.php'; ?>
         <meta charset="UTF-8">
     </head>
     <body style="background-color: white;">
@@ -13,11 +14,13 @@
                 <td class="main_content">
                     <table style="width: 100%;" cellpadding="0" cellspacing="0">
                         <tr>
-                            <td ><img src='img/base/header.png'  style="display: block;" /></td>
+                            <td >
+                                <?=$menuTOP;?><br/>
+                                <?=$menuSUB;?>
+                            </td>
                         </tr>
                         <tr>
                             <td class="main_content_TD">
-
                                 <div id="ucontact_p" class="popup">
                                     Puede modificar aqu&iacute; sus datos de contacto.
                                     <table>
@@ -41,7 +44,9 @@
                                 </div>
                                 <div id="alert_p" class="popup"></div>
                                 <div id="notice_p" style="width: 300px;display: none;"></div>
-                                <div style="width: 900px;position:absolute;height: 40px;"><? require_once 'html/menu.php'; ?></div>
+                                <div style="width: 900px;position:absolute;height: 40px;">
+                                    <? //require_once 'html/menu.php'; ?>
+                                </div>
                                 <div id="msjs" style="width: 900px;display: none;position:absolute;margin-top: 40px;"></div>
                                 <div id="information" style="width: 150px;display: none;position:absolute;margin-left:750px;margin-top:60px;"></div>
                                 <br/><br/><br/>

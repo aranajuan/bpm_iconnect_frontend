@@ -91,7 +91,7 @@ class USER {
             $_SESSION["intento"] = 1;
             return 1;
         }
-        $_SESSION["intento"] ++;
+        $_SESSION["intento"]++;
         return $this->get_try();
     }
 
@@ -202,6 +202,37 @@ class USER {
             default:
                 return "Propiedad invalida.";
         }
+    }
+
+    /**
+     * Devuelve menu de usuario
+     * @param String $LA Ubicacion actual
+     * @return array{main,sub}{titulo,script}
+     */
+    public function get_menu($LA) {
+        if (!$this->is_logged()) {
+            return null;
+        }
+        $mainm = array();
+        $subel=array();
+        $alist = $this->list_access();
+        foreach ($alist as $link) {
+            $exp = explode("_", $link[3]);
+            $selected = false;
+            if ($LA == $link[2]) {
+                $selected = true;
+            }
+            if (count($exp) == 1) {
+                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')","selected"=>$selected));
+            } else {
+                if (!isset($subel[$exp[0]])) {
+                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')","selected"=>$selected));
+                }
+                $link[2]="menu_go('" . $link[2] . "')";
+                $subel[$exp[0]][$exp[1]] = $link;
+            }
+        }
+        return array($mainm,$subel);
     }
 
     /**
