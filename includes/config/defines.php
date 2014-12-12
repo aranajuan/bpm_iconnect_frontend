@@ -1,7 +1,7 @@
 <?php
 
 define("INSTANCES","AGENTES");
-
+define("ERROR_REPORTINGCONST",E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 // Configuraciones Base
 
 define('BASE_DIR',realpath(dirname(realpath(dirname(__FILE__)).'/../../../')));
@@ -18,9 +18,10 @@ define('HTML_CONTROLLER','https://t0002591816/itracker_front');
 date_default_timezone_set ( 'America/Argentina/Buenos_Aires' );
 
 //adjuntos TKT
+define("FILEUP_MAX_MB",50);
 define("FILEUP_MAX_FILES",3);
-define("FILEUP_MAX_FILES_SIZE",1024*1024*3);
-define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx|pdf");
+define("FILEUP_MAX_FILES_SIZE",1024*1024*FILEUP_MAX_MB);
+define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx|pdf|ppt|pptx|pps|ppsx|doc|docx");
 define("FILEUP_TMP_FOLDER","usertmp/fileuploader");
 
 define("TRYMAX",2);

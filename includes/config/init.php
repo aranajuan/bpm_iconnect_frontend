@@ -1,7 +1,11 @@
 <?php
-error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
+include_once 'defines.php';
+error_reporting(ERROR_REPORTINGCONST);
 
 ini_set('display_errors', '1');
+
+ini_set('post_max_size', FILEUP_MAX_MB.'M');
+ini_set('upload_max_filesize', FILEUP_MAX_MB.'M');
 
 preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'],$matches);
 
@@ -14,7 +18,6 @@ exit(0);
 
 }
 
-include_once 'defines.php';
 require_once 'classes/logger.php';
 include_once 'basic_functions.php';
 include_once 'access.php';
