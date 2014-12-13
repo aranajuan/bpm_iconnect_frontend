@@ -122,7 +122,7 @@ class USER {
      * Verifica acceso a un metodo o pagina (PAGE)
      * @param string $class
      * @param string $method 
-     * @return boolean  puede acceder
+     * @return array|null  puede acceder (class method)
      */
     public function check_access($class, $method) {
         if ($class == null || $class == "")
@@ -131,11 +131,13 @@ class USER {
         $valid = $this->accessV;
         foreach ($valid as $v) {
             //echo strtolower($GLOBALS["access"][trim($v)][1])."/".strtolower($GLOBALS["access"][trim($v)][2])."<br/>";
-            if (strtolower($GLOBALS["access"][trim($v)][1]) == $class && strtolower($GLOBALS["access"][trim($v)][2]) == $method) {
-                return true;
+            $lClass=$GLOBALS["access"][trim($v)][1];
+            $lMethod=$GLOBALS["access"][trim($v)][2];
+            if (strtolower($lClass) == $class && strtolower($lMethod) == $method) {
+                return array($lClass,$lMethod);
             }
         }
-        return false;
+        return null;
     }
 
     /**

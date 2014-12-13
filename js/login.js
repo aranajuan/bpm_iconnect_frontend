@@ -38,18 +38,22 @@ function doLogin() {
         try {
             var obj = jQuery.parseJSON(data);
             if (obj !== null) {
-                if (obj.result === "ok") {
-                    if ($_GET('R')) {
-                        location.href = decodeURIComponent($_GET('R'));
+                if (obj.home != "noacces") {
+                    if (obj.result === "ok") {
+                        if ($_GET('R')) {
+                            location.href = decodeURIComponent($_GET('R'));
+                        } else {
+                            location.href = "?L=" + obj.home + "&m=login";
+                        }
                     } else {
-                        location.href = "?L=" + obj.home + "&m=login";
+                        if (obj.reload == "true") {
+                            location.href = "?L=login&e=" + encodeURIComponent(obj.detail);
+                        } else {
+                            alert_p(obj.detail, obj.result);
+                        }
                     }
-                } else {
-                    if (obj.reload == "true") {
-                        location.href = "?L=login&e=" + encodeURIComponent(obj.detail);
-                    } else {
-                        alert_p(obj.detail, obj.result);
-                    }
+                }else{
+                    alert_p("El perfil no esta correctamente definido.", "Error");
                 }
             }
         } catch (e) {

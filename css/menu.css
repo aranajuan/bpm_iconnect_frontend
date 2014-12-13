@@ -26,11 +26,12 @@
     background-color: #edecec ;
     width: 100%;
     padding-top:4px;
+    overflow: hidden;
 }
 
 .submenuel:hover{
-     background-color: #8a0886;
-     color:white;
+    background-color: #8a0886;
+    color:white;
 }
 
 .menuel{
@@ -52,6 +53,7 @@
     margin-top:85px;
     padding-top:2px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .menubutton:hover{

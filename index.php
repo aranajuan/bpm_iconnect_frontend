@@ -43,7 +43,7 @@ if ($R->is_set("class")) { // es un request ajax
         unset($_SESSION['captcha']);
         $U->load_vec(array("usr" => $R->get_param("usr")));
         $U->set_instance($R->get_param("instancia"));
-        $canAccess = true;
+        $canAccess = array("user","login");
     } else {
         $canAccess = $U->check_access($class, $method);
     }
@@ -68,7 +68,7 @@ if (!$R->is_set("L")) { //enviar a home
 }
 
 if ($R->get_param("L") == "login") { // permite siempre acceso a login
-    $canAccess = true;
+    $canAccess = array("page","login");
 } else {
     $canAccess = $U->check_access("PAGE", $R->get_param("L"));
 }
@@ -92,7 +92,7 @@ require_once 'html/header.php';
 
 
 if ($canAccess) {
-    include "html/" . $R->get_param("L") . ".php";
+    include "html/" . $canAccess[1] . ".php";
 }
 
 require_once 'html/footer.php';
