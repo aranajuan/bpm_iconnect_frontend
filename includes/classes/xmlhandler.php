@@ -158,6 +158,7 @@ class XmlHandler {
         $requestTS = $this->request->saveXML(null, LIBXML_NOEMPTYTAG);
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, APLICATION_SERVER);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); 
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $requestTS);
