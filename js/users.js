@@ -97,7 +97,7 @@ function clear_popup() {
  * @returns {undefined}
  */
 function show_details() {
-    $("#reg_details").dialog({title: 'Detalles del equipo', resizable: false, width: 370, height: 410});
+    $("#reg_details").dialog({title: 'Detalles del usuario', resizable: false, width: 370, height: 410});
 }
 
 /**

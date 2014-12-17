@@ -1,6 +1,6 @@
 <html>
     <head>
-        <link rel="shortcut icon" href="http://dwin0292/itracker/favicon.ico"  type="image/x-icon" />
+        <link rel="shortcut icon" href="favicon.ico"  type="image/x-icon" />
         <title>iTracker</title>
 
         <? require_once 'html/jsincludes.php'; // Jquery, css, UI, complementos JQ, js base ?>
