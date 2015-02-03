@@ -1,5 +1,8 @@
 <?php
-include_once 'defines.php';
+include_once 'includes/config/defines.php';
+
+ini_set('include_path',ini_get('include_path').'./'.PATH_SEPARATOR.INCLUDE_DIR);
+
 error_reporting(ERROR_REPORTINGCONST);
 
 ini_set('display_errors', '1');

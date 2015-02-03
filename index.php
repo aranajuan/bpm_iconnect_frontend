@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/config/init.php'; // Configuraciones DB, Constantes, Direcciones
+require_once 'includes/utils/init.php'; // Configuraciones DB, Constantes, Direcciones
 
 $U = new USER();
 $R = new HtmlRequest();
