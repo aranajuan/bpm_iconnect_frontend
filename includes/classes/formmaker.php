@@ -16,7 +16,7 @@ class formmaker {
      * 
      * @param type $id  formid - eventid
      */
-    public function __construct($id) {
+    public function __construct($id=null) {
         $this->masterID = $id;
         $this->js = "";
         $this->vectorIds = array();
@@ -85,7 +85,13 @@ class formmaker {
         return $this->html_output;
     }
 
-    public function get_htmlview() {
+    /**
+     * Devuelve vista html
+     * @param array<String> $hideTypes type a ocultar 
+     * @param boolean $hideTypes ocultar comentarios
+     * @return string
+     */
+    public function get_htmlview($hideTypes = null,$hideCommets=false) {
         $html = "<div style='width:100%'><table>";
         foreach ($this->vector as &$el) {
             if (in_array($el["id"], $this->vectorIds) || $el["id"] === "" || !isset($el["id"])) {
@@ -94,7 +100,14 @@ class formmaker {
                 array_push($this->vectorIds, $el["id"]);
                 $el["id"] = $this->masterID . "_" . $el["id"];
                 $el["formclass"] = $this->masterID;
-                switch (trim($el["type"])) {
+                $type = trim($el["type"]);
+                if(in_array($type, $hideTypes)){
+                    continue;
+                }
+                if($hideCommets){
+                    $el["comment"]=null;
+                }
+                switch ($type) {
                     case "input":
                         $html.=$this->make_input_view($el);
                         break;
