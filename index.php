@@ -67,8 +67,8 @@ if (!$R->is_set("L")) { //enviar a home
     exit();
 }
 
-if ($R->get_param("L") == "login") { // permite siempre acceso a login
-    $canAccess = array("page","login");
+if ( in_array($R->get_param("L"), array("login","submenu"))) { // permite siempre acceso a
+    $canAccess = array("page",$R->get_param("L"));
 } else {
     $canAccess = $U->check_access("PAGE", $R->get_param("L"));
 }

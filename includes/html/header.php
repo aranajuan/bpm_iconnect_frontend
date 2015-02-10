@@ -49,4 +49,4 @@
                                 </div>
                                 <div id="msjs" style="width: 900px;display: none;position:absolute;margin-top: 40px;"></div>
                                 <div id="information" style="width: 150px;display: none;position:absolute;margin-left:750px;margin-top:60px;"></div>
-                                <br/><br/><br/>
+                                

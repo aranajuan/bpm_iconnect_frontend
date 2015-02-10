@@ -211,7 +211,7 @@ class USER {
      * @param String $LA Ubicacion actual
      * @return array{main,sub}{titulo,script}
      */
-    public function get_menu($LA) {
+    public function get_menu() {
         if (!$this->is_logged()) {
             return null;
         }
@@ -220,17 +220,13 @@ class USER {
         $alist = $this->list_access();
         foreach ($alist as $link) {
             $exp = explode("_", $link[3]);
-            $selected = false;
-            if ($LA == $link[2]) {
-                $selected = true;
-            }
             if (count($exp) == 1) {
-                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')","selected"=>$selected));
+                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')","path"=>$link[2]));
             } else {
                 if (!isset($subel[$exp[0]])) {
-                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')","selected"=>$selected));
+                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')","path"=> $exp[0]));
                 }
-                $link[2]="menu_go('" . $link[2] . "')";
+                $link[2]="submenu_go('" . $link[2] . "')";
                 $subel[$exp[0]][$exp[1]] = $link;
             }
         }
