@@ -1,5 +1,15 @@
-<div style="width: 100%;text-align: center;padding-top:40px;padding-bottom:40px;">
-    <div style="width: 49%;text-align: center;float:left;">
+<?
+    if(LOGIN_METHOD=="INTEGRATED"){
+        echo "<script>var autologin=true;</script>";
+    }else{
+        echo "<script>var autologin=false;</script>";
+    }
+?>
+<div style="width: 100%;text-align: center;padding-top:10px;padding-bottom:40px;">
+    <div id="statusform" style="width: 100%;text-align: center;float:left;display:block;">
+        <img src="img/loading.gif" height="50" width="50"><h2>Iniciando itracker</h2>
+    </div>
+    <div id="loginform" style="width: 70%;text-align: center;float:left;display:none;">
         <table>
             <tr>
                 <td>
@@ -49,9 +59,5 @@
         <br/>
     <br/>
     </div>
-    
-    <div style="width: 50%;text-align: center;float:left;">
 
-    </div>
-    
 </div>
