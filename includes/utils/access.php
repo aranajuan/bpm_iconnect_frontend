@@ -56,7 +56,7 @@ $access = array(
     array(39,"PAGE","mytkts", "Generados"),//usado
     array(40,"TKT","listmy", "Lista mistkts"),//usado
     array(41,"TKT","idsel_userasign", "Usuarios de equipo para asignar"), //usado
-    array(42,"TKT","listteamorigins", "Lista de tickets de equipos filtrado por origen"), //usado
+    array(42,"TKT","listfiltered", "Lista de tickets de equipos filtrados"), //usado
     array(43,"TKT","listmyclose","Lista de cerrados propios"), //usado
     array(44,"PAGE","actionhelp", "Ayuda"),
     

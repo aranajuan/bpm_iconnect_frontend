@@ -96,7 +96,7 @@ function go(accion) {
  */
 function show_details(id) {
     $("#popup_detalles").html(JAVA_LOADING);
-    $("#popup_detalles").dialog();
+    $("#popup_detalles").dialog({title: "Cargando"});
     TKTID = id;
     postControl.sendRequest(
             false,
