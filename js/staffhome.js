@@ -52,7 +52,7 @@ function main() {
     });
 
     $("#txt_filtro").change(function () {
-        if ($("#txt_filtro").val() == "closed")
+        if ($("#txt_filtro").val() == "closed" || $("#txt_filtro").val()=='derived_all')
             $("#div_fechas").show();
         else
             $("#div_fechas").hide();
@@ -86,12 +86,13 @@ function refresh_list() {
         return;
     updating = true;
     $("#List").html(JAVA_LOADING);
+
     postControl.sendRequest(
             true,
             'tktlistteam',
             {
                 'class': 'tkt',
-                method: 'listteam',
+                method: filter_method,
                 cfrom: filter_fecha_d,
                 cto: filter_fecha_h,
                 team: filter_team,
@@ -162,7 +163,12 @@ function load_filter() {
     filter_filter = $("#txt_filtro").val();
     filter_fecha_d = $("#fecha_d").val();
     filter_fecha_h = $("#fecha_h").val();
-
+    if( $("#txt_filtro").val().substr(0, 7)==='derived'){
+        filter_method='listtouch';
+    }else{
+        filter_method='listteam';
+    }
+    
     refresh_list();
     load_listRC();
 }

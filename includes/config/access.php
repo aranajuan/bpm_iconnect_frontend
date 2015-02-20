@@ -75,7 +75,9 @@ $access = array(
     array(53,"TKT","downloadfile","Descargar archivo de tkt"), //usado
     array(54,"TKT","listteamclose","Lista de tickets cerrados recientes por el equipo"), //usado
     array(55,"TKT","idsel_teamderive","Lista equipos a los que se puede derivar"), //usado
-    array(56,"REPORT","report","Ejecuta reportes")//usado
+    array(56,"REPORT","report","Ejecuta reportes"),//usado
+    array(57,"-","-","Parche dev"),//usado
+    array(58,"TKT","listtouch","Lista tickets que ya no estan en el equipo")//usado
 );
 
 
