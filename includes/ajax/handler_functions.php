@@ -118,6 +118,7 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
         $arr[0] = $tmp;
     }
     foreach ($cols as $c) {
+        $c=xmlText($c);
         $cE = explode("=>", $c);
         if (count($cE) > 1) {
             $colsNames[$i] = $cE[0];
@@ -205,6 +206,7 @@ function arrayToExcel($cols, $arr) {
         $arr[0] = $tmp;
     }
     foreach ($cols as $c) {
+        $c=xmlText($c);
         $cE = explode("=>", $c);
         if (count($cE) > 1) {
             $colsNames[$i] = $cE[0];
