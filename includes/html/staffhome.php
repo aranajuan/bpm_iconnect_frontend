@@ -39,6 +39,8 @@ echo filter_bar('
                     <option value="myNtom" SELECTED>Mios y no tomados</option>
                     <option value="free">Sin tomar</option>
                     <option value="taken">Tomados</option>
+                    <option value="derived">Derivados</option>
+                    <option value="derived_all">Derivados todos entre...</option>
                     <option value="closed">Cerrados entre...</option>
 
                 </select>

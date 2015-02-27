@@ -22,7 +22,7 @@ function serialize_form(classe){
 }
 
 function checkval(str){
-    if(str.indexOf("\&")!=-1 || str.indexOf("<")!=-1 || str.indexOf(">")!=-1){
+    if(str.indexOf("<")!=-1 || str.indexOf(">")!=-1){
         return false;
     }
     return true;

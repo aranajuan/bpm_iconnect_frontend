@@ -34,7 +34,7 @@ function load_tree(path) {
 function go(path) {
     var data = serialize_form('actionform');
     if (data == -1) {
-        alert_p("No puedes utilizar &amp;,< o > en los textos");
+        alert_p("No puedes utilizar < o > en los textos");
         return;
     }
     postControl.sendRequest(
