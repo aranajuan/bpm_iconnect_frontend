@@ -19,7 +19,7 @@ if ($XML->get_paramSent("export") == "xls") {
             header("Expires: 0");
             header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
             header("Cache-Control: private", false);
-            return  space_delete(mb_convert_encoding($result["html"],'utf-16','utf-8'));
+            return $result["html"];
         } else {
             return "Sin datos para exportar";
         }

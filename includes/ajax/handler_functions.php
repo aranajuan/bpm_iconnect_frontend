@@ -185,6 +185,16 @@ function arrayToTable($cols, $arr, $updateFields, $idField, $isOpen, $isDelete, 
 }
 
 /**
+ * Combierte formato para excel
+ * @param type $str
+ * @return type
+ */
+function convert_string_excel($str){
+    $amp=mb_convert_encoding("&amp;",'utf-16','utf-8');
+    return str_replace($amp,"&#x26;",mb_convert_encoding($str,'utf-16','utf-8'));
+}
+
+/**
  * 
  * @param type $cols
  * @param type $arr
@@ -221,7 +231,7 @@ function arrayToExcel($cols, $arr) {
     $HTML = "<table>";
     $HTML.="<thead><tr>";
     foreach ($colsAlias as $cn) {
-        $HTML.="<th>" . $cn . "</th>";
+        $HTML.="<th>" . convert_string_excel($cn) . "</th>";
     }
     $HTML.="</tr></thead>";
 
@@ -229,7 +239,7 @@ function arrayToExcel($cols, $arr) {
     foreach ($arr as $el) {
         $HTML.="<tr>";
         foreach ($colsNames as $c) {
-            $HTML.="<td>" . get_value($c, $el) . "</td>";
+            $HTML.="<td>" . convert_string_excel(get_value($c, $el)) . "</td>";
         }
         
 
