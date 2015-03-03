@@ -53,6 +53,7 @@ function go(accion) {
         alert_p("No puedes utilizar < o > en los textos");
         return;
     }
+    $("#ejecutando_accion").html(JAVA_LOADING+" Guardando...");
     postControl.sendRequest(
             true,
             'tktaction',
@@ -66,6 +67,7 @@ function go(accion) {
                 
             },
     function (data) {
+        $("#ejecutando_accion").html("");
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
         if (data.status === "ok") {
             var result = data.result;
@@ -84,6 +86,7 @@ function go(accion) {
         }
     },
             function (data) {
+                $("#ejecutando_accion").html("");
                 alert(data);
             }
     );
@@ -116,7 +119,12 @@ function show_details(id) {
                 width: 800,
                 height: 500,
                 modal: true,
-                draggable: true
+                draggable: true,
+                position: { 
+                    my: 'top',
+                    at: 'top',
+                    of: $(window)
+                }
             });
             $("#div_contenido").tinyscrollbar();
             build_buttons();
