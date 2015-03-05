@@ -57,7 +57,8 @@ function GO($XML, $output = "html") {
             $html.=$arr["opendata"]["msj"];
         } else {
             $fm = new formmaker("actionform");
-            $fm->load_vector($arr["opendata"]["itform"]["element"]);
+            $arrForm= make_arrayobj($arr["opendata"]["itform"]["element"]);
+            $fm->load_vector($arrForm);
             $html.=$fm->get_html();
         }
         $html.="<br/></br>";
