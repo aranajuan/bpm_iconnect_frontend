@@ -65,7 +65,8 @@ function GO($XML, $output = "html") {
             }else{
                $openBT = option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');");
             }
-            $fm->load_vector($arr["opendata"]["itform"]["element"]);
+            $arrForm= make_arrayobj($arr["opendata"]["itform"]["element"]);
+            $fm->load_vector($arrForm);
             $html.=$fm->get_html();
         }
         $html.="<br/></br>";
