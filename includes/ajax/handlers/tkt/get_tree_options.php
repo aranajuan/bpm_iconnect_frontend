@@ -57,12 +57,22 @@ function GO($XML, $output = "html") {
             $html.=$arr["opendata"]["msj"];
         } else {
             $fm = new formmaker("actionform");
+            /*Agregar idmaster si es posible anexar*/
+            if($arr["no_anexar"]!=1){
+                $masterEl = array("type"=>"hidden","id"=>"idmaster","notsave"=>"true");
+                array_push($arr["opendata"]["itform"]["element"],$masterEl);
+                $openBT = option_button("ABRIR", 450, 0, "get_similar('" . $arr["previous"]["actual"] . "');");
+            }else{
+               $openBT = option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');");
+            }
             $arrForm= make_arrayobj($arr["opendata"]["itform"]["element"]);
             $fm->load_vector($arrForm);
             $html.=$fm->get_html();
         }
         $html.="<br/></br>";
-        $html.=option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');") . "</br>";
+        $html.="<br/><div id=\"msj_master\" style=\"color:red;\"></div></br>";
+        $html.="<br/><div id=\"ejecutando_accion\"></div>";
+        $html.= $openBT. "</br>";
         $html.=$backbutton;
     } else {
         $html.="<div style=\"width:40%;float:left;\">";
@@ -89,5 +99,5 @@ function GO($XML, $output = "html") {
 
 
 
-    return array("type" => "array", "result" => "ok", "html" => $html);
+    return array("type" => "html", "status" => "ok", "html" => $html);
 }

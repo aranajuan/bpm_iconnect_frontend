@@ -15,25 +15,6 @@
     width: 100%;
 }
 
-.submenuel{
-    padding:0px;
-    height: 16px;
-    color: #3d3c3c;
-    font-size: 11px;
-    float:right;
-    text-align: center;
-    cursor: pointer;
-    background-color: #edecec ;
-    width: 100%;
-    padding-top:4px;
-    overflow: hidden;
-}
-
-.submenuel:hover{
-    background-color: #8a0886;
-    color:white;
-}
-
 .menuel{
     height: 112px;
     margin:0px;

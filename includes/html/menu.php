@@ -4,14 +4,15 @@ $HLEM=60;    //ancho elementos menu
 $HRW=80;    //ancho header right  
 
 $LA = $R->get_param("L");
-$menu = $U->get_menu($LA);
+$LM = $R->get_param("main");
+$menu = $U->get_menu();
 $menuTOP="<div class=\"menuel\" style=\"background-image: url(img/base/header_left.png);width: ".$HLW."px; \"></div>";
 $menuSUB="";
 $c=0;
 foreach($menu[0] as $tM){
     $c++;
     $selected="";
-    if($tM["selected"]){
+    if($tM["path"] == $LA || $tM[0] == $LM){
         $selected="selected";
     }
     $menuTOP.="<div class=\"menuel menubutton $selected\" style=\"width:".$HLEM."px\" onclick=\"" . $tM[1] . "\">".strtoupper($tM[0])."</div>";
@@ -22,10 +23,3 @@ if($nw>0){
 }
 $menuTOP.="<div onclick=\"location.href='?L=logout'\" onmouseover=\"$(this).css('background-image','url(img/base/header_right_over.png)')\" onmouseout=\"$(this).css('background-image','url(img/base/header_right.png)')\" class=\"menuel\" style=\"background-image: url(img/base/header_right.png);width:".$HRW."px;float:right;cursor:pointer; \"></div>";
 $menuSUB.="<div class=\"mainmenu\">&nbsp;</div>";
-foreach($menu[1] as $id=>$tS){
-    $menuSUB.="<div id=\"".$id."\" class=\"submenu\">";
-    foreach($tS as $name => $link){
-        $menuSUB.="<div class=\"submenuel\" style=\"width:".$HLEM."px\" onclick=\"" . $link[2] . "\">".strtoupper($name)."</div>";
-    }
-    $menuSUB.="</div>";
-}

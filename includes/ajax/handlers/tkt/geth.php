@@ -25,8 +25,8 @@ function GO($XML, $output = "html") {
         $html_tree.="<tr><td><b>" . $t["question"] . "</b><td><td>" . $t["ans"] . "</td></tr>";
     }
     $html_tree.="</table>";
-    if (is_numeric($result["master"])) {
-        $res.="<div style=\"width: 50%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('" . $result["master"] . "')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+    if (is_numeric($result["idmaster"])) {
+        $res.="<div style=\"width: 60%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('" . $result["idmaster"] . "')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
     }
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
@@ -42,9 +42,9 @@ function GO($XML, $output = "html") {
             $res.="</div>";
         }
         $res.="<div class='element'>";
-        if (isset($th["form"]["element"])) {
+        if (isset($th["itform"]["element"])) {
             $f = new formmaker($i);
-            $f->load_vector(make_arrayobj($th["form"]["element"]));
+            $f->load_vector(make_arrayobj($th["itform"]["element"]));
             $res.=$f->get_htmlview();
         }
         if (isset($th["files"]["file"])) {

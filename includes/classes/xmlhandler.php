@@ -60,16 +60,15 @@ class XmlHandler {
 
     /**
      *  Archivos a xml
-     * @return array Array de archivos comprimidos
+     * @return array Array de archivos
      */
     private function get_tempfiles(){
         $base64F=array();
         $files = $this->user->user_files();
         foreach($files as $f){
             $im = file_get_contents($f);
-            $imdata = base64_encode($im);
             $fname=explode("/",$f);
-            array_push($base64F, array("name"=>$fname[count($fname)-1],"data"=>$imdata));
+            array_push($base64F, array("name"=>$fname[count($fname)-1],"data"=>$im));
         }
         return $base64F;  
     }
@@ -91,7 +90,7 @@ class XmlHandler {
             $files=$this->get_tempfiles();
             $filesNode = $this->create_requestElement("files");
             foreach($files as $f){
-                $filesNode->appendChild($this->create_requestElement($f["name"], $f["data"]));
+                $filesNode->appendChild($this->create_requestElementSecure($f["name"], $f["data"]));
             }
             $request->appendChild($filesNode); 
         }
@@ -140,6 +139,20 @@ class XmlHandler {
         }
     }
 
+        /**
+     * Crea elemento en dom sin verificar y en base64
+     * @param type $k
+     * @param type $v
+     */
+    public function create_requestElementSecure($k, $v){
+        if($v==null or $v=='') return null;
+        $val = base64_encode($v);
+        if($val){
+            return $this->get_requestDOM()->createElement($this->make_param($k), $val);
+        }
+        return null;
+    }
+    
     /**
      * Escapa caracteres del texto a enviar por xml
      * @param string $text

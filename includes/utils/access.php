@@ -56,7 +56,7 @@ $access = array(
     array(39,"PAGE","mytkts", "Generados"),//usado
     array(40,"TKT","listmy", "Lista mistkts"),//usado
     array(41,"TKT","idsel_userasign", "Usuarios de equipo para asignar"), //usado
-    array(42,"TREE","designer", "Arbol preguntas"),
+    array(42,"TKT","listfiltered", "Lista de tickets de equipos filtrados"), //usado
     array(43,"TKT","listmyclose","Lista de cerrados propios"), //usado
     array(44,"PAGE","actionhelp", "Ayuda"),
     
@@ -76,7 +76,7 @@ $access = array(
     array(54,"TKT","listteamclose","Lista de tickets cerrados recientes por el equipo"), //usado
     array(55,"TKT","idsel_teamderive","Lista equipos a los que se puede derivar"), //usado
     array(56,"REPORT","report","Ejecuta reportes"),//usado
-    array(57,"-","-","Parche dev"),//usado
+    array(57,"TKT","getsimilars","Carga tickets similares a uno no creado"), //usado
     array(58,"TKT","listtouch","Lista tickets que ya no estan en el equipo")//usado
 );
 

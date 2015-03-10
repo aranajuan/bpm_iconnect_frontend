@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/config/init.php'; // Configuraciones DB, Constantes, Direcciones
+require_once 'includes/utils/init.php'; // Configuraciones DB, Constantes, Direcciones
 
 $U = new USER();
 $R = new HtmlRequest();
@@ -28,22 +28,32 @@ if (($R->get_param("instancia") != null)) {
     $U->set_instance($R->get_param("instancia"));
 }
 
-
 if ($R->is_set("class")) { // es un request ajax
     $class = $R->get_param("class");
     $method = $R->get_param("method");
     if ($class == "user" && $method == "login") {
-        if ($U->get_try() >= TRYMAX) {
-            if (!isset($_SESSION['captcha']) || $_SESSION['captcha'] != $R->get_param("captchatext")) {
-                echo json_encode(array("type"=>"array","result"=>"error","trycount"=>$U->get_try(),"reload"=>"true","detail"=>"Captcha invalido"));
-                unset($_SESSION['captcha']);
-                exit();
+        if (LOGIN_METHOD == "INTEGRATED") {
+            $user_S = explode("\\", $_SERVER['AUTH_USER']);
+            if ($user_S[0] == "TELECOM" || $user_S[0] == "CCPI") {
+                $uleg = $user_S[1];
+            } else {
+                echo json_encode(array("type" => "array", "result" => "error", "detail" => "Error:no se puede reconocer al usuario." . print_r($user_S, true) . "-" . $_SERVER["REMOTE_ADDR"]));
+                exit(0);
             }
+            $U->load_vec(array("usr" => $uleg));
+        } else {
+            if ($U->get_try() >= TRYMAX) {
+                if (!isset($_SESSION['captcha']) || $_SESSION['captcha'] != $R->get_param("captchatext")) {
+                    echo json_encode(array("type" => "array", "result" => "error", "trycount" => $U->get_try(), "reload" => "true", "detail" => "Captcha invalido"));
+                    unset($_SESSION['captcha']);
+                    exit();
+                }
+            }
+            unset($_SESSION['captcha']);
+            $U->load_vec(array("usr" => $R->get_param("usr")));
         }
-        unset($_SESSION['captcha']);
-        $U->load_vec(array("usr" => $R->get_param("usr")));
         $U->set_instance($R->get_param("instancia"));
-        $canAccess = array("user","login");
+        $canAccess = array("user", "login");
     } else {
         $canAccess = $U->check_access($class, $method);
     }
@@ -57,8 +67,8 @@ if ($R->is_set("class")) { // es un request ajax
 }
 
 if (!$U->is_logged() && $R->get_param("L") != "login") {
-    $Redirect=urlencode($R->get_server('REQUEST_URI'));
-    header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged&R=".$Redirect); // usuario no logueado 
+    $Redirect = urlencode($R->get_server('REQUEST_URI'));
+    header("Location: " . HTML_CONTROLLER . "/?L=login&m=notlogged&R=" . $Redirect); // usuario no logueado 
     exit();
 }
 
@@ -67,8 +77,8 @@ if (!$R->is_set("L")) { //enviar a home
     exit();
 }
 
-if ($R->get_param("L") == "login") { // permite siempre acceso a login
-    $canAccess = array("page","login");
+if (in_array($R->get_param("L"), array("login", "submenu"))) { // permite siempre acceso a
+    $canAccess = array("page", $R->get_param("L"));
 } else {
     $canAccess = $U->check_access("PAGE", $R->get_param("L"));
 }

@@ -3,12 +3,9 @@ function menu_go(dest) {
 }
 
 function menu_sub(id) {
-    $(".mainmenu").hide();
-    $(".submenu").hide();
-    $("#" + id).fadeIn();
-
+    location.href = "?L=submenu&m=menu&main=" + id;
 }
 
-function menu_main() {
-
+function submenu_go(dest) {
+    location.href = "?L=" + dest + "&m=menu&main="+$_GET("main");
 }

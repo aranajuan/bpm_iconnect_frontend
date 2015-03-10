@@ -44,9 +44,6 @@
                                 </div>
                                 <div id="alert_p" class="popup"></div>
                                 <div id="notice_p" style="width: 300px;display: none;"></div>
-                                <div style="width: 900px;position:absolute;height: 40px;">
-                                    <? //require_once 'html/menu.php'; ?>
-                                </div>
                                 <div id="msjs" style="width: 900px;display: none;position:absolute;margin-top: 40px;"></div>
                                 <div id="information" style="width: 150px;display: none;position:absolute;margin-left:750px;margin-top:60px;"></div>
-                                <br/><br/><br/>
+                                
