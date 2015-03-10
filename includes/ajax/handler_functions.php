@@ -201,8 +201,7 @@ function convert_string_excel($str){
  * @return string
  */
 function arrayToExcel($cols, $arr) {
-    $colsNames = array();
-    $colsAlias = array();
+    $colsItems = array();
 
     $i = 0;
 
@@ -219,27 +218,25 @@ function arrayToExcel($cols, $arr) {
         $c=xmlText($c);
         $cE = explode("=>", $c);
         if (count($cE) > 1) {
-            $colsNames[$i] = $cE[0];
-            $colsAlias[$i] = $cE[1];
+            $colsItems[strtoupper($cE[1])] = $cE[0];
         } else {
-            $colsNames[$i] = $c;
-            $colsAlias[$i] = $c;
+            $colsItems[strtoupper($c)] = $c;
         }
         $i++;
     }
-
+   
     $HTML = "<table>";
     $HTML.="<thead><tr>";
-    foreach ($colsAlias as $cn) {
-        $HTML.="<th>" . convert_string_excel($cn) . "</th>";
+    foreach ($colsItems as $alias=>$value) {
+        $HTML.="<th>" . convert_string_excel($alias) . "</th>";
     }
     $HTML.="</tr></thead>";
 
     $HTML.= "<tbody>";
     foreach ($arr as $el) {
         $HTML.="<tr>";
-        foreach ($colsNames as $c) {
-            $HTML.="<td>" . convert_string_excel(get_value($c, $el)) . "</td>";
+        foreach ($colsItems as $alias=>$value) {
+            $HTML.="<td>" . convert_string_excel(get_value($value, $el)) . "</td>";
         }
         
 
