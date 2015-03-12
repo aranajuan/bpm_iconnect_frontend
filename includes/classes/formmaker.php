@@ -183,7 +183,8 @@ class formmaker {
     }
 
     private function make_link($el) {
-        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."' target='_blank'>" .$el["text"]."</a>"  , $el["comment"]);
+        $value=$this->link_adapt($el["path"].$el["value"], $el["text"], true);
+        return $this->putintable($el["label"],$value  , $el["comment"]);
     }
 
     private function make_select($el) {
@@ -213,7 +214,8 @@ class formmaker {
     /* view */
     
     private function make_input_view($el) {
-        return $this->putintable($el["label"], $el["value"], $el["comment"]);
+        $value=$this->link_adapt($el["value"]);
+        return $this->putintable($el["label"], $value, $el["comment"]);
     }
 
     private function make_text_view($el) {
@@ -237,9 +239,33 @@ class formmaker {
     }
 
     private function make_link_view($el) {
-        return $this->putintable($el["label"], "<a href='?class=tkt&method=downloadfile&type=anexo&file=".$el["path"]."' target='_blank'>" .$el["text"]."</a>"  , $el["comment"]);
+        $value=$this->link_adapt($el["path"].$el["value"], $el["text"], true);
+        return $this->putintable($el["label"], $value  , $el["comment"]);
     }
 
+    /**
+     * Verifica si es un link y lo devuelve armado
+     * @param string $dest  posible link
+     * @param string $text  texto link
+     * @param boolean $force    forzar generacion de link
+     * @return string   link o valor
+     */
+    private function link_adapt($dest,$text=null,$force=false){
+        if(!$text || $text==""){
+            $text=$dest;
+        }
+        $dest=trim($dest);
+        if(filter_var($dest, FILTER_VALIDATE_URL) != false){
+            return "<a class='lnk_blue' href='$dest' target='_blank'>$text</a>";
+        }else{
+            if($force){
+                return "<a class='lnk_blue' href='?class=tkt&method=downloadfile&type=anexo&file=".$dest."' target='_blank'>" .$text."</a>";
+            }else{
+                return $dest;
+            }
+        }
+    }
+    
     private function make_select_view($el) {
         $ans="";
         $opts = make_arrayobj($el["option"]);

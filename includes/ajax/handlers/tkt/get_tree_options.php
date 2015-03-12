@@ -55,6 +55,7 @@ function GO($XML, $output = "html") {
     if (isset($arr["opendata"])) {
         if (isset($arr["opendata"]["msj"])) {
             $html.=$arr["opendata"]["msj"];
+            $openBT = option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');");
         } else {
             $fm = new formmaker("actionform");
             /*Agregar idmaster si es posible anexar*/

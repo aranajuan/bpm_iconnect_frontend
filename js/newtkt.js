@@ -37,7 +37,7 @@ function go(path) {
         alert_p("No puedes utilizar < o > en los textos");
         return;
     }
-    $("#ejecutando_accion").html(JAVA_LOADING+" Guardando...");
+    $("#ejecutando_accion").html(JAVA_LOADING + " Guardando...");
     postControl.sendRequest(
             true,
             'tktopen',
@@ -55,9 +55,15 @@ function go(path) {
         if (data.status == "ok") {
             var result = data.result;
             if (result.result === "ok") {
-                if (result.tkth == "ok") {
-                    $("#tree").html("<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.");
-                } else {
+                if(result.type=='file'){
+                    var text="<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2>";
+                    if(ValidUrl(result.file)){
+                        text+="<h2>Por favor remitase al siguiente&nbsp;<a href='"+result.file+"' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
+                    }else{
+                        text+="<h2>Por favor remitase al siguiente&nbsp;<a href='?class=tkt&method=downloadfile&type=anexo&file="+result.file+"' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
+                    }
+                    $("#tree").html(text);
+                }else{
                     $("#tree").html("<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.");
                 }
             } else {
@@ -78,10 +84,11 @@ function go(path) {
 
 
 function get_similar(path) {
-    if(IsNumeric($("#actionform_idmaster").val()) || $("#actionform_idmaster").val()==='NULL'){
+    if (IsNumeric($("#actionform_idmaster").val()) || $("#actionform_idmaster").val() === 'NULL') {
         go(path);
         return;
     }
+    $("#ejecutando_accion").html(JAVA_LOADING + " Guardando...");
     postControl.sendRequest(
             true,
             'tktsimilars',
@@ -91,6 +98,7 @@ function get_similar(path) {
                 path: path
             },
     function(data) {
+        $("#ejecutando_accion").html("");
         if (data.status == "ok") {
             if (data.html == "sin_elementos") {
                 go(path);
@@ -102,6 +110,7 @@ function get_similar(path) {
         }
     },
             function(data) {
+                $("#ejecutando_accion").html("");
                 alert_p(data);
             }
     );
@@ -116,7 +125,7 @@ function show_similars(html) {
         resizable: false,
         modal: true,
         draggable: true,
-        position: { 
+        position: {
             my: 'top',
             at: 'top',
             of: $(window)
@@ -125,23 +134,24 @@ function show_similars(html) {
     $("#div_contenido").tinyscrollbar();
 }
 
-function clear_master(){
+function clear_master() {
     $("#actionform_idmaster").val('');
     $("#msj_master").html("");
-};
+}
+;
 
-function add_go(path){
+function add_go(path) {
     var chosen;
-    chosen=$('input[name=Sel_similar]:checked').val();
-    if(chosen===undefined){
-        alert_p("Por favor seleccione una opcion","Error");
+    chosen = $('input[name=Sel_similar]:checked').val();
+    if (chosen === undefined) {
+        alert_p("Por favor seleccione una opcion", "Error");
         return;
     }
     $("#popup_similars").dialog('close');
     $("#actionform_idmaster").val(chosen);
-    if(IsNumeric($("#actionform_idmaster").val())){
-        $("#msj_master").html("Se anexar&aacute; al ticket "+$("#actionform_idmaster").val()+"  <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
-    }else{
+    if (IsNumeric($("#actionform_idmaster").val())) {
+        $("#msj_master").html("Se anexar&aacute; al ticket " + $("#actionform_idmaster").val() + "  <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
+    } else {
         $("#msj_master").html("No se anexar&aacute; a ning&uacute;n ticket <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
     }
     go(path);
