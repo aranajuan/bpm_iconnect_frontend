@@ -218,16 +218,24 @@ function arrayToExcel($cols, $arr) {
         $c=xmlText($c);
         $cE = explode("=>", $c);
         if (count($cE) > 1) {
-            $colsItems[strtoupper($cE[1])] = $cE[0];
+            $calias = $cE[1];
+            $cid = $cE[0];
         } else {
-            $colsItems[strtoupper($c)] = $c;
+            $calias = $c;
+            $cid = $c;
+        }
+        $calias=  strtoupper($calias);
+        if(isset($colsItems[$calias])){
+            array_push($colsItems[$calias], $cid);
+        }else{
+            $colsItems[$calias] = array($cid);
         }
         $i++;
     }
    
     $HTML = "<table>";
     $HTML.="<thead><tr>";
-    foreach ($colsItems as $alias=>$value) {
+    foreach ($colsItems as $alias=>$ids) {
         $HTML.="<th>" . convert_string_excel($alias) . "</th>";
     }
     $HTML.="</tr></thead>";
@@ -235,8 +243,15 @@ function arrayToExcel($cols, $arr) {
     $HTML.= "<tbody>";
     foreach ($arr as $el) {
         $HTML.="<tr>";
-        foreach ($colsItems as $alias=>$value) {
-            $HTML.="<td>" . convert_string_excel(get_value($value, $el)) . "</td>";
+        foreach ($colsItems as $ids) { /*  recorrer todas las columnas */
+            $value="";
+            foreach($ids as $id){ /* recorrer todos los ids del alias */
+                $vtmp=get_value($id, $el);
+                if($vtmp!=null && $vtmp!=""){
+                    $value=$vtmp;
+                }
+            }
+            $HTML.="<td>" . convert_string_excel($value) . "</td>";
         }
         
 
