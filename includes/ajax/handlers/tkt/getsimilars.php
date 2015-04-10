@@ -19,7 +19,7 @@ function GO($XML, $output = "html") {
     if(!$list){
         return array("type" => "html", "status" => "ok", "html" => "sin_elementos");
     }
-    $tkts = $list["tkt"];
+    $tkts = make_arrayobj($list["tkt"]);
     $tktsEL = array();
     $i=0;
     foreach ($tkts as $tkt) {
