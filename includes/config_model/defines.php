@@ -27,6 +27,7 @@ define("FILEUP_TMP_FOLDER","usertmp/fileuploader");
 define("LOGIN_METHOD","USERPASS"); //INTEGRATED - USERPASS  
 //(para integrated debe estar como front de confianza e instancia unica)
 define("TRYMAX",50);
+define("MAXSIMILARS",3);
 
 define("TABLE_EMPTY","<div style=\"background-color:white;border: 1px solid #0A266B; padding:3px;margin-top:10px;width:150px;\">
         <img src=\"img/critic_icon.png\" /> <b>No hay registros</b>

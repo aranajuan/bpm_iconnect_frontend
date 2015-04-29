@@ -64,7 +64,11 @@ function go(path) {
                     }
                     $("#tree").html(text);
                 }else{
-                    $("#tree").html("<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.");
+                    text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.";
+                    if(result.openother==1){
+                        text+="<br/>"+"<a href=\"javascript:load_tree('"+path+"')\">Abrir otro igual</a>";
+                    }
+                    $("#tree").html(text);
                 }
             } else {
                 alert_p(result.msj, "Error");
