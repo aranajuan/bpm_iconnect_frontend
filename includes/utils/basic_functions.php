@@ -179,13 +179,15 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
 
     $colors = array("#9bc1f9", "#beb5d8");
     $fontC = array("5a5a5a", "5a5a5a");
-    $size = array(28, 28);
-    $Maxlenght = round($width / 8);
-    $text = maxLenShow($text, $Maxlenght);
+    $lineW=24;
+    $Maxlenght = round(($width-10) / 8);
+    $lines = ceil((strlen($text))/$Maxlenght);
+    $w=$lines*$lineW;
+    
     $html = "
-        <div style='width:" . $width . "px;height:" . $size[$styleN] . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
+        <div style='padding:5px;width:" . $width . "px;height:" . $w . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
 
-            <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . ($width - 13) . "px;font-size:15px;padding-top:2px;text-align:center;'>
+            <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . $width  . "px;font-size:15px;text-align:center;'>
                 " . mb_strtoupper($text,'utf-8') . "
             </div>
 

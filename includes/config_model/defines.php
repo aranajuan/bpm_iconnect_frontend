@@ -25,7 +25,7 @@ define("FILEUP_ALLOWED_FORMATS","jpe?g|png|xls|xlsx|pdf|ppt|pptx|pps|ppsx|doc|do
 define("FILEUP_TMP_FOLDER","usertmp/fileuploader");
 
 define("LOGIN_METHOD","USERPASS"); //INTEGRATED - USERPASS  
-//(para integrated debe estar como front de confianza e instancia unica)
+//(para integrated debe estar como front de confianza)
 define("TRYMAX",50);
 define("MAXSIMILARS",3);
 
