@@ -81,6 +81,9 @@ if (in_array($R->get_param("L"), array("login", "submenu"))) { // permite siempr
     $canAccess = array("page", $R->get_param("L"));
 } else {
     $canAccess = $U->check_access("PAGE", $R->get_param("L"));
+    if(!$canAccess){
+        $HeaderMsjUser = "Acceso denegado a PAGE / ".$R->get_param("L");
+    }
 }
 
 if ($U->is_logged() && $R->get_param("L") == "fileuploader") {

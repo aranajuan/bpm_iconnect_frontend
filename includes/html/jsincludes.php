@@ -52,7 +52,6 @@
 if ($canAccess) {
     ?>
     <script src="js/<?= $R->get_param("L"); ?>.js" type="text/javascript"></script>
-
 <? } else {
     ?>
     <script>
