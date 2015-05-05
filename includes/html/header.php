@@ -25,17 +25,4 @@
                                 <div id="notice_p" style="width: 400px;display: none;"></div>
                                 <div id="msjs" style="width: 400px;display: none;float: left;"></div>
                                 <div id="information" style="width: 400px;display: none;"></div>
-                                <? if($U->is_logged()){
-                                    ?>
-                                <div style="width: 900px;text-align: right;position: absolute;">
-                                    <?
-                                    echo "<b>".$U->get_prop("nombre")."</b>(".$U->get_prop("usr").")<br/>";
-                                    echo $U->get_prop("instancia")."(".$U->get_prop("perfil").")<br/>";
-                                    echo $U->get_prop("mail");
-                                    ?>
-                                </div>
-                                <?
-                                }
-                                ?>
-                                <br/>
                                 
