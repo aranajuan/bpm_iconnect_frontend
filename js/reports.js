@@ -15,9 +15,10 @@ function main() {
  * @returns {undefined}
  */
 function report() {
-    window.open("?class=report&method=report&export=xls&filter=" +
-            $("#filter").val() +
+    window.open("?class=report&method=report&filter=" +
+            $("#filtro_origen").val() +
+            "&datefilter="+$("#filtro_fechas").val() +
             "&from=" + $("#desde").val() +
             "&too=" + $("#hasta").val() +
-            "&teams=" + array_txt($("#teams").val()));
+            "&team=" + array_txt($("#teams").val()));
 }
