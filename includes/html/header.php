@@ -21,29 +21,8 @@
                         </tr>
                         <tr>
                             <td class="main_content_TD">
-                                <div id="ucontact_p" class="popup">
-                                    Puede modificar aqu&iacute; sus datos de contacto.
-                                    <table>
-                                        <tr>
-                                            <td>Mail:</td>
-                                            <td><input id="txt_mail_ucontact" type="text" size="40" value="<?= $U->get_prop("mail"); ?>"/></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Telefono:</td>
-                                            <td>
-                                                <input id="txt_tel_ucontact" type="text" size="40" value="<?= $U->get_prop("telefono"); ?>" />
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="2">
-                                                <input id="details_ok_ucontact" type="button" class="button" value="guardar" />
-                                                <input id="details_exit_ucontact" type="button" class="button" value="salir" />
-                                            </td>
-                                        </tr>
-                                    </table> 
-                                </div>
                                 <div id="alert_p" class="popup"></div>
-                                <div id="notice_p" style="width: 300px;display: none;"></div>
-                                <div id="msjs" style="width: 900px;display: none;position:absolute;margin-top: 40px;"></div>
-                                <div id="information" style="width: 150px;display: none;position:absolute;margin-left:750px;margin-top:60px;"></div>
+                                <div id="notice_p" style="width: 400px;display: none;"></div>
+                                <div id="msjs" style="width: 400px;display: none;float: left;"></div>
+                                <div id="information" style="width: 400px;display: none;"></div>
                                 

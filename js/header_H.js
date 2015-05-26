@@ -28,13 +28,13 @@ function build_buttons() {
 
     $(".multiselect_multiple").multiselect({
         selectedList: 1
-    });
+    }).multiselectfilter();
     $(".multiselect_simple").multiselect({
         multiple: false,
         header: "Seleccione una opcion",
         noneSelectedText: "Seleccione una opcion",
         selectedList: 1
-    });
+    }).multiselectfilter();
     $(".button").button();
     if (arguments[0] == "txthtml") {
         tinyMCE.init({
@@ -107,7 +107,7 @@ function ucontact_p() {
 $(document).ready(function() {
     //bloquear boton backspace
     $(document).keydown(function(e) {
-        var elid = $(document.activeElement).is('input[type="text"]:focus, textarea:focus,input[type="password"]:focus');
+        var elid = $(document.activeElement).is('input[type="text"]:focus,input[type="search"]:focus, textarea:focus,input[type="password"]:focus');
         if (e.keyCode === 8 && !elid) {
             return false;
         }

@@ -30,8 +30,7 @@ function GO($XML, $output = "html") {
         }
 
         $html.= filter_bar(
-                "<img src=\"img/icon.png \" width=\"15\" height=\"15\" /> 
-            RESPUESTAS PREVIAS 
+                "<img src=\"img/icon.png \"/>RESPUESTAS PREVIAS 
             <br/><div style='padding-left:40px;padding-top:6px;'>
             $histHTML
             </div>", "width:80%;");
@@ -79,7 +78,7 @@ function GO($XML, $output = "html") {
         $html.="<div style=\"width:40%;float:left;\">";
         $options = make_arrayobj($arr["options"]["OPTION"]);
 
-        $html.= "<img src=\"img/icon.png \" width=\"15\" height=\"15\" />" . mb_strtoupper($arr["question"]["title"],'utf-8');
+        $html.= "<img src=\"img/icon.png \" />" . mb_strtoupper($arr["question"]["title"],'utf-8');
 
         $html.="<br/></br>";
 

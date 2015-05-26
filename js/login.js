@@ -18,7 +18,7 @@ function main() {
     if ($_GET("usr")) {
         autoLogin();
     } else if (autologin) {
-        login('', '', $("#instancia").val(), null, false);
+        login('', '', instance, null, false);
     } else {
         $("#statusform").hide();
         $("#loginform").show();

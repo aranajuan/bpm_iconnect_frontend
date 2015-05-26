@@ -35,6 +35,7 @@ h2{
 .main_content_TD{
     padding:5px;
     background-color: #edecec ;
+    min-height: 300px;
 }
 table{
     font-family: calibri;
