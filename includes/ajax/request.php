@@ -33,6 +33,8 @@ if ($result["type"] == "array") {
     return json_encode($result);
 } elseif ($result["type"] == "html") {
     return json_encode($result);
+} elseif ($result["type"] == "text") {
+    return $result["html"];
 } elseif ($result["type"] == "file") {
     return $result["file"];
 } else {
