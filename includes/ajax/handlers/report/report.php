@@ -12,7 +12,7 @@ function GO($XML, $output = "html") {
 
     $file = $XML->get_response("file");
 
-    if(!isset($file["name"]) || trim($file["name"])==""){
+    if(trim($file["name"])==""){
         return array("type" => "text", "html" =>"No se gener&oacute; correctamente el archivo. Por favor reintente.", "status" => "error");
     }
     
