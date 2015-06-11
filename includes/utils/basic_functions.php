@@ -112,6 +112,24 @@ function xmlText($string){
 }
 
 /**
+ * Get ITentities
+ * @param string $string
+ * @return string
+ */
+function xmlItTags($string){
+   $rplace = str_replace(
+           array('{br}', '{b}', '{/b}','{i}','{/i}'
+               ,'{u}','{/u}','{/color}'),
+           array('<br/>', '<b>', '</b>','<i>','</i>'
+               ,'<u>','</u>','</font>') , 
+           $string); 
+    $re = "/\\{color=([A-F0-9]{6})\\}/"; 
+    $subst = "<font style=\"color:#$1\">"; 
+     
+    return preg_replace($re, $subst, $rplace);
+}
+
+/**
  * si data es null devuelve default
  */
 function dataDefatult($data, $defaultD) {
