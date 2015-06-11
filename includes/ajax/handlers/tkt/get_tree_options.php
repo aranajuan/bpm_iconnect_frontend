@@ -91,9 +91,9 @@ function GO($XML, $output = "html") {
         }
         $html.=$backbutton;
         $html.="</div>";
-        $html.="<div style=\"width:40%;float:right;font-size:14px;\"><b>";
+        $html.="<div style=\"width:40%;float:right;font-size:14px;\">";
         $html.=$arr["question"]["detail"];
-        $html.="</b></div>";
+        $html.="</div>";
     }
 
 
