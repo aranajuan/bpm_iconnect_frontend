@@ -1,40 +1,40 @@
-<link rel="stylesheet" media="all" type="text/css" href="css/base.css" />
-<link rel="stylesheet" media="all" type="text/css" href="css/menu.css" />
-<link rel="stylesheet" media="all" type="text/css" href="css/tkt_details.css" />
-<script src="js/classes/jsonie.js" type="text/javascript"></script>
-<link rel="stylesheet" media="all" type="text/css" href="js/classes/jui/themes/smoothness/jquery-ui.css" />
-<script src="js/classes/jui/external/jquery/jquery.js" type="text/javascript"></script>
-<script src="js/classes/jui/jquery-ui.js" type="text/javascript"></script>
+<link rel="stylesheet" media="all" type="text/css" href="css/base.css?v=<?=VERSION;?>" />
+<link rel="stylesheet" media="all" type="text/css" href="css/menu.css?v=<?=VERSION;?>" />
+<link rel="stylesheet" media="all" type="text/css" href="css/tkt_details.css?v=<?=VERSION;?>" />
+<script src="js/classes/jsonie.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/jui/themes/smoothness/jquery-ui.css?v=<?=VERSION;?>" />
+<script src="js/classes/jui/external/jquery/jquery.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/jui/jquery-ui.js?v=<?=VERSION;?>" type="text/javascript"></script>
 
-<script src="js/classes/FileUploader/js/vendor/jquery.ui.widget.js"></script>
-<script src="js/classes/FileUploader/js/jquery.iframe-transport.js"></script>
-<script src="js/classes/FileUploader/js/jquery.fileupload.js"></script>
-<script src="js/classes/datatable/js/jquery.dataTables.min.js" type="text/javascript"></script>
-<script src="js/classes/FileUploader/fileuploader.js" type="text/javascript"></script>
-<script src="js/classes/multiselect/src/jquery.multiselect.js" type="text/javascript"></script>
-<script src="js/classes/multiselect/src/jquery.multiselect.filter.js" type="text/javascript"></script>
-<script src="js/classes/idSEL/idSEL.js" type="text/javascript"></script>
-<script src="js/classes/tinymce/jscripts/tiny_mce/tiny_mce.js" type="text/javascript"></script>
-<script src="js/classes/tinyscrollbar.js" type="text/javascript"></script>
-<script src="js/classes/timepicker/jquery-ui-timepicker-addon.js" type="text/javascript"></script>
+<script src="js/classes/FileUploader/js/vendor/jquery.ui.widget.js?v=<?=VERSION;?>"></script>
+<script src="js/classes/FileUploader/js/jquery.iframe-transport.js?v=<?=VERSION;?>"></script>
+<script src="js/classes/FileUploader/js/jquery.fileupload.js?v=<?=VERSION;?>"></script>
+<script src="js/classes/datatable/js/jquery.dataTables.min.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/FileUploader/fileuploader.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/multiselect/src/jquery.multiselect.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/multiselect/src/jquery.multiselect.filter.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/idSEL/idSEL.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/tinymce/jscripts/tiny_mce/tiny_mce.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/tinyscrollbar.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/timepicker/jquery-ui-timepicker-addon.js?v=<?=VERSION;?>" type="text/javascript"></script>
 
-<script src="js/classes/basic_functions.js" type="text/javascript"></script>
-<script src="js/classes/notify_functions.js" type="text/javascript"></script>
-<script src="js/classes/postcontrol.js" type="text/javascript"></script>
-<script src="js/classes/user.js" type="text/javascript"></script>
-
-
-<script src="js/menu.js" type="text/javascript"></script>
-<script src="js/header_H.js" type="text/javascript"></script>
-
-<link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.css" />
-<link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.filter.css" />
+<script src="js/classes/basic_functions.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/notify_functions.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/postcontrol.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/user.js?v=<?=VERSION;?>" type="text/javascript"></script>
 
 
-<link rel="stylesheet" media="all" type="text/css" href="js/classes/timepicker/timepicker.css" />
+<script src="js/menu.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/header_H.js?v=<?=VERSION;?>" type="text/javascript"></script>
+
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.css?v=<?=VERSION;?>" />
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/multiselect/jquery.multiselect.filter.css?v=<?=VERSION;?>" />
+
+
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/timepicker/timepicker.css?v=<?=VERSION;?>" />
 
 <style>
-    @import "js/classes/datatable/css/demo_table_jui.css";
+    @import "js/classes/datatable/css/demo_table_jui.css?v=<?=VERSION;?>";
     .dataTables_info { padding-top: 0; }
     .dataTables_paginate { padding-top: 0; }
     .css_right { float: right; }
@@ -51,7 +51,7 @@
 <?
 if ($canAccess) {
     ?>
-    <script src="js/<?= $R->get_param("L"); ?>.js" type="text/javascript"></script>
+    <script src="js/<?= $R->get_param("L"); ?>.js?v=<?=VERSION;?>" type="text/javascript"></script>
 <? } else {
     ?>
     <script>
