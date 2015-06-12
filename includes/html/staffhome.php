@@ -1,4 +1,4 @@
-<script src="js/actions.js" type="text/javascript"></script>
+<script src="js/actions.js?v=<?=VERSION;?>" type="text/javascript"></script>
 
 <div>
     <div><h2>INBOX</h2></div>
