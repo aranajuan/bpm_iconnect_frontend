@@ -57,15 +57,15 @@ function GO($XML, $output = "html") {
             $openBT = option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');");
         } else {
             $fm = new formmaker("actionform");
+            $arrForm= make_arrayobj($arr["opendata"]["itform"]["element"]);
             /*Agregar idmaster si es posible anexar*/
             if($arr["no_anexar"]!=1){
                 $masterEl = array("type"=>"hidden","id"=>"idmaster","notsave"=>"true");
-                array_push($arr["opendata"]["itform"]["element"],$masterEl);
+                array_push($arrForm,$masterEl);
                 $openBT = option_button("ABRIR", 450, 0, "get_similar('" . $arr["previous"]["actual"] . "');");
             }else{
                $openBT = option_button("ABRIR", 450, 0, "go('" . $arr["previous"]["actual"] . "');");
             }
-            $arrForm= make_arrayobj($arr["opendata"]["itform"]["element"]);
             $fm->load_vector($arrForm);
             $html.=$fm->get_html();
         }
