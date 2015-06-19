@@ -88,8 +88,9 @@ function go(path) {
 
 
 function get_similar(path) {
-    if (IsNumeric($("#actionform_idmaster").val()) || $("#actionform_idmaster").val() === 'NULL') {
-        go(path);
+    var data = serialize_form('actionform');
+    if (data == -1) {
+        alert_p("No puedes utilizar < o > en los textos");
         return;
     }
     $("#ejecutando_accion").html(JAVA_LOADING + " Guardando...");
@@ -99,7 +100,8 @@ function get_similar(path) {
             {
                 'class': 'tkt',
                 method: 'getsimilars',
-                path: path
+                path: path,
+                form: data
             },
     function(data) {
         $("#ejecutando_accion").html("");
@@ -153,10 +155,5 @@ function add_go(path) {
     }
     $("#popup_similars").dialog('close');
     $("#actionform_idmaster").val(chosen);
-    if (IsNumeric($("#actionform_idmaster").val())) {
-        $("#msj_master").html("Se anexar&aacute; al ticket " + $("#actionform_idmaster").val() + "  <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
-    } else {
-        $("#msj_master").html("No se anexar&aacute; a ning&uacute;n ticket <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
-    }
     go(path);
 }
