@@ -247,7 +247,7 @@ class XmlHandler {
      */
     public function get_error() {
         if($this->error){
-            return "(app)".$this->error;
+            return "*".$this->error;
         }else{
             return null;
         }
@@ -303,7 +303,7 @@ class XmlHandler {
      * @return string $param
      */
     private function filter_param($value) {
-        return trim(strip_tags($value));
+        return xmlItTags(trim(strip_tags($value)));
     }
 
     /**
