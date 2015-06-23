@@ -62,14 +62,16 @@ function go(path) {
                     }else{
                         text+="<h2>Por favor remitase al siguiente&nbsp;<a href='?class=tkt&method=downloadfile&type=anexo&file="+result.file+"' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
                     }
-                    $("#tree").html(text);
                 }else{
                     text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.";
                     if(result.openother==1){
                         text+="<br/>"+"<a href=\"javascript:load_tree('"+path+"')\">Abrir otro igual</a>";
                     }
-                    $("#tree").html(text);
                 }
+                if(result.msj){
+                    text+='<br/><b>'+result.msj+'</b>';
+                }
+                $("#tree").html(text);
             } else {
                 alert_p(result.msj, "Error");
             }
@@ -88,8 +90,9 @@ function go(path) {
 
 
 function get_similar(path) {
-    if (IsNumeric($("#actionform_idmaster").val()) || $("#actionform_idmaster").val() === 'NULL') {
-        go(path);
+    var data = serialize_form('actionform');
+    if (data == -1) {
+        alert_p("No puedes utilizar < o > en los textos");
         return;
     }
     $("#ejecutando_accion").html(JAVA_LOADING + " Guardando...");
@@ -99,7 +102,8 @@ function get_similar(path) {
             {
                 'class': 'tkt',
                 method: 'getsimilars',
-                path: path
+                path: path,
+                form: data
             },
     function(data) {
         $("#ejecutando_accion").html("");
@@ -153,10 +157,5 @@ function add_go(path) {
     }
     $("#popup_similars").dialog('close');
     $("#actionform_idmaster").val(chosen);
-    if (IsNumeric($("#actionform_idmaster").val())) {
-        $("#msj_master").html("Se anexar&aacute; al ticket " + $("#actionform_idmaster").val() + "  <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
-    } else {
-        $("#msj_master").html("No se anexar&aacute; a ning&uacute;n ticket <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
-    }
     go(path);
 }
