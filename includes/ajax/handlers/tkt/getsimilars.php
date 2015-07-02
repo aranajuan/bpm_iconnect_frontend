@@ -62,7 +62,7 @@ function GO($XML, $output = "html") {
     }
     $html .= "
     <div style=\"width:625px;float:none;clear: both;border:1px solid;background-color:white;font-weight: bold; padding: 3px; margin: 4px;cursor:pointer; \" onclick='$(\"input[value=NULL]\").prop(\"checked\", true);'>
-        NINGUNO <input name=\"Sel_similar\" id=\"Sel_similar\" type=\"radio\" value=\"NULL\"  />
+        NINGUNO <input name=\"Sel_similar\" id=\"Sel_similar\" type=\"radio\" value=\"-1\"  />
     </div>";
 
 

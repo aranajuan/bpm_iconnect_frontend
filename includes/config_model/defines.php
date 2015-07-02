@@ -1,6 +1,7 @@
 <?php
 
 define("INSTANCES","AGENTES");
+define("VERSION","vx.x.x");
 define("ERROR_REPORTINGCONST",E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 // Configuraciones Base
 

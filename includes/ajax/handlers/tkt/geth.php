@@ -71,5 +71,6 @@ function GO($XML, $output = "html") {
             }
         }
     }
+    $res.='<br/>';
     return array("type" => "array", "result" => "ok", "html" => $res);
 }
