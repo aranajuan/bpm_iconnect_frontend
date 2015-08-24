@@ -55,21 +55,21 @@ function go(path) {
         if (data.status == "ok") {
             var result = data.result;
             if (result.result === "ok") {
-                if(result.type=='file'){
-                    var text="<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2>";
-                    if(ValidUrl(result.file)){
-                        text+="<h2>Por favor remitase al siguiente&nbsp;<a href='"+result.file+"' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
-                    }else{
-                        text+="<h2>Por favor remitase al siguiente&nbsp;<a href='?class=tkt&method=downloadfile&type=anexo&file="+result.file+"' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
+                if (result.type == 'file') {
+                    var text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2>";
+                    if (ValidUrl(result.file)) {
+                        text += "<h2>Por favor remitase al siguiente&nbsp;<a href='" + result.file + "' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
+                    } else {
+                        text += "<h2>Por favor remitase al siguiente&nbsp;<a href='?class=tkt&method=downloadfile&type=anexo&file=" + result.file + "' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
                     }
-                }else{
+                } else {
                     text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.";
-                    if(result.openother==1){
-                        text+="<br/>"+"<a href=\"javascript:load_tree('"+path+"')\">Abrir otro igual</a>";
+                    if (result.openother == 1) {
+                        text += "<br/>" + "<a href=\"javascript:load_tree('" + path + "')\">Abrir otro igual</a>";
                     }
                 }
-                if(result.msj){
-                    text+='<br/><b>'+result.msj+'</b>';
+                if (result.msj) {
+                    text += '<br/><b>' + result.msj + '</b>';
                 }
                 $("#tree").html(text);
             } else {
@@ -90,6 +90,10 @@ function go(path) {
 
 
 function get_similar(path) {
+    if (IsNumeric($("#actionform_idmaster").val()) || $("#actionform_idmaster").val() === 'NULL') {
+        go(path);
+        return;
+    }
     var data = serialize_form('actionform');
     if (data == -1) {
         alert_p("No puedes utilizar < o > en los textos");
@@ -146,7 +150,6 @@ function clear_master() {
     $("#actionform_idmaster").val('');
     $("#msj_master").html("");
 }
-;
 
 function add_go(path) {
     var chosen;
@@ -157,5 +160,10 @@ function add_go(path) {
     }
     $("#popup_similars").dialog('close');
     $("#actionform_idmaster").val(chosen);
+    if (IsNumeric($("#actionform_idmaster").val())) {
+        $("#msj_master").html("Se anexar&aacute; al ticket " + $("#actionform_idmaster").val() + "  <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
+    } else {
+        $("#msj_master").html("No se anexar&aacute; a ning&uacute;n ticket <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
+    }
     go(path);
 }

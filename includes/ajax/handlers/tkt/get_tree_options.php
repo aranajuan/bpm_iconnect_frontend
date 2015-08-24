@@ -70,6 +70,7 @@ function GO($XML, $output = "html") {
             $html.=$fm->get_html();
         }
         $html.="<br/></br>";
+        $html.="<br/><div id=\"msj_master\" style=\"color:red;\"></div></br>";
         $html.="<br/><div id=\"ejecutando_accion\"></div>";
         $html.= $openBT. "</br>";
         $html.=$backbutton;
