@@ -62,6 +62,18 @@ function GO($XML, $output = "html") {
         $i++;
     }
 
+    if (isset($result["largestatus"]) && $result["largestatus"] != '') {
+        $res.="<div class='master_TH'>";
+        $res.="<div class='header_TH'>";
+        $res.="<div class='title_TH' style='color:blue;'>ESTADO</div>";
+        $res.="</div>";
+        $res.="<div class='element'>";
+        $res.=$result["largestatus"];
+        $res.="</div>";
+        $res.="</div>";
+        $i++;
+    }
+    
     if (isset($result["actions"]["action"])) {
         foreach (make_arrayobj($result["actions"]["action"]) as $A) {
             if ($A["formulario"] == 0) {
@@ -71,6 +83,6 @@ function GO($XML, $output = "html") {
             }
         }
     }
-    $res.='<br/>';
+    $res.='<br/><br/>';
     return array("type" => "array", "result" => "ok", "html" => $res);
 }
