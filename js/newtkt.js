@@ -160,7 +160,7 @@ function add_go(path) {
     }
     $("#popup_similars").dialog('close');
     $("#actionform_idmaster").val(chosen);
-    if (IsNumeric($("#actionform_idmaster").val())) {
+    if (IsNumeric(chosen) && chosen>0) {
         $("#msj_master").html("Se anexar&aacute; al ticket " + $("#actionform_idmaster").val() + "  <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
     } else {
         $("#msj_master").html("No se anexar&aacute; a ning&uacute;n ticket <img class=\"img_lnk\" src=\"img/b_drop.png\" onclick=\"clear_master();\"/>");
