@@ -330,7 +330,7 @@ function make_nextans($field, $arr) {
         if ($found) {
             return $o->ans;
         }
-        $pv = explode("-", $o->path);
+        $pv = explode(",", $o->path);
         if (count(array_intersect($field, $pv))) {
             $found = true;
         }
