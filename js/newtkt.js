@@ -71,6 +71,9 @@ function go(path) {
                 if (result.msj) {
                     text += '<br/><b>' + result.msj + '</b>';
                 }
+                if(result.postactions!=='ok'){
+                    text += '<br/>Ocurrio un error inesperado, comuniquese con su soporte. ' + result.postactions;
+                }
                 $("#tree").html(text);
             } else {
                 alert_p(result.msj, "Error");
