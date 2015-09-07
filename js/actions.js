@@ -76,6 +76,9 @@ function go(accion) {
                 try{
                     $("#popup_form").dialog('close');
                 }catch(e){}
+                if(result.postactions!=='ok'){
+                    alert_p('Ocurrio un error inesperado, comuniquese con su soporte. '+result.postactions,'Error');
+                }
             } else {
                 alert_p(result.msj, "Error");
             }
