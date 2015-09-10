@@ -59,7 +59,7 @@ function GO($XML, $output = "html") {
             $fm = new formmaker("actionform");
             $arrForm= make_arrayobj($arr["opendata"]["itform"]["element"]);
             /*Agregar idmaster si es posible anexar*/
-            if($arr["no_anexar"]!=1){
+            if($arr["join"]=='true'){
                 $masterEl = array("type"=>"hidden","id"=>"idmaster","notsave"=>"true");
                 array_push($arrForm,$masterEl);
                 $openBT = option_button("ABRIR", 450, 0, "get_similar('" . $arr["previous"]["actual"] . "');");

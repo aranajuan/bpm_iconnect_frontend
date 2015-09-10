@@ -37,7 +37,7 @@ function GO($XML, $output = "html") {
         }
         $resHTML .= "<img src=\"img/$img\" />";
         $resHTML .= "<input name=\"Sel_similar\" id=\"Sel_similar\" type=\"radio\" value=\"" . $tkt["id"] . "\"  />";
-        $resHTML .= $tkt["id"] . "(" . $tkt["childsc"] . ")";
+        $resHTML .= $tkt["id"] . "(" . $tkt["childsc"] . ")"."<br>Fecha: ". $tkt["FA"];
         $resHTML .="<div style=\"overflow: auto;height: 200px;width:195px;padding-top:3px\">";
         $resHTML .=$f->get_htmlview(array('text', 'link'), true);
         $resHTML .="</div>";
@@ -62,7 +62,7 @@ function GO($XML, $output = "html") {
     }
     $html .= "
     <div style=\"width:625px;float:none;clear: both;border:1px solid;background-color:white;font-weight: bold; padding: 3px; margin: 4px;cursor:pointer; \" onclick='$(\"input[value=NULL]\").prop(\"checked\", true);'>
-        NINGUNO <input name=\"Sel_similar\" id=\"Sel_similar\" type=\"radio\" value=\"NULL\"  />
+        NINGUNO <input name=\"Sel_similar\" id=\"Sel_similar\" type=\"radio\" value=\"-1\"  />
     </div>";
 
 
