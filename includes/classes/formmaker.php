@@ -159,7 +159,7 @@ class formmaker {
     }
 
     private function make_input($el) {
-        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . "' id='" . $el["id"] . "' />", $el["comment"]);
+        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . "' id='" . $el["id"] . "' value='" . $el["value"] . "'/>", $el["comment"]);
     }
 
     private function make_text($el) {
@@ -167,19 +167,19 @@ class formmaker {
     }
 
     private function make_inputlong($el) {
-        return $this->putintable($el["label"], "<textarea rows='4' cols='50' class='" . $el["formclass"] . "' id='" . $el["id"] . "'></textarea>");
+        return $this->putintable($el["label"], "<textarea rows='4' cols='50' class='" . $el["formclass"] . "' id='" . $el["id"] . "'>" . $el["value"] . "</textarea>");
     }
 
     private function make_month($el) {
-        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " monthpck' id='" . $el["id"] . "' />", $el["comment"]);
+        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " monthpck' id='" . $el["id"] . "' value='" . $el["value"] . "' />", $el["comment"]);
     }
 
     private function make_date($el) {
-        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " dtpck' id='" . $el["id"] . "' />", $el["comment"]);
+        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " dtpck' id='" . $el["id"] . "' value='" . $el["value"] . "'/>", $el["comment"]);
     }
 
     private function make_datetime($el) {
-        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " tmpck' id='" . $el["id"] . "' />", $el["comment"]);
+        return $this->putintable($el["label"], "<input type='text' class='" . $el["formclass"] . " tmpck' id='" . $el["id"] . "' value='" . $el["value"] . "'/>", $el["comment"]);
     }
 
     private function make_link($el) {
@@ -191,14 +191,18 @@ class formmaker {
         $select = "<select id='" . $el["id"] . "' class='" . $el["formclass"] . "'>";
         $opts = make_arrayobj($el["option"]);
         foreach ($opts as $o) {
-            $select.="<option value='" . $o["value"] . "' >" . $o["text"] . "</option>";
+            $SELECTED="";
+            if($o["value"] == $el["value"]){
+                $SELECTED="SELECTED";
+            }
+            $select.="<option $SELECTED value='" . $o["value"] . "' >" . $o["text"] . "</option>";
         }
         $select.="</select>";
         return $this->putintable($el["label"], $select, $el["comment"]);
     }
 
     private function make_hide($el) {
-        return "<tr><td colspan'3'><input type='hidden' id='" . $el["id"] . "' class='" . $el["formclass"] . "'/></td></tr>";
+        return "<tr><td colspan'3'><input type='hidden' id='" . $el["id"] . "' class='" . $el["formclass"] . "' value='" . $el["value"] . "'/></td></tr>";
     }
 
     private function make_fileupl($el) {

@@ -17,6 +17,29 @@ function GO($XML, $output = "html") {
     }
 
     $result = $XML->get_response("data");
+
+    $canupdateList=array();
+    $actionsBT = "";
+    if (isset($result["actions"]["action"])) {
+        foreach (make_arrayobj($result["actions"]["action"]) as $A) {
+            preg_match('/^UPDATE_(.*)/', $A["nombre"], $matches);
+
+            if ($matches[1]) {
+                array_push($canupdateList, $matches[0]);
+                array_push($canupdateList, $matches[1]);
+                continue;
+            }
+            if ($A["formulario"] == 0) {
+                $actionsBT.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
+            } else {
+                $actionsBT.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"getform('" . $A["nombre"] . "')\"  />";
+            }
+        }
+    }
+    $actionsBT.='<br/><br/>';
+
+
+
     $res = "";
     $i = 0;
     $tops = make_arrayobj($result["tree"]["option"]);
@@ -54,6 +77,10 @@ function GO($XML, $output = "html") {
                 $res.="<a href='?class=tkt&method=downloadfile&type=adjunto&file=$f' target='_blank' ><img src='img/thumbnail/" . $fv[1] . ".png' height='30' /></a>";
             }
         }
+        if(in_array($th["action"]["nombre"],$canupdateList) && !$th["isupdated"]){
+            $res.="<input type=\"button\" class=\"button\" value=\"Actualizar\" onclick='getform(\"UPDATE_" . $th["action"]["nombre"] .
+                    "\",{\"idth\":\"".$th["action"]["id"]."\"})'  />";
+        }
         $res.="</div>";
         $res.="<div class='element'>";
         $res.="<b>" . $th["action"]["value"] . "</b>";
@@ -73,16 +100,6 @@ function GO($XML, $output = "html") {
         $res.="</div>";
         $i++;
     }
-    
-    if (isset($result["actions"]["action"])) {
-        foreach (make_arrayobj($result["actions"]["action"]) as $A) {
-            if ($A["formulario"] == 0) {
-                $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
-            } else {
-                $res.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"getform('" . $A["nombre"] . "')\"  />";
-            }
-        }
-    }
-    $res.='<br/><br/>';
+    $res .= $actionsBT;
     return array("type" => "array", "result" => "ok", "html" => $res);
 }
