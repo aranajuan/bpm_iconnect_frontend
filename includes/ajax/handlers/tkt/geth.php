@@ -11,24 +11,26 @@ function GO($XML, $output = "html") {
     if ($XML->get_error()) {
         return array("type" => "html", "html" => $XML->get_error(), "status" => "error");
     }
-    
+
     if ($output != "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
 
     $result = $XML->get_response("data");
 
-    $canupdateList=array();
+    $canupdateList = array();
     $actionsBT = "";
     if (isset($result["actions"]["action"])) {
         foreach (make_arrayobj($result["actions"]["action"]) as $A) {
-            preg_match('/^UPDATE_(.*)/', $A["nombre"], $matches);
-
-            if ($matches[1]) {
-                array_push($canupdateList, $matches[0]);
-                array_push($canupdateList, $matches[1]);
+            $A_Split = explode('-', $A["nombre"]);
+            if ($A_Split[1] == 'UPDATE') {
+                if(!isset($canupdateList[$A_Split[0]])){
+                    $canupdateList[$A_Split[0]]=array();
+                }
+                array_push($canupdateList[$A_Split[0]], array($A_Split[2],$A["alias"]));
                 continue;
             }
+
             if ($A["formulario"] == 0) {
                 $actionsBT.="<input type=\"button\" class=\"button\" value=\"" . $A["alias"] . "\" onclick=\"go('" . $A["nombre"] . "')\"  />";
             } else {
@@ -77,14 +79,14 @@ function GO($XML, $output = "html") {
                 $res.="<a href='?class=tkt&method=downloadfile&type=adjunto&file=$f' target='_blank' ><img src='img/thumbnail/" . $fv[1] . ".png' height='30' /></a>";
             }
         }
+        $acname = explode('-', $th["action"]["nombre"]);
 
-        if(in_array($th["action"]["nombre"],$canupdateList) && $th["action"]["isupdated"]=='false'){
-            $acname=$th["action"]["nombre"];
-            if(substr($acname, 0, 7)!='UPDATE_'){
-                $acname='UPDATE_'.$acname;
+        if (count($canupdateList[$acname[0]]) && $th["action"]["isupdated"] == 'false') {
+            foreach ($canupdateList[$acname[0]] as $updt) {
+                $res.="<input type=\"button\" class=\"button\" value=\"".$updt[1]."\""
+                        . " onclick='getform(\"" . $acname[0] ."-UPDATE-".$updt[0]."\","
+                        . "{\"idth\":\"" . $th["action"]["id"] . "\"})'  />";
             }
-            $res.="<input type=\"button\" class=\"button\" value=\"Actualizar\" onclick='getform(\"" . $acname .
-                    "\",{\"idth\":\"".$th["action"]["id"]."\"})'  />";
         }
         $res.="</div>";
         $res.="<div class='element'>";
