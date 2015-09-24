@@ -1,4 +1,4 @@
-<?
+<?php
 
 include "classes/formmaker.php";
 
@@ -11,7 +11,7 @@ function GO($XML, $output = "html") {
     if ($XML->get_error()) {
         return array("type" => "html", "html" => $XML->get_error(), "status" => "error");
     }
-
+    
     if ($output != "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
@@ -77,8 +77,13 @@ function GO($XML, $output = "html") {
                 $res.="<a href='?class=tkt&method=downloadfile&type=adjunto&file=$f' target='_blank' ><img src='img/thumbnail/" . $fv[1] . ".png' height='30' /></a>";
             }
         }
-        if(in_array($th["action"]["nombre"],$canupdateList) && !$th["isupdated"]){
-            $res.="<input type=\"button\" class=\"button\" value=\"Actualizar\" onclick='getform(\"UPDATE_" . $th["action"]["nombre"] .
+
+        if(in_array($th["action"]["nombre"],$canupdateList) && $th["action"]["isupdated"]=='false'){
+            $acname=$th["action"]["nombre"];
+            if(substr($acname, 0, 7)!='UPDATE_'){
+                $acname='UPDATE_'.$acname;
+            }
+            $res.="<input type=\"button\" class=\"button\" value=\"Actualizar\" onclick='getform(\"" . $acname .
                     "\",{\"idth\":\"".$th["action"]["id"]."\"})'  />";
         }
         $res.="</div>";
