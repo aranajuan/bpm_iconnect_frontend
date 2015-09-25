@@ -13,6 +13,11 @@ class formmaker {
     private $statics;
 
     /**
+     * Requiere archivos adjuntos
+     * @var boolean
+     */
+    private $fileRequired;
+    /**
      * 
      * @param type $id  formid - eventid
      */
@@ -20,6 +25,7 @@ class formmaker {
         $this->masterID = $id;
         $this->js = "";
         $this->vectorIds = array();
+        $this->fileRequired=false;
     }
 
     public function load_vector($itformVector, $statics = null) {
@@ -65,6 +71,7 @@ class formmaker {
                         $html.=$this->make_hide($el);
                         break;
                     case "fileupl":
+                        $this->fileRequired=true;
                         $html.=$this->make_fileupl($el);
                         break;
                     case "idsel":
@@ -84,6 +91,15 @@ class formmaker {
         $this->make_html();
         return $this->html_output;
     }
+
+    /**
+     * Se requieren adjuntos (se carga despues del make)
+     * @return boolean
+     */
+    public function isfileRequired(){
+        return $this->fileRequired;
+    }
+
 
     /**
      * Devuelve vista html

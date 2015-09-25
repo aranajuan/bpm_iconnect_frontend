@@ -82,6 +82,7 @@ function GO($XML, $output = "html") {
         $acname = explode('-', $th["action"]["nombre"]);
 
         if (count($canupdateList[$acname[0]]) && $th["action"]["isupdated"] == 'false') {
+            $res.='<br/>';
             foreach ($canupdateList[$acname[0]] as $updt) {
                 $res.="<input type=\"button\" class=\"button\" value=\"".$updt[1]."\""
                         . " onclick='getform(\"" . $acname[0] ."-UPDATE-".$updt[0]."\","
