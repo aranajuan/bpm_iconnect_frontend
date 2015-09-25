@@ -20,10 +20,17 @@ function GO($XML, $output = "html") {
     $form = $XML->get_response("itform");
     $formel=  make_arrayobj($form["element"]);
     
-    
+    $actName = explode('-',$XML->get_paramSent("action"));
+    $html='';
     $fm = new formmaker("actionform");
     $fm->load_vector($formel,array("tkt"=>array("id"=>$XML->get_paramSent("idtkt"))));
-    $html = $fm->get_html();
+    $htmlForm = $fm->get_html();
+    if($fm->isfileRequired() && count($actName)>2 && $actName[1]=='UPDATE'){
+        $html .="<div style=\"width: 60%; border:2px solid; background-color: #ccffcc; padding: 4px;margin-top:5px;\">"
+                . "No agregar adjuntos conservar&aacute; los actuales.<br/>"
+                . "Si se agregan adjuntos remplazaran a todos los anteriores</div>";
+    }
+    $html .= $htmlForm;
     $html.="<input type=\"button\" class=\"button\" value=\"GUARDAR\" onclick=\"go('" . $XML->get_paramSent("action") . "')\"  />";
     $html.="<div id=\"ejecutando_accion\"></div>";
     return array("type" => "array", "result" => "ok", "html" => $html);
