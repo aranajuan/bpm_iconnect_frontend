@@ -11,7 +11,7 @@ function GO($XML, $output = "html") {
         return;
     }
     
-    $file = $XML->get_response("file");
+    $file = $XML->get_response("file",true);
 
     $ext = explode(".", $file["name"]);
     if(isset($file["idtkt"])){
