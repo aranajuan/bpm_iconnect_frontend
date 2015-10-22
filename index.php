@@ -58,6 +58,12 @@ if ($R->is_set("class")) { // es un request ajax
         $canAccess = $U->check_access($class, $method);
     }
     if ($canAccess) {
+        if($U->get_prop('superuser')==1){
+            set_time_limit(12300);
+        }else{
+            set_time_limit(320);
+        }
+        
         echo include AJAX_CONTROLLER;
         exit();
     } else {
