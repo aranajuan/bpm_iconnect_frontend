@@ -176,9 +176,14 @@ class XmlHandler {
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($ch, CURLOPT_POSTFIELDS, $requestTS);
         curl_setopt($ch, CURLOPT_POSTREDIR, 3);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 300);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 20000);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         $data = curl_exec($ch);
+        if(curl_errno($ch)!=0){
+            echo 'El servidor no responde. timeout. '.curl_error($ch);
+            curl_close($ch);
+            exit();
+        }
         curl_close($ch);
         $this->response = $data;
         return $this->load_response();
