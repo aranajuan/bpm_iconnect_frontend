@@ -34,6 +34,7 @@ function GO($XML) {
     $_SESSION["hash"] = $arr["hash"];
     $_SESSION["perfil"] = $arr["perfil"];
     $_SESSION["access"] = $arr["access"];
+    $_SESSION["superuser"] = $arr["superuser"];
     $_SESSION["instancia"] = $XML->get_user()->get_prop("instancia"); //default donde loguea predomina post
     $XML->get_user()->load_session();
     $XML->get_user()->reset_try();

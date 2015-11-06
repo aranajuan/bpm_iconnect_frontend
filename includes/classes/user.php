@@ -16,6 +16,7 @@ class USER {
     private $access;
     private $accessV;
     private $logged;
+    private $superuser;
 
     /**
      * Crea clase - inicia session
@@ -69,6 +70,7 @@ class USER {
             $this->logged = false;
         }
         $this->access = $tmp["access"];
+        $this->superuser = $tmp["superuser"];
         $this->accessV = explode(",", $this->access);
     }
 
@@ -179,6 +181,8 @@ class USER {
                 return $this->usr;
             case 'instancia':
                 return $this->instancia;
+            case 'superuser':
+                return $this->superuser;
             case 'dominio':
                 return $this->dominio;
             case 'ip':

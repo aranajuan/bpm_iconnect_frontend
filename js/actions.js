@@ -1,43 +1,46 @@
 var TKTID = 0;
-
+var EXTRA = null;
 /**
  * Accion para cargar formulario
  * @param {string} accion
+ * @param [Object] extra    extra data
  * @returns {undefined}
  */
-function getform(accion) {
+function getform(accion,extra) {
     $("#popup_form").html(JAVA_LOADING);
     $("#popup_form").dialog();
+    EXTRA=extra;
     postControl.sendRequest(
             true,
-            'tktgetform',
+            'tktgetform', $.extend(
             {
                 'class': 'action',
                 method: 'getform',
                 action: accion,
-                idtkt:TKTID
-            },
-    function (data) {
-        if (data.result === "ok") {
-            $("#popup_form").html(data.html);
-            $("#popup_form").dialog({
-                title: "Actualizar itracker " + TKTID + " -> "+accion,
-                resizable: false,
-                width: 800,
-                height: 'auto',
-                modal: true,
-                draggable: true
-            });
-            build_buttons();
-        } else {
-            $("#popup_form").dialog('close');
-            alert_p(data.html, "Error");
+                idtkt: TKTID
+            },EXTRA
+            ),
+            function(data) {
+                if (data.result === "ok") {
+                    $("#popup_form").html(data.html);
+                    $("#popup_form").dialog({
+                        title: "Actualizar itracker " + TKTID + " -> " + accion,
+                        resizable: false,
+                        width: 800,
+                        height: 'auto',
+                        modal: true,
+                        draggable: true
+                    });
+                    build_buttons();
+                } else {
+                    $("#popup_form").dialog('close');
+                    alert_p(data.html, "Error");
 
-        }
-    },
-            function (data) {
+                }
+            },
+            function(data) {
                 $("#popup_form").dialog('close');
-                alert_p(data,"Error");
+                alert_p(data, "Error");
             }
     );
 }
@@ -45,39 +48,41 @@ function getform(accion) {
 /**
  * Ejecuta accion
  * @param {string} accion
+ * @param [Object] extra    extra data
  * @returns {undefined}
  */
 function go(accion) {
     var data = serialize_form('actionform');
-    if(data==-1){
+    if (data == -1) {
         alert_p("No puedes utilizar < o > en los textos");
         return;
     }
-    $("#ejecutando_accion").html(JAVA_LOADING+" Guardando...");
+    $("#ejecutando_accion").html(JAVA_LOADING + " Guardando...");
     postControl.sendRequest(
             true,
-            'tktaction',
+            'tktaction',$.extend(
             {
                 'class': 'action',
                 method: 'ejecute',
                 action: accion,
                 idtkt: TKTID,
-                sendfiles:'true',
-                form:data
-                
-            },
-    function (data) {
+                sendfiles: 'true',
+                form: data
+
+            },EXTRA),
+    function(data) {
         $("#ejecutando_accion").html("");
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
         if (data.status === "ok") {
             var result = data.result;
             if (result.result === "ok") {
                 show_details(TKTID);
-                try{
+                try {
                     $("#popup_form").dialog('close');
-                }catch(e){}
-                if(result.postactions!=='ok'){
-                    alert_p('Ocurrio un error inesperado, comuniquese con su soporte. '+result.postactions,'Error');
+                } catch (e) {
+                }
+                if (result.postactions !== 'ok') {
+                    alert_p('Ocurrio un error inesperado, comuniquese con su soporte. ' + result.postactions, 'Error');
                 }
             } else {
                 alert_p(result.msj, "Error");
@@ -88,7 +93,7 @@ function go(accion) {
             }
         }
     },
-            function (data) {
+            function(data) {
                 $("#ejecutando_accion").html("");
                 alert(data);
             }
@@ -112,7 +117,7 @@ function show_details(id) {
                 method: 'geth',
                 id: id
             },
-    function (data) {
+    function(data) {
         if (data.result === "ok") {
             $("#popup_detalles").html('<div id="div_contenido" style="width:100%;height:100%">' + data.html + "</div>");
             $("#popup_detalles").dialog('close');
@@ -123,7 +128,7 @@ function show_details(id) {
                 height: 500,
                 modal: true,
                 draggable: true,
-                position: { 
+                position: {
                     my: 'top',
                     at: 'top',
                     of: $(window)
@@ -137,7 +142,7 @@ function show_details(id) {
         }
 
     },
-            function (data) {
+            function(data) {
                 $("#popup_detalles").dialog('close');
                 alert_p(data, "error");
             }
