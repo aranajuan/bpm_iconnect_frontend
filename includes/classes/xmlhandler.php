@@ -260,24 +260,27 @@ class XmlHandler {
 
     /**
      * Obtener datos de la respuesta
+     * @param   string  $tag elemento a buscar
+     * @param   boolean $secure  elemento seguro sin tags
      * @return array<string> Datos recursivos
      */
-    public function get_response($tag) {
+    public function get_response($tag,$secure=false) {
         $resDom = $this->responseDom->response;
         $gR = $resDom->{$tag};
         if ($gR) {
-            return $this->XMLtoArray($gR);
+            return $this->XMLtoArray($gR,$secure);
         } else {
             return null;
         }
     }
 
     /**
-     * 
+     * Genera array a partir del elemento
      * @param SimpleXMLElement $EL
+     * @param   boolean $secure  elemento seguro sin tags
      * @return array<string><string>/string array recursivo
      */
-    private function XMLtoArray($EL) {
+    private function XMLtoArray($EL,$secure) {
         $ch = $EL->children();
         if (count($ch)) {
             $i = 0;
@@ -290,24 +293,28 @@ class XmlHandler {
                         $arr[$child->getName()][$i] = $tmp;
                         $i++;
                     }
-                    $arr[$child->getName()][$i] = $this->XMLtoArray($child);
+                    $arr[$child->getName()][$i] = $this->XMLtoArray($child,$secure);
                     $i++;
                 } else {
-                    $arr[$child->getName()] = $this->XMLtoArray($child);
+                    $arr[$child->getName()] = $this->XMLtoArray($child,$secure);
                 }
             }
             return $arr;
         } else {
-            return $this->filter_param($EL->asXML()); // solo contiene texto
+            return $this->filter_param((string) $EL,$secure); // solo contiene texto
         }
     }
 
     /**
      * Devuelve parametro limpio de etiquetas XSS
-     * @param string $param
+     * @param string $value
+     * @param   boolean $secure  elemento seguro sin tags
      * @return string $param
      */
-    private function filter_param($value) {
+    private function filter_param($value,$secure=false) {
+        if($secure){
+            return $value;
+        }
         return xmlItTags(trim(strip_tags($value)));
     }
 
