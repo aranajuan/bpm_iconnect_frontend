@@ -1,2 +1,4 @@
-RewriteEngine on
-RewriteRule ^.+$ index.php [L]
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(img|css|js) - [L]
+RewriteRule .* index.php [L,QSA]
