@@ -15,7 +15,7 @@ function main() {
  * @returns {undefined}
  */
 function report() {
-    window.open("?class=report&method=report&filter=" +
+    window.open("?class=report&method=report&longp=1&filter=" +
             $("#filtro_origen").val() +
             "&datefilter="+$("#filtro_fechas").val() +
             "&from=" + $("#desde").val() +
