@@ -24,10 +24,10 @@ function GO($XML, $output = "html") {
         foreach (make_arrayobj($result["actions"]["action"]) as $A) {
             $A_Split = explode('-', $A["nombre"]);
             if ($A_Split[1] == 'UPDATE') {
-                if(!isset($canupdateList[$A_Split[0]])){
-                    $canupdateList[$A_Split[0]]=array();
+                if (!isset($canupdateList[$A_Split[0]])) {
+                    $canupdateList[$A_Split[0]] = array();
                 }
-                array_push($canupdateList[$A_Split[0]], array($A_Split[2],$A["alias"]));
+                array_push($canupdateList[$A_Split[0]], array($A_Split[2], $A["alias"]));
                 continue;
             }
 
@@ -55,6 +55,7 @@ function GO($XML, $output = "html") {
     }
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
+        $afterVal="";
         $res.="<div class='master_TH'>";
         $res.="<div class='header_TH'>";
         $res.="<div class='title_TH'>" . strtoupper($th["action"]["alias"]) . "</div>";
@@ -65,6 +66,10 @@ function GO($XML, $output = "html") {
             $res.="<div class='element'>";
             $res.=$html_tree;
             $res.="</div>";
+            if ($GLOBALS['U']->check_access('TKT', 'getpdf')) {
+                $afterVal= '<a href="?class=tkt&method=getpdf&id=' . $XML->get_paramSent('id') .
+                        '">&nbsp;&nbsp;&nbsp;<img src="img/thumbnail/pdf.png"  height="20" title="exportar" alt="exportar"/><br/></a>';
+            }
         }
         $res.="<div class='element'>";
         if (isset($th["itform"]["element"])) {
@@ -84,14 +89,14 @@ function GO($XML, $output = "html") {
         if (count($canupdateList[$acname[0]]) && $th["action"]["isupdated"] == 'false') {
             $res.='<br/>';
             foreach ($canupdateList[$acname[0]] as $updt) {
-                $res.="<input type=\"button\" class=\"button\" value=\"".$updt[1]."\""
-                        . " onclick='getform(\"" . $acname[0] ."-UPDATE-".$updt[0]."\","
+                $res.="<input type=\"button\" class=\"button\" value=\"" . $updt[1] . "\""
+                        . " onclick='getform(\"" . $acname[0] . "-UPDATE-" . $updt[0] . "\","
                         . "{\"idth\":\"" . $th["action"]["id"] . "\"})'  />";
             }
         }
         $res.="</div>";
         $res.="<div class='element'>";
-        $res.="<b>" . $th["action"]["value"] . "</b>";
+        $res.="<b>" . $th["action"]["value"] . "</b>".$afterVal;
         $res.="</div>";
         $res.="</div>";
         $i++;
@@ -109,5 +114,6 @@ function GO($XML, $output = "html") {
         $i++;
     }
     $res .= $actionsBT;
+
     return array("type" => "array", "result" => "ok", "html" => $res);
 }
