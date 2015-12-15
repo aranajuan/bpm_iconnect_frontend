@@ -11,7 +11,7 @@ function GO($XML) {
     if ($XML->get_error()) {
         $LOG->addLine(array($XML->get_paramSent("usr"), "login fallido", $XML->get_error()));
 
-        if (substr($XML->get_error(), 0, 8) == "*SP:") {
+        if (substr(trim($XML->get_error()), 0, 4) == "*SP:") {
             $XML->get_user()->reset_try();
             $reload = "true";
         } else {
