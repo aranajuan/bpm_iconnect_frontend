@@ -203,7 +203,7 @@ function option_button($text, $width, $styleN, $Jfunction = "") {
     $w=$lines*$lineW;
     
     $html = "
-        <div style='padding:5px;width:" . $width . "px;height:" . $w . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
+        <div style='float:left;padding:5px;width:" . $width . "px;height:" . $w . "px;overflow:hidden;cursor:pointer;' onclick=\"" . $Jfunction . "\">
 
             <div style='float:left;background-color:" . $colors[$styleN] . ";height:100%;width: " . $width  . "px;font-size:15px;text-align:center;'>
                 " . mb_strtoupper($text,'utf-8') . "
