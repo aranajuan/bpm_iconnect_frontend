@@ -75,7 +75,7 @@ function GO($XML, $output = "html") {
         $html.= $openBT. "</br>";
         $html.=$backbutton;
     } else {
-        $html.="<div style=\"width:40%;float:left;\">";
+        $html.="<div style=\"width:55%;float:left;\">";
         $options = make_arrayobj($arr["options"]["OPTION"]);
 
         $html.= "<img src=\"img/icon.png \" />" . mb_strtoupper($arr["question"]["title"],'utf-8');
@@ -86,7 +86,12 @@ function GO($XML, $output = "html") {
             $html .= "No se encontraron opciones disponibles.<br/><br/>";
         } else {
             foreach ($options as $o) {
-                $html.=option_button($o["title"], 450, 0, "load_tree('" . $o["destiny"] . "');") . "</br>";
+                if($o["isnew"]==true){
+                    $html.=option_button($o["title"], 450, 0, "load_tree('" . $o["destiny"] . "');");
+                    $html.="<img style=\"float:left;\" src=\"img/new.png\" width=25 height=25></br>";
+                }else{
+                    $html.=option_button($o["title"], 450, 0, "load_tree('" . $o["destiny"] . "');") . "</br>";
+                }
             }
         }
         $html.=$backbutton;
