@@ -2,12 +2,31 @@
 
 require_once 'includes/utils/init.php'; // Configuraciones DB, Constantes, Direcciones
 
-$U = new USER();
 $R = new HtmlRequest();
 
 /**
- * TESTING
+ * Fix host
  */
+$rurl = explode('?',$R->get_server('REQUEST_URI'));
+$rurl[0]=$R->get_server('HTTP_HOST').$rurl[0];
+
+if (isset($_SERVER['HTTPS']) &&
+    ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+    isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+    $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+  $rurl[0] = 'https://'.$rurl[0];
+}
+else {
+  $rurl[0] = 'http://'.$rurl[0];
+}
+if($rurl[0]!= (HTML_CONTROLLER.'/')){
+    header("Location: " . HTML_CONTROLLER . '/?'.$rurl[1]);
+    exit();
+}
+
+
+
+$U = new USER();
 $U->load_session();
 
 if ($R->get_param("L") == "logout") {
