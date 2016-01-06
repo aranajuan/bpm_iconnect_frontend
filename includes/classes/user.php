@@ -1,5 +1,7 @@
 <?php
 
+require_once "xmlhandler.php";
+
 class USER {
 
     private $usr;
@@ -27,8 +29,11 @@ class USER {
     }
 
     public function logout() {
-        $this->delete_file_tmp();
         if ($this->usr) {
+            $XML = new XmlHandler();
+            $XML->load_params($this, 'user', 'logout');
+            $XML->send_request();
+            $this->delete_file_tmp();
             $LOG = new LOGGER();
             $LOG->addLine(array($this->usr, "logout"));
             session_destroy();
@@ -133,10 +138,10 @@ class USER {
         $valid = $this->accessV;
         foreach ($valid as $v) {
             //echo strtolower($GLOBALS["access"][trim($v)][1])."/".strtolower($GLOBALS["access"][trim($v)][2])."<br/>";
-            $lClass=$GLOBALS["access"][trim($v)][1];
-            $lMethod=$GLOBALS["access"][trim($v)][2];
+            $lClass = $GLOBALS["access"][trim($v)][1];
+            $lMethod = $GLOBALS["access"][trim($v)][2];
             if (strtolower($lClass) == $class && strtolower($lMethod) == $method) {
-                return array($lClass,$lMethod);
+                return array($lClass, $lMethod);
             }
         }
         return null;
@@ -220,21 +225,21 @@ class USER {
             return null;
         }
         $mainm = array();
-        $subel=array();
+        $subel = array();
         $alist = $this->list_access();
         foreach ($alist as $link) {
             $exp = explode("_", $link[3]);
             if (count($exp) == 1) {
-                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')","path"=>$link[2]));
+                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')", "path" => $link[2]));
             } else {
                 if (!isset($subel[$exp[0]])) {
-                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')","path"=> $exp[0]));
+                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')", "path" => $exp[0]));
                 }
-                $link[2]="submenu_go('" . $link[2] . "')";
+                $link[2] = "submenu_go('" . $link[2] . "')";
                 $subel[$exp[0]][$exp[1]] = $link;
             }
         }
-        return array($mainm,$subel);
+        return array($mainm, $subel);
     }
 
     /**
