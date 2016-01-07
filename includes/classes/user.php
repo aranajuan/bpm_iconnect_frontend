@@ -27,9 +27,12 @@ class USER {
         session_start();
         $this->logged = false;
     }
-
+    
     public function logout() {
         if ($this->usr) {
+            $this->usr=null;
+            $this->hash=null;
+            $this->logged=false;
             $XML = new XmlHandler();
             $XML->load_params($this, 'user', 'logout');
             $XML->send_request();

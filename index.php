@@ -88,7 +88,11 @@ if ($R->is_set("class")) { // es un request ajax
         echo include AJAX_CONTROLLER;
         exit();
     } else {
-        echo "No puedes ejecutar esta funcion, consulta a tu administrador";
+        if ($U->is_logged()){
+            echo "No puedes ejecutar esta funcion, consulta a tu administrador";
+        }else{
+            echo "La sesion ha sido cerrada. Vuelve a iniciar una <a href=\"".HTML_CONTROLLER."\">aqui</a>";
+        }
         exit();
     }
 }
