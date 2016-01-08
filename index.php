@@ -30,8 +30,19 @@ $U = new USER();
 $U->load_session();
 
 if ($R->get_param("L") == "logout") {
-    $U->logout();
+    /* No dejar esperando navegador */
+    ignore_user_abort(true);
+    $U->endSession();
+    session_write_close();
+    ob_start();
     header("Location: " . HTML_CONTROLLER . "/?L=login&m=loguedout");
+    header("Connection: close");
+    header("Content-Encoding: none\r\n");
+    header("Content-Length: 0");
+    ob_end_flush();
+    ob_flush();
+    flush();
+    $U->logout();
     exit();
 }
 

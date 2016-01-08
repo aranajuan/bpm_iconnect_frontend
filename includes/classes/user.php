@@ -28,6 +28,10 @@ class USER {
         $this->logged = false;
     }
     
+    public function endSession(){
+        session_destroy();
+    }
+    
     public function logout() {
         if ($this->usr) {
             $this->usr=null;
@@ -39,7 +43,8 @@ class USER {
             $this->delete_file_tmp();
             $LOG = new LOGGER();
             $LOG->addLine(array($this->usr, "logout"));
-            session_destroy();
+            $this->clearOldTmps();
+            if(session_id()){$this->endSession();}
         }
     }
 
@@ -256,11 +261,11 @@ class USER {
         foreach ($dirs as $dir) {
             if (is_dir($dir)) {
                 if ($dh = opendir($dir)) {
-                    $archivos = glob($dir . $this->get_prop("usr") . "_*.*");
+                    $archivos = glob($dir . $this->get_prop('hash') . "_*.*");
                     foreach ($archivos as $archivo) {
                         $exp = explode("_", $archivo);
                         $usr = explode("/", $exp[0]);
-                        if ($usr[count($usr) - 1] == $this->get_prop("usr")) {
+                        if ($usr[count($usr) - 1] == $this->get_prop("hash")) {
                             $ret[$i] = $archivo;
                             $i++;
                         }
@@ -272,6 +277,17 @@ class USER {
         return $ret;
     }
 
+    /**
+     * Elimina temporales de mas de 24hs
+     */
+    private function clearOldTmps() {
+        foreach (glob(FILEUP_TMP_FOLDER . "/*") as $file) {
+            if (filemtime($file) < time() - 86400) {
+                unlink($file);
+            }
+        }
+    }
+    
     /**
      * Elimina temporal especifico
      * @param string $file
