@@ -55,7 +55,10 @@
 
         <tr>
             <td colspan="2">
-                <input id="details_ok" type="button" class="button" value="guardar" />
+                <br/>
+                <input id="details_ok" type="button" class="button" value="Guardar" />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input id="details_sesionc" type="button" class="button" value="Cerrar sesiones" />
             </td>
         </tr>
     </table>

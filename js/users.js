@@ -16,6 +16,27 @@ function main() {
             reg_insert();
 
     });
+    
+    $("#details_sesionc").click(function () {
+            postControl.sendRequest(
+            true,
+            'userinsert',
+            {
+                'class': 'user',
+                method: 'session_clear',
+                usr: $("#txt_usr").val()
+            },
+            function (data) {
+                if(data.result=='ok'){
+                    alert_p('Sesiones eliminadas','Itracker');
+                }else{
+                    alert_p(data.result,'Error');
+                }
+            },function(data){
+                alert_p(data,'Error');
+            });
+    });
+    
     refresh_List();
 }
 
