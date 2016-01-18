@@ -228,7 +228,7 @@ class XmlHandler {
             $ret = $this->get_response("data");
             if($ret["sendfiles"]=="ok"){
                 $this->user->delete_file_tmp();
-            }else{
+            }elseif($ret["sendfiles"]!="no requerido"){
                 return "No se recibieron archivos correctamente";
             }
         }
