@@ -1,5 +1,7 @@
 <?php
 
+require_once "xmlhandler.php";
+
 class USER {
 
     private $usr;
@@ -25,13 +27,24 @@ class USER {
         session_start();
         $this->logged = false;
     }
-
+    
+    public function endSession(){
+        session_destroy();
+    }
+    
     public function logout() {
-        $this->delete_file_tmp();
         if ($this->usr) {
+            $this->usr=null;
+            $this->hash=null;
+            $this->logged=false;
+            $XML = new XmlHandler();
+            $XML->load_params($this, 'user', 'logout');
+            $XML->send_request();
+            $this->delete_file_tmp();
             $LOG = new LOGGER();
             $LOG->addLine(array($this->usr, "logout"));
-            session_destroy();
+            $this->clearOldTmps();
+            if(session_id()){$this->endSession();}
         }
     }
 
@@ -133,10 +146,10 @@ class USER {
         $valid = $this->accessV;
         foreach ($valid as $v) {
             //echo strtolower($GLOBALS["access"][trim($v)][1])."/".strtolower($GLOBALS["access"][trim($v)][2])."<br/>";
-            $lClass=$GLOBALS["access"][trim($v)][1];
-            $lMethod=$GLOBALS["access"][trim($v)][2];
+            $lClass = $GLOBALS["access"][trim($v)][1];
+            $lMethod = $GLOBALS["access"][trim($v)][2];
             if (strtolower($lClass) == $class && strtolower($lMethod) == $method) {
-                return array($lClass,$lMethod);
+                return array($lClass, $lMethod);
             }
         }
         return null;
@@ -220,21 +233,21 @@ class USER {
             return null;
         }
         $mainm = array();
-        $subel=array();
+        $subel = array();
         $alist = $this->list_access();
         foreach ($alist as $link) {
             $exp = explode("_", $link[3]);
             if (count($exp) == 1) {
-                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')","path"=>$link[2]));
+                array_push($mainm, array($link[3], "menu_go('" . $link[2] . "')", "path" => $link[2]));
             } else {
                 if (!isset($subel[$exp[0]])) {
-                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')","path"=> $exp[0]));
+                    array_push($mainm, array($exp[0], "menu_sub('" . $exp[0] . "')", "path" => $exp[0]));
                 }
-                $link[2]="submenu_go('" . $link[2] . "')";
+                $link[2] = "submenu_go('" . $link[2] . "')";
                 $subel[$exp[0]][$exp[1]] = $link;
             }
         }
-        return array($mainm,$subel);
+        return array($mainm, $subel);
     }
 
     /**
@@ -248,11 +261,11 @@ class USER {
         foreach ($dirs as $dir) {
             if (is_dir($dir)) {
                 if ($dh = opendir($dir)) {
-                    $archivos = glob($dir . $this->get_prop("usr") . "_*.*");
+                    $archivos = glob($dir . $this->get_prop('hash') . "_*.*");
                     foreach ($archivos as $archivo) {
                         $exp = explode("_", $archivo);
                         $usr = explode("/", $exp[0]);
-                        if ($usr[count($usr) - 1] == $this->get_prop("usr")) {
+                        if ($usr[count($usr) - 1] == $this->get_prop("hash")) {
                             $ret[$i] = $archivo;
                             $i++;
                         }
@@ -264,6 +277,17 @@ class USER {
         return $ret;
     }
 
+    /**
+     * Elimina temporales de mas de 24hs
+     */
+    private function clearOldTmps() {
+        foreach (glob(FILEUP_TMP_FOLDER . "/*") as $file) {
+            if (filemtime($file) < time() - 86400) {
+                unlink($file);
+            }
+        }
+    }
+    
     /**
      * Elimina temporal especifico
      * @param string $file

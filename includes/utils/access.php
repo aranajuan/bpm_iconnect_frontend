@@ -78,7 +78,8 @@ $access = array(
     array(56,"REPORT","report","Ejecuta reportes"),//usado
     array(57,"TKT","getsimilars","Carga tickets similares a uno no creado"),//usado
     array(58,"TKT","listtouch","Lista tickets que ya no estan en el equipo"),//usado
-    array(59,"TKT","getpdf","Exportar a pdf")//usado
+    array(59,"TKT","getpdf","Exportar a pdf"),//usado
+    array(60,"USER","session_clear","Eliminar sesiones de usuario")//usado
 );
 
 

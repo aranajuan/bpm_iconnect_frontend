@@ -15,7 +15,7 @@ function main() {
                     doLogin();
             }
     );
-    if ($_GET("usr")) {
+    if ($_GET("pass")) {
         autoLogin();
     } else if (autologin) {
         login('', '', instance, null, false);
@@ -23,7 +23,10 @@ function main() {
         $("#statusform").hide();
         $("#loginform").show();
     }
-
+    if($_GET("usr")){
+        $("#usr").val($_GET("usr"));
+        $("#pass").focus();
+    }
 }
 
 function doLogin() {
