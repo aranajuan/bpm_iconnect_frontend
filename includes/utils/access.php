@@ -7,35 +7,35 @@ $access = array(
     array(0,"PAGE", "index", "Inicio"),
     array(1,"PAGE","listins", "Admin_Listines"),
     array(2,"LISTIN", "insert", "Alta listin"),
-    array(3,"LISTIN","list",  "Lista de listines"),
+    array(3,"LISTIN","lister",  "Lista de listines"),
     array(4,"LISTIN","delete", "Listin delete"),
     array(5,"LISTIN","update", "Listin update"),
     array(6,"LISTIN","idsel_list", "Listin select"),
 
     array(7,"PAGE", "divisions", "Admin_Direcciones"),
     array(8,"DIVISION","insert", "Alta Direcciones"),
-    array(9,"DIVISION","list", "Lista de Direcciones"),
+    array(9,"DIVISION","lister", "Lista de Direcciones"),
     array(10,"DIVISION","delete", "Direcciones delete"),
     array(11,"DIVISION","update", "Direcciones update"),
     array(12,"DIVISION","idsel_list", "Direcciones select"),
 
     array(13,"PAGE", "teams", "Admin_Equipos"),
     array(14,"TEAM","insert", "Equipo insert"),
-    array(15,"TEAM","list", "Lista de Equipos"),
+    array(15,"TEAM","lister", "Lista de Equipos"),
     array(16,"TEAM","delete", "Equipo delete"),
     array(17,"TEAM","update", "Equipo update"),
     array(18,"TEAM","idsel_listall", "Team select full admin"),
 
     array(19,"PAGE", "users", "Admin_Usuarios"),
     array(20,"USER","insert", "Usuario insert"),
-    array(21,"USER","list", "Lista de usuarios"),
+    array(21,"USER","lister", "Lista de usuarios"),
     array(22,"USER","delete", "Usuario delete"),
     array(23,"USER","update", "Usuario update"),
     array(24,"USER","ucontact_Update", "Actualizar datos de contacto"), // pendiente
 
     array(25,"PAGE","systems", "Admin_Sistemas"),
     array(26,"SYSTEM","insert", "Sistema insert"),
-    array(27,"SYSTEM","list", "Lista de sistemas"),
+    array(27,"SYSTEM","lister", "Lista de sistemas"),
     array(28,"SYSTEM","delete", "Sistema delete"),//usado
     array(29,"SYSTEM","update", "Sistema update"),//usado
     
