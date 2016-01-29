@@ -2,17 +2,47 @@
 
 require_once 'includes/utils/init.php'; // Configuraciones DB, Constantes, Direcciones
 
-$U = new USER();
 $R = new HtmlRequest();
 
 /**
- * TESTING
+ * Fix host
  */
+$rurl = explode('?',$R->get_server('REQUEST_URI'));
+$rurl[0]=$R->get_server('HTTP_HOST').$rurl[0];
+
+if (isset($_SERVER['HTTPS']) &&
+    ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+    isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+    $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+  $rurl[0] = 'https://'.$rurl[0];
+}
+else {
+  $rurl[0] = 'http://'.$rurl[0];
+}
+if($rurl[0]!= (HTML_CONTROLLER.'/')){
+    header("Location: " . HTML_CONTROLLER . '/?'.$rurl[1]);
+    exit();
+}
+
+
+
+$U = new USER();
 $U->load_session();
 
 if ($R->get_param("L") == "logout") {
-    $U->logout();
+    /* No dejar esperando navegador */
+    ignore_user_abort(true);
+    $U->endSession();
+    session_write_close();
+    ob_start();
     header("Location: " . HTML_CONTROLLER . "/?L=login&m=loguedout");
+    header("Connection: close");
+    header("Content-Encoding: none\r\n");
+    header("Content-Length: 0");
+    ob_end_flush();
+    ob_flush();
+    flush();
+    $U->logout();
     exit();
 }
 
@@ -69,7 +99,11 @@ if ($R->is_set("class")) { // es un request ajax
         echo include AJAX_CONTROLLER;
         exit();
     } else {
-        echo "No puedes ejecutar esta funcion, consulta a tu administrador";
+        if ($U->is_logged()){
+            echo "No puedes ejecutar esta funcion, consulta a tu administrador";
+        }else{
+            echo "La sesion ha sido cerrada. Vuelve a iniciar una <a href=\"".HTML_CONTROLLER."\">aqui</a>";
+        }
         exit();
     }
 }

@@ -6,7 +6,7 @@
  */
 class HtmlRequest {
    
-    private static $Svars = array('REQUEST_URI');
+    private static $Svars = array('REQUEST_URI','HTTP_HOST');
     
     /**
      * Devuelve valor de variable enviada por post o get
