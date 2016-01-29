@@ -36,6 +36,9 @@ jQuery.fn.fileuploader = function (options) {
             } else {
                 $('#DIVstatus_' + idObj).html("<b>" + "Subiendo: " + progress + "%" + "</b>");
             }
+        },
+        fail: function(e,data){
+            $('#DIVstatus_' + idObj).html("<b>" + "Error: " + "</b>"+$(data.jqXHR.responseText).text());
         }
     }).prop('disabled', !$.support.fileInput)
             .parent().addClass($.support.fileInput ? undefined : 'disabled');
