@@ -50,7 +50,7 @@ function refresh_List() {
             'userlist',
             {
                 'class': 'user',
-                method: 'list'
+                method: 'lister'
             },
     function (data) {
         $("#List").html(data.html);
