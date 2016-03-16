@@ -24,5 +24,5 @@
                                 <div id="alert_p" class="popup"></div>
                                 <div id="notice_p" style="width: 400px;display: none;"></div>
                                 <div id="msjs" style="width: 400px;display: none;float: left;"></div>
-                                <div id="information" style="width: 400px;display: none;"></div>
+                                <div id="information" style="width: 500px;display: none;"></div>
                                 

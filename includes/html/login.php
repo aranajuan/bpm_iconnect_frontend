@@ -54,16 +54,23 @@
             </tr>
             <tr>
                 <td>
-                    Instancia:
+                    <?php if(count($instancesV) > 1){
+                     echo 'Instancia:';
+                    }
+                    ?>
                 </td>
                 <td>
+                    <?php if(count($instancesV) == 1){
+                        echo '<input type="hidden" id="instancia" value="'.$instancesV[0].'" />';
+                    }else{ ?>
                     <select id="instancia">
-                        <?
+                        <?php
                         foreach ($instancesV as $I) {
                             echo "<option value=\"$I\">$I</option>";
                         }
                         ?>
                     </select>   
+                    <?php }?>
                 </td>
             </tr>
             <? if ($U->get_try() >= TRYMAX) { ?>

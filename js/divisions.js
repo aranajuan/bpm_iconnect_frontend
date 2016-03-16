@@ -31,7 +31,7 @@ function refresh_List() {
             'divisionlist',
             {
                 'class': 'division',
-                method: 'list'
+                method: 'lister'
             },
     function(data) {
         $("#List").html(data.html);

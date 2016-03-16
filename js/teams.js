@@ -148,7 +148,7 @@ function refresh_List() {
             'teamlist',
             {
                 'class': 'team',
-                method: 'list'
+                method: 'lister'
             },
     function (data) {
         $("#List").html(data.html);

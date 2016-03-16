@@ -65,10 +65,14 @@ class XmlHandler {
     private function get_tempfiles(){
         $base64F=array();
         $files = $this->user->user_files();
+        $i=0;
         foreach($files as $f){
             $im = file_get_contents($f);
             $fname=explode("/",$f);
-            array_push($base64F, array("name"=>$fname[count($fname)-1],"data"=>$im));
+            $sfname = str_replace($this->get_user()->get_prop('hash'),
+                    $this->get_user()->get_prop('usr'), $fname[count($fname)-1]);
+            $i++;
+            array_push($base64F, array("name"=>$sfname,"data"=>$im));
         }
         return $base64F;  
     }
@@ -224,7 +228,7 @@ class XmlHandler {
             $ret = $this->get_response("data");
             if($ret["sendfiles"]=="ok"){
                 $this->user->delete_file_tmp();
-            }else{
+            }elseif($ret["sendfiles"]!="no requerido"){
                 return "No se recibieron archivos correctamente";
             }
         }

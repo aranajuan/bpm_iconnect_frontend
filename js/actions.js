@@ -95,7 +95,7 @@ function go(accion) {
     },
             function(data) {
                 $("#ejecutando_accion").html("");
-                alert(data);
+                alert_p(data,'error');
             }
     );
 }
