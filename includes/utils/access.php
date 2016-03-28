@@ -93,13 +93,14 @@ $relations = array(
     array('sin_tomar',0),
     array('en_equipo',2),
     array('generado_por_usuario',1),
-    array('generado_por_equipo_de_usuario',2),
+    array('generado_por_equipo_de_usuario_dir_propia',2),
     array('generado_equipo_visible',4),
     array('derivado',3),
     array('master_de_tkt_usr',3),
     array('master_de_tkt_equipo',4),
     array('similar_a_uno_del_usr',5),
-    array('similar_a_uno_del_equipo',6)
+    array('similar_a_uno_del_equipo',6),
+    array('generado_por_equipo_de_usuario_todas_direc',2)
 );
 
 
