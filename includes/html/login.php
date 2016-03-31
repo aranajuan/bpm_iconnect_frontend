@@ -24,15 +24,20 @@
         <img src="img/loading.gif" height="50" width="50"><h2>Iniciando itracker</h2>
     </div>
     <? if(LOGIN_METHOD=="INTEGRATED"){
-
-        echo "<div id=\"loginform\" style=\"display:none;\">
-            <b>SELECCIONE UNA INSTANCIA DE ITRACKER</b>";
-        echo "<div style=\"margin-left:300px;\">";
-        foreach($instancesV as $ins){
-            echo option_button($ins, 300, 0, "login('','','".$ins."',null,false)");
+        if(count($instancesV) > 1){
+            echo "<div id=\"loginform\" style=\"display:none;\">
+                <b>SELECCIONE UNA INSTANCIA DE ITRACKER</b>";
+            echo "<div style=\"margin-left:300px;\">";
+            foreach($instancesV as $ins){
+                echo option_button($ins, 300, 0, "login('','','".$ins."',null,false)");
+            }
+            echo "</div>";
+            echo "</div>";
+        }else{
+            echo "<div style=\"margin-left:300px;\">";
+                echo option_button('Ingresar', 300, 0, "login('','','".$instancesV[0]."',null,false)");
+            echo "</div>";
         }
-        echo "</div>";
-        echo "</div>";
     }else{?>
     <div id="loginform" style="width: 70%;text-align: center;float:left;display:none;">
         <table>
