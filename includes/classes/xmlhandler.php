@@ -212,7 +212,7 @@ class XmlHandler {
             $this->clear_files();
             return $this->check_error();
         } catch (Exception $e) {
-            $this->error = $e->getMessage() . ";" . $this->response;
+            $this->error = $this->response.'*';
             $this->responseDom = null;
             $this->input = null;
             return false;
