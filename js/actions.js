@@ -75,7 +75,7 @@ function go(accion) {
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
         if (data.status === "ok") {
             var result = data.result;
-            if (result.result === "ok") {
+            if (result.result === "ok" && result.tkth=='ok') {
                 show_details(TKTID);
                 try {
                     $("#popup_form").dialog('close');
@@ -85,7 +85,7 @@ function go(accion) {
                     alert_p('Ocurrio un error inesperado, comuniquese con su soporte. ' + result.postactions, 'Error');
                 }
             } else {
-                alert_p(result.msj, "Error");
+                alert_p(result.msj+'-'+result.tkth, "Error");
             }
         } else {
             if (data.html) {
