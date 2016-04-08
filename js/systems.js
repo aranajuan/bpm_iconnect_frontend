@@ -31,7 +31,7 @@ function refresh_List() {
             'systemlist',
             {
                 'class': 'system',
-                method: 'list'
+                method: 'lister'
             },
     function(data) {
         $("#List").html(data.html);

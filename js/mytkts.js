@@ -111,8 +111,8 @@ function excel_link() {
         window.open("?class=tkt&method=listmyteams&export=xls&status=" +
                 $("#txt_filtro_estado").val() +
                 "&cfrom=" + $("#fecha_d").val() +
-                "&cto=" + $("#fecha_h").val())+
-                "&teams="+array_txt($("#txt_filtro_equipo").val());
+                "&cto=" + $("#fecha_h").val()+
+                "&teams="+array_txt($("#txt_filtro_equipo").val()));
     } else {
         window.open("?class=tkt&method=listmy&export=xls&status=" +
                 $("#txt_filtro_estado").val() +
