@@ -36,8 +36,19 @@ function main() {
                 alert_p(data,'Error');
             });
     });
+    $("#filtrar").click(function () {
+        refresh_List();
+    });
     
-    refresh_List();
+    $("#txt_equipos_filter").idSEL(
+            {
+                'class': 'user',
+                method: 'idsel_myadmteams',
+                multiple: false
+
+            }
+    );
+    
 }
 
 /**
@@ -50,7 +61,8 @@ function refresh_List() {
             'userlist',
             {
                 'class': 'user',
-                method: 'lister'
+                method: 'lister',
+                idteam:$("#txt_equipos_filter").val()
             },
     function (data) {
         $("#List").html(data.html);
@@ -210,7 +222,6 @@ function reg_insert() {
     function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
-                refresh_List();
                 close_details();
             } else {
                 alert_p(data.result, "Error");
@@ -251,7 +262,6 @@ function reg_update() {
     function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
-                refresh_List();
                 close_details();
             } else {
                 alert_p(data.result, "Error");
@@ -288,7 +298,6 @@ function show_delete(id) {
                             if(data.result.msj){
                                 alert_p(data.result.msj, "Informacion");
                             }
-                            refresh_List();
                         } else {
                             alert_p(data.result.msj, "Error");
                         }
