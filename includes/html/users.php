@@ -63,9 +63,47 @@
         </tr>
     </table>
 </div>
-<br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br />
+<? echo filter_bar('
+    <table>
+        <tr>
+            <td>
+                <input type="text" id="txt_usr_search" size="10" />
+            </td>
+            <td>
+                <input type="button" id="buscar_usr" class="button" value="Buscar por usuario" />
+            </td>
+        </tr>
+    </table>
+ ','width:622px;');?> 
+ 
+ <?
+// <editor-fold defaultstate="collapsed" desc="Filtro barra">
+echo filter_bar('
+<table >
+    <tr>
+       
+        <td>
+            <div id="txt_equipos_filter"></div>
+        </td>
+        <td >
+            <input type="button" id="filtrar" class="button" value="filtrar" />
+        </td>
+        <td >
+            <input id="nuevo" type="button" class="button" value="crear nuevo" />
+        </td>
+    </tr>
+    
+</table>
+
+
+
+',"width:300px;");
+//</editor-fold>
+?>
+ 
+
 <div style="text-align: left;padding-left: 10px;padding-right: 10px;">
-    <input id="nuevo" type="button" class="button" value="nuevo" />
     <div id="List">
     </div>
 </div>
