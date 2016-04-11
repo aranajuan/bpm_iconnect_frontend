@@ -81,6 +81,7 @@ function searchUser(usr) {
  * @returns {undefined}
  */
 function refresh_List() {
+    $("#List").html(JAVA_LOADING);
     postControl.sendRequest(
             true,
             'userlist',
