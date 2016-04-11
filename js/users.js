@@ -3,12 +3,12 @@ var UpdID = 0;
 var mode_details = 0;
 
 function main() {
-    $("#nuevo").click(function () {
+    $("#nuevo").click(function() {
         clear_popup();
         show_details();
     });
 
-    $("#details_ok").click(function () {
+    $("#details_ok").click(function() {
         if (mode_details) {
             reg_update();
         }
@@ -16,30 +16,33 @@ function main() {
             reg_insert();
 
     });
-    
-    $("#details_sesionc").click(function () {
-            postControl.sendRequest(
-            true,
-            'userinsert',
-            {
-                'class': 'user',
-                method: 'session_clear',
-                usr: $("#txt_usr").val()
-            },
-            function (data) {
-                if(data.result=='ok'){
-                    alert_p('Sesiones eliminadas','Itracker');
-                }else{
-                    alert_p(data.result,'Error');
-                }
-            },function(data){
-                alert_p(data,'Error');
-            });
+
+    $("#details_sesionc").click(function() {
+        postControl.sendRequest(
+                true,
+                'userinsert',
+                {
+                    'class': 'user',
+                    method: 'session_clear',
+                    usr: $("#txt_usr").val()
+                },
+        function(data) {
+            if (data.result == 'ok') {
+                alert_p('Sesiones eliminadas', 'Itracker');
+            } else {
+                alert_p(data.result, 'Error');
+            }
+        }, function(data) {
+            alert_p(data, 'Error');
+        });
     });
-    $("#filtrar").click(function () {
+    $("#filtrar").click(function() {
         refresh_List();
     });
-    
+    $("#buscar_usr").click(function() {
+        searchUser($("#txt_usr_search").val());
+    });
+
     $("#txt_equipos_filter").idSEL(
             {
                 'class': 'user',
@@ -48,7 +51,29 @@ function main() {
 
             }
     );
-    
+
+}
+
+function searchUser(usr) {
+    postControl.sendRequest(
+            true,
+            'userlist',
+            {
+                'class': 'user',
+                method: 'get',
+                usr: usr
+            },
+    function(data) {
+        if (data.status == 'ok') {
+            show_update(data.result);
+        } else {
+            alert_p(data.html, "Error");
+        }
+    },
+            function(data) {
+                alert_p(data.html, "Error");
+            }
+    );
 }
 
 /**
@@ -62,9 +87,9 @@ function refresh_List() {
             {
                 'class': 'user',
                 method: 'lister',
-                idteam:$("#txt_equipos_filter").val()
+                idteam: $("#txt_equipos_filter").val()
             },
-    function (data) {
+    function(data) {
         $("#List").html(data.html);
         $("#tablelist").dataTable(
                 {
@@ -219,7 +244,7 @@ function reg_insert() {
                 fronts: array_txt($("#txt_fronts").val()),
                 idsequipos: array_txt($("#txt_equipos").val())
             },
-    function (data) {
+    function(data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 close_details();
@@ -231,7 +256,7 @@ function reg_insert() {
         }
 
     },
-            function (data) {
+            function(data) {
                 alert_p(data, "Error");
             }
     );
@@ -259,7 +284,7 @@ function reg_update() {
                 fronts: array_txt($("#txt_fronts").val()),
                 idsequipos: array_txt($("#txt_equipos").val())
             },
-    function (data) {
+    function(data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 close_details();
@@ -271,7 +296,7 @@ function reg_update() {
         }
 
     },
-            function (data) {
+            function(data) {
                 alert_p(data, "Error");
             }
     );
@@ -293,9 +318,9 @@ function show_delete(id) {
                             usr: DelID
                         },
                 function(data) {
-                    if (data.type === "array" && data.status==="ok") {
+                    if (data.type === "array" && data.status === "ok") {
                         if (data.result.ejecute === "ok") {
-                            if(data.result.msj){
+                            if (data.result.msj) {
                                 alert_p(data.result.msj, "Informacion");
                             }
                         } else {
@@ -312,4 +337,5 @@ function show_delete(id) {
                 );
             }
     );
-};
+}
+;

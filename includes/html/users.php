@@ -68,10 +68,10 @@
     <table>
         <tr>
             <td>
-                <input type="text" id="txt_idtkt" size="10" />
+                <input type="text" id="txt_usr_search" size="10" />
             </td>
             <td>
-                <input type="button" id="buscar_numero" class="button" value="Buscar por usuario" />
+                <input type="button" id="buscar_usr" class="button" value="Buscar por usuario" />
             </td>
         </tr>
     </table>
