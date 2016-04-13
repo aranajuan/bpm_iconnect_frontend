@@ -71,7 +71,7 @@ function searchUser(usr) {
         }
     },
             function(data) {
-                alert_p(data.html, "Error");
+                alert_p(data, "Error");
             }
     );
 }
