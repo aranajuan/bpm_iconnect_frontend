@@ -4,11 +4,13 @@ var mode_details = 0;
 
 
 function main() {
-
-
     $("#nuevo").click(function () {
         clear_popup();
         show_details();
+    });
+    
+    $("#actualizar").click(function () {
+        refresh_List();
     });
 
     $("#details_ok").click(function () {
@@ -116,6 +118,16 @@ function show_update(data) {
 
             }
     );
+    
+    $("#txt_equiposreporta").idSEL(
+            {
+                'class': 'team',
+                method: 'idsel_listall',
+                multiple: true,
+                checkedlist: data.idsequiposreporta
+
+            }
+    );
 
     $("#txt_listin").idSEL(
             {
@@ -195,7 +207,7 @@ function show_delete(id) {
                 function (data) {
                     if (data.type === "array") {
                         if (data.result === "ok") {
-                            refresh_List();
+                            alert_p("Registro eliminado", "Eliminado");
                         } else {
                             alert_p(data.result, "Error");
                         }
@@ -233,12 +245,12 @@ function reg_update() {
                 mytkts_vista: $("#txt_vistamytkts").val(),
                 staffhome_vista: $("#txt_vistainbox").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
-                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
+                idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
     function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
-                refresh_List();
                 close_details();
             } else {
                 alert_p(data.result, "Error");
@@ -280,7 +292,6 @@ function reg_insert() {
     function (data) {
         if (data.type === "array") {
             if (data.result === "ok") {
-                refresh_List();
                 close_details();
             } else {
                 alert_p(data.result, "Error");
