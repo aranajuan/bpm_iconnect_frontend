@@ -5,7 +5,7 @@
 function main() {
     $("#teams").idSEL({
         'class': 'user',
-        method: 'idsel_listteams',
+        method: 'idsel_listreportteams',
         multiple: true,
         params: {filter: 'mytkts_vista'}
     });
@@ -18,7 +18,7 @@ function main() {
         }
         $("#teams").idSEL({
             'class': 'user',
-            method: 'idsel_listteams',
+            method: 'idsel_listreportteams',
             multiple: true,
             params: {filter: filter}
         });
