@@ -31,6 +31,12 @@
                 </td>
             </tr>
             <tr>
+                <td>Equipos reporta</td>
+                <td>
+                        <div id="txt_equiposreporta"></div>
+                </td>
+            </tr>
+            <tr>
                 <td>Listin:</td>
                 <td>
                     <div id="txt_listin"></div>
@@ -66,6 +72,7 @@
 <br /><br /><br /><br /><br /><br />
 <div style="text-align: left;padding-left: 10px;padding-right: 10px;">
     <input id="nuevo" type="button" class="button" value="nuevo" />
+    <input id="actualizar" type="button" class="button" value="actualizar" />
     <div id="List">
     </div>
 </div>
