@@ -43,7 +43,8 @@ function main() {
             {
                 'class': 'user',
                 method: 'idsel_listteams',
-                multiple: false
+                multiple: false,
+                params: {filter:'staffhome_vista'}
             }, load_filter);
 
     $("#buscar_numero").click(function () {
