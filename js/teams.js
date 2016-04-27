@@ -296,7 +296,8 @@ function reg_insert() {
                 staffhome_vista: $("#txt_vistainbox").val(),
                 tipo: $("#sel_tipo").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
-                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
+                idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
             function (data) {
                 if (data.type === "array") {
