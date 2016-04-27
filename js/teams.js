@@ -8,7 +8,7 @@ function main() {
         clear_popup();
         show_details();
     });
-    
+
     $("#actualizar").click(function () {
         refresh_List();
     });
@@ -50,6 +50,15 @@ function clear_popup() {
             }
     );
     $("#txt_equiposvisible").idSEL(
+            {
+                'class': 'team',
+                method: 'idsel_listall',
+                multiple: true
+
+            }
+    );
+
+    $("#txt_equiposreporta").idSEL(
             {
                 'class': 'team',
                 method: 'idsel_listall',
@@ -118,7 +127,7 @@ function show_update(data) {
 
             }
     );
-    
+
     $("#txt_equiposreporta").idSEL(
             {
                 'class': 'team',
@@ -162,15 +171,15 @@ function refresh_List() {
                 'class': 'team',
                 method: 'lister'
             },
-    function (data) {
-        $("#List").html(data.html);
-        $("#tablelist").dataTable(
-                {
-                    "bJQueryUI": true,
-                    "sPaginationType": "full_numbers",
-                    "bAutoWidth": false
-                });
-    },
+            function (data) {
+                $("#List").html(data.html);
+                $("#tablelist").dataTable(
+                        {
+                            "bJQueryUI": true,
+                            "sPaginationType": "full_numbers",
+                            "bAutoWidth": false
+                        });
+            },
             function (data) {
                 $("#List").html(data);
             }
@@ -204,18 +213,18 @@ function show_delete(id) {
                             method: 'delete',
                             id: DelID
                         },
-                function (data) {
-                    if (data.type === "array") {
-                        if (data.result === "ok") {
-                            alert_p("Registro eliminado", "Eliminado");
-                        } else {
-                            alert_p(data.result, "Error");
-                        }
-                    } else {
-                        alert_p(data.html, "Error");
-                    }
+                        function (data) {
+                            if (data.type === "array") {
+                                if (data.result === "ok") {
+                                    alert_p("Registro eliminado", "Eliminado");
+                                } else {
+                                    alert_p(data.result, "Error");
+                                }
+                            } else {
+                                alert_p(data.html, "Error");
+                            }
 
-                },
+                        },
                         function (data) {
                             alert_p(data, "Error");
                         }
@@ -248,18 +257,18 @@ function reg_update() {
                 idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
                 idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
-    function (data) {
-        if (data.type === "array") {
-            if (data.result === "ok") {
-                close_details();
-            } else {
-                alert_p(data.result, "Error");
-            }
-        } else {
-            alert_p(data.html, "Error");
-        }
+            function (data) {
+                if (data.type === "array") {
+                    if (data.result === "ok") {
+                        close_details();
+                    } else {
+                        alert_p(data.result, "Error");
+                    }
+                } else {
+                    alert_p(data.html, "Error");
+                }
 
-    },
+            },
             function (data) {
                 alert_p(data, "Error");
             }
@@ -289,18 +298,18 @@ function reg_insert() {
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
                 idsequipos_visible: array_txt($("#txt_equiposvisible").val())
             },
-    function (data) {
-        if (data.type === "array") {
-            if (data.result === "ok") {
-                close_details();
-            } else {
-                alert_p(data.result, "Error");
-            }
-        } else {
-            alert_p(data.html, "Error");
-        }
+            function (data) {
+                if (data.type === "array") {
+                    if (data.result === "ok") {
+                        close_details();
+                    } else {
+                        alert_p(data.result, "Error");
+                    }
+                } else {
+                    alert_p(data.html, "Error");
+                }
 
-    },
+            },
             function (data) {
                 alert_p(data, "Error");
             }
