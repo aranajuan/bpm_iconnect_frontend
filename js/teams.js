@@ -4,11 +4,13 @@ var mode_details = 0;
 
 
 function main() {
-
-
     $("#nuevo").click(function () {
         clear_popup();
         show_details();
+    });
+
+    $("#actualizar").click(function () {
+        refresh_List();
     });
 
     $("#details_ok").click(function () {
@@ -48,6 +50,15 @@ function clear_popup() {
             }
     );
     $("#txt_equiposvisible").idSEL(
+            {
+                'class': 'team',
+                method: 'idsel_listall',
+                multiple: true
+
+            }
+    );
+
+    $("#txt_equiposreporta").idSEL(
             {
                 'class': 'team',
                 method: 'idsel_listall',
@@ -117,6 +128,16 @@ function show_update(data) {
             }
     );
 
+    $("#txt_equiposreporta").idSEL(
+            {
+                'class': 'team',
+                method: 'idsel_listall',
+                multiple: true,
+                checkedlist: data.idsequiposreporta
+
+            }
+    );
+
     $("#txt_listin").idSEL(
             {
                 'class': 'listin',
@@ -150,15 +171,15 @@ function refresh_List() {
                 'class': 'team',
                 method: 'lister'
             },
-    function (data) {
-        $("#List").html(data.html);
-        $("#tablelist").dataTable(
-                {
-                    "bJQueryUI": true,
-                    "sPaginationType": "full_numbers",
-                    "bAutoWidth": false
-                });
-    },
+            function (data) {
+                $("#List").html(data.html);
+                $("#tablelist").dataTable(
+                        {
+                            "bJQueryUI": true,
+                            "sPaginationType": "full_numbers",
+                            "bAutoWidth": false
+                        });
+            },
             function (data) {
                 $("#List").html(data);
             }
@@ -192,18 +213,18 @@ function show_delete(id) {
                             method: 'delete',
                             id: DelID
                         },
-                function (data) {
-                    if (data.type === "array") {
-                        if (data.result === "ok") {
-                            refresh_List();
-                        } else {
-                            alert_p(data.result, "Error");
-                        }
-                    } else {
-                        alert_p(data.html, "Error");
-                    }
+                        function (data) {
+                            if (data.type === "array") {
+                                if (data.result === "ok") {
+                                    alert_p("Registro eliminado", "Eliminado");
+                                } else {
+                                    alert_p(data.result, "Error");
+                                }
+                            } else {
+                                alert_p(data.html, "Error");
+                            }
 
-                },
+                        },
                         function (data) {
                             alert_p(data, "Error");
                         }
@@ -233,21 +254,21 @@ function reg_update() {
                 mytkts_vista: $("#txt_vistamytkts").val(),
                 staffhome_vista: $("#txt_vistainbox").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
-                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
+                idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
-    function (data) {
-        if (data.type === "array") {
-            if (data.result === "ok") {
-                refresh_List();
-                close_details();
-            } else {
-                alert_p(data.result, "Error");
-            }
-        } else {
-            alert_p(data.html, "Error");
-        }
+            function (data) {
+                if (data.type === "array") {
+                    if (data.result === "ok") {
+                        close_details();
+                    } else {
+                        alert_p(data.result, "Error");
+                    }
+                } else {
+                    alert_p(data.html, "Error");
+                }
 
-    },
+            },
             function (data) {
                 alert_p(data, "Error");
             }
@@ -275,21 +296,21 @@ function reg_insert() {
                 staffhome_vista: $("#txt_vistainbox").val(),
                 tipo: $("#sel_tipo").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
-                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
+                idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
-    function (data) {
-        if (data.type === "array") {
-            if (data.result === "ok") {
-                refresh_List();
-                close_details();
-            } else {
-                alert_p(data.result, "Error");
-            }
-        } else {
-            alert_p(data.html, "Error");
-        }
+            function (data) {
+                if (data.type === "array") {
+                    if (data.result === "ok") {
+                        close_details();
+                    } else {
+                        alert_p(data.result, "Error");
+                    }
+                } else {
+                    alert_p(data.html, "Error");
+                }
 
-    },
+            },
             function (data) {
                 alert_p(data, "Error");
             }

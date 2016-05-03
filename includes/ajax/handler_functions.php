@@ -39,7 +39,7 @@ function normal_idsel($XML, $objname, $cols, $output = "html") {
 
     $list = $XML->get_response("list");
     $listV = $list[$objname];
-
+    
     $HTML = arrayToSelect(
             $listV, $cols, $XML->get_paramSent("htmlid"), $XML->get_paramSent("multiple"), arrayornull(",", $XML->get_paramSent("checkedlist")), arrayornull(",", $XML->get_paramSent("whitelist")), arrayornull(",", $XML->get_paramSent("blacklist"))
     );
@@ -359,7 +359,7 @@ function make_nextans($field, $arr) {
  * @return string htmlselect
  */
 function arrayToSelect($arr, $cols, $htmlid, $multiple, $checkedlist, $whitelist, $blacklist) {
-
+    $empty=true;
     if ($multiple == "true") {
         $multipleAttr = "MULTIPLE";
         $multiple_class = "multiple";
@@ -386,10 +386,16 @@ function arrayToSelect($arr, $cols, $htmlid, $multiple, $checkedlist, $whitelist
             if (is_array($checkedlist) && in_array($el[$cols[0]], $checkedlist)) {
                 $selected = "SELECTED";
             }
+            if( $el[$cols[0]]!=''){
+                $empty=false;
+            }
             $HTML .= "<option $selected value=\"" . $el[$cols[0]] . "\">" . $el[$cols[1]] . "</option>";
         }
     }
     $HTML .="</select>";
+    if($empty){
+        return '<div id="'.$htmlid.'" style="display:inline;">&nbsp;<b>No hay elementos</b></div>';
+    }
     return $HTML;
 }
 

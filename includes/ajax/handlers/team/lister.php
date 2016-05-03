@@ -17,7 +17,7 @@ function GO($XML,$output="html") {
     $list = $XML->get_response("list");
     $listV = $list["TEAM"];
     
-    $HTML=arrayToTable(array("id","direccionname=>direccion","nombre"), $listV, array("id","nombre","t_conformidad","iddireccion","idsadms","staffhome_vista","mytkts_vista","idsequiposderiva","idsequiposvisible","idlistin"), "id", false, true, false, "tablelist", "class=\"display\"");
+    $HTML=arrayToTable(array("id","direccionname=>direccion","nombre"), $listV, array("id","nombre","t_conformidad","iddireccion","idsadms","staffhome_vista","mytkts_vista","idsequiposderiva","idsequiposvisible","idsequiposreporta","idlistin"), "id", false, true, false, "tablelist", "class=\"display\"");
     
     return array("type" => "html", "html" => $HTML);
 }

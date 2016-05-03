@@ -79,7 +79,9 @@ $access = array(
     array(57,"TKT","getsimilars","Carga tickets similares a uno no creado"),//usado
     array(58,"TKT","listtouch","Lista tickets que ya no estan en el equipo"),//usado
     array(59,"TKT","getpdf","Exportar a pdf"),//usado
-    array(60,"USER","session_clear","Eliminar sesiones de usuario")//usado
+    array(60,"USER","session_clear","Eliminar sesiones de usuario"),//usado
+    array(61,"USER","get","Obtener datos del usuario"),//usado
+    array(62,"USER","idsel_listreportteams","Lista de equipos que reporta"),//usado
 );
 
 

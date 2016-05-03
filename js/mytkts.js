@@ -18,7 +18,8 @@ function main() {
             {
                 'class': 'user',
                 method: 'idsel_listteams',
-                multiple: true
+                multiple: true,
+                params: {filter:'mytkts_vista'}
             });
 
 
