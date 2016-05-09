@@ -45,6 +45,7 @@ function GO($XML, $output = "html") {
     $res = "";
     $i = 0;
     $tops = make_arrayobj($result["tree"]["option"]);
+
     $html_tree = "<br/><b>Tipificacion:</b><br/><table>";
     foreach ($tops as $t) {
         $html_tree.="<tr><td><b>" . $t["question"] . "</b><td><td>" . $t["ans"] . "</td></tr>";
@@ -61,14 +62,18 @@ function GO($XML, $output = "html") {
         $res.="<div class='title_TH'>" . strtoupper($th["action"]["alias"]) . "</div>";
         $res.="<div class='date_TH'>" . $th["action"]["date"] . "</div>";
         $res.="</div>";
-
+        $contact="";
         if ($th["action"]["ejecuta"] === "open") {
             $res.="<div class='element'>";
             $res.=$html_tree;
             $res.="</div>";
             if ($GLOBALS['U']->check_access('TKT', 'getpdf')) {
                 $afterVal= '<a href="?class=tkt&method=getpdf&id=' . $XML->get_paramSent('id') .
-                        '">&nbsp;&nbsp;&nbsp;<img src="img/thumbnail/pdf.png"  height="20" title="exportar" alt="exportar"/><br/></a>';
+                        '">&nbsp;&nbsp;&nbsp;<img src="img/thumbnail/pdf.png"  height="20" title="exportar" alt="exportar"/></a>';
+            }
+            if($XML->get_user()->get_prop('usr')!=$result["USER"]["usr"]){
+                $contact = '&nbsp;<a href="sip:'.$result["USER"]["mail"].'"><img src="img/lync.jpg" class="img_lnk" /></a>
+                    &nbsp;<a href="mailto:'.$result["USER"]["mail"].'?subject=iTracker '.$XML->get_paramSent('id').'"><img src="img/mail.png" with="16" height="16" class="img_lnk"/>';
             }
         }
         $res.="<div class='element'>";
@@ -96,7 +101,7 @@ function GO($XML, $output = "html") {
         }
         $res.="</div>";
         $res.="<div class='element'>";
-        $res.="<b>" . $th["action"]["value"] . "</b>".$afterVal;
+        $res.="<b>" . $th["action"]["value"] . "</b>".$afterVal.$contact."<br/>";
         $res.="</div>";
         $res.="</div>";
         $i++;
