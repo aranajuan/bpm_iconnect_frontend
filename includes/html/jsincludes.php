@@ -66,4 +66,5 @@ if ($canAccess) {
         var JAVA_LOADING = '<img src="img/loading.gif" width="16" height="16" alt="cargando.." />';
         var JAVA_ERROR = 'Error en JS/JQ.';
         var MSJ_INFORMATION = '<?=strToJava(MSJ_INFORMATION); ?>';
+        var USER_INACTIVE_TIME = '<?=strToJava(USER_INACTIVE_TIME); ?>';
     </script>

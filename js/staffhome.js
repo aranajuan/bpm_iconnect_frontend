@@ -14,9 +14,11 @@ function main() {
     var test;
     $.getScript('js/classes/timer.js',
             function() {
-                test = new class_timer(5000, function() {
+                test = new class_timer(45000, function() {
                     if (popup_showing(0) == false) {
-                        refresh_list();
+                        if($("#auto_update").is(":checked")){
+                            refresh_list();
+                        }
                     }
                     test.start();
                 }, true);
@@ -24,14 +26,15 @@ function main() {
 
     user.set_user_activity_change(function() {
         if (!user.user_active) {
-            notice_msj("Inactivo // se redujo la frecuencia de autoactualizacion a 30 min");
-            test.set_time(1800000);
-            //test.set_time(60000);
+            notice_msj("Inactivo // se redujo la frecuencia de autoactualizacion");
+            test.set_time(300000);
             test.start();
         } else {
-            test.set_time(5000);
             notice_msj("");
-            refresh_list();
+            test.set_time(45000);
+            if($("#auto_update").is(":checked")){
+                refresh_list();
+            }
             test.start();
         }
     });

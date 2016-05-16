@@ -33,11 +33,11 @@ function fatal_error(msj,fnc){
  */
 function notice_msj(msj,fnc){
     if(msj!=""){
-        $("#msjs").html('<div class="ui-state-highlight"><span class=" ui-icon ui-icon-info" style="float:left;"></span>'+msj+'</div>');    
-        $("#msjs").slideDown(100,fnc);
+        $("#information").html('<div class="ui-state-highlight"><span class=" ui-icon ui-icon-info" style="float:left;"></span>'+msj+'</div>');    
+        $("#information").slideDown(100,fnc);
     }
     else{
-         $("#msjs").slideUp(0,fnc);
+         $("#information").slideUp(0,fnc);
     }
 }
 /*

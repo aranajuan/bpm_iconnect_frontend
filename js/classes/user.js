@@ -8,7 +8,7 @@ function class_user(){
         var last=this.user_active;
         this.user_active=true;
         clearTimeout(this.inactivity_timer);
-        this.inactivity_timer = setTimeout(function(){user.user_inactive();}, 3000);
+        this.inactivity_timer = setTimeout(function(){user.user_inactive();}, USER_INACTIVE_TIME);
         if(last==false && typeof this.user_activity_change == 'function'){
             this.user_activity_change();
         }
