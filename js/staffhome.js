@@ -10,56 +10,59 @@ var filter_ext_nro;
 var updating = false;
 
 function main() {
-    /*
-     var test;
-     $.getScript('includes/js/jq/timer.js',
-     function () {
-     test = new class_timer(5000, function () {
-     if (popup_showing(0) == false) {
-     refresh_list();
-     }
-     test.start();
-     }, true);
-     });
-     
-     user.set_user_activity_change(function () {
-     if (!user.user_active) {
-     notice_msj("Inactivo // se redujo la frecuencia de autoactualizacion a 30 min");
-     test.set_time(1800000);
-     //test.set_time(60000);
-     test.start();
-     } else {
-     test.set_time(5000);
-     notice_msj("");
-     refresh_list();
-     test.start();
-     }
-     });
-     */
-    $("#List").html(JAVA_LOADING);
-    $("#ListRC").html(JAVA_LOADING);
+
+    var test;
+    $.getScript('js/classes/timer.js',
+            function() {
+                test = new class_timer(45000, function() {
+                    if (popup_showing(0) == false) {
+                        if($("#auto_update").is(":checked")){
+                            refresh_list();
+                        }
+                    }
+                    test.start();
+                }, true);
+            });
+
+    user.set_user_activity_change(function() {
+        if (!user.user_active) {
+            notice_msj("Inactivo // se redujo la frecuencia de autoactualizacion");
+            test.set_time(300000);
+            test.start();
+        } else {
+            notice_msj("");
+            test.set_time(45000);
+            if($("#auto_update").is(":checked")){
+                refresh_list();
+            }
+            test.start();
+        }
+    });
+
+    $("#updating").html(JAVA_LOADING);
+
 
     $("#txt_area_select").idSEL(
             {
                 'class': 'user',
                 method: 'idsel_listteams',
                 multiple: false,
-                params: {filter:'staffhome_vista'}
+                params: {filter: 'staffhome_vista'}
             }, load_filter);
 
-    $("#buscar_numero").click(function () {
+    $("#buscar_numero").click(function() {
         if (IsNumeric($('#txt_idtkt').val()))
             show_details($('#txt_idtkt').val());
     });
 
-    $("#txt_filtro").change(function () {
-        if ($("#txt_filtro").val() == "closed" || $("#txt_filtro").val()=='derived_all')
+    $("#txt_filtro").change(function() {
+        if ($("#txt_filtro").val() == "closed" || $("#txt_filtro").val() == 'derived_all')
             $("#div_fechas").show();
         else
             $("#div_fechas").hide();
     });
 
-    $("#filtrar").click(function () {
+    $("#filtrar").click(function() {
         load_filter();
     });
 
@@ -75,18 +78,18 @@ function main() {
  * @returns {undefined}
  */
 function excel_link() {
-        window.open("?class=tkt&method=listteam&export=xls&filter=" +
-                filter_filter +
-                "&cfrom=" + filter_fecha_d +
-                "&cto=" + filter_fecha_h +
-                "&team="+filter_team);  
+    window.open("?class=tkt&method=listteam&export=xls&filter=" +
+            filter_filter +
+            "&cfrom=" + filter_fecha_d +
+            "&cto=" + filter_fecha_h +
+            "&team=" + filter_team);
 }
 
 function refresh_list() {
     if (updating)
         return;
     updating = true;
-    $("#List").html(JAVA_LOADING);
+    $("#updating").html(JAVA_LOADING+' actualizando');
 
     postControl.sendRequest(
             true,
@@ -99,19 +102,21 @@ function refresh_list() {
                 team: filter_team,
                 filter: filter_filter
             },
-    function (data) {
+    function(data) {
         var POS = $("body").scrollTop();
+        $("#updating").html("");
         $("#List").html(data.html);
-        $("#tablelist").dataTable(
+        $("#tablelist").DataTable(
                 {
                     "bJQueryUI": true,
                     "sPaginationType": "full_numbers",
-                    "bAutoWidth": false
+                    "bAutoWidth": false,
+                    "stateSave": true
                 });
         $("body").scrollTop(POS);
         updating = false;
     },
-            function (data) {
+            function(data) {
                 $("#List").html(data);
             }
     );
@@ -136,7 +141,7 @@ function show_childs(id) {
                 method: 'listchilds',
                 idtkt: id
             },
-    function (data) {
+    function(data) {
         $("#popup_childs").html('<div id="div_contenido_C" style="height:300px; overflow:auto;">' + data.html + "</div>");
         $("#popup_childs").dialog('close');
         $("#popup_childs").dialog({
@@ -148,7 +153,7 @@ function show_childs(id) {
         });
         $("#div_contenido_C").scrollTop(0);
     },
-            function (data) {
+            function(data) {
                 $("#popup_childs").html(data);
             }
     );
@@ -164,14 +169,14 @@ function load_filter() {
     filter_filter = $("#txt_filtro").val();
     filter_fecha_d = $("#fecha_d").val();
     filter_fecha_h = $("#fecha_h").val();
-    if( $("#txt_filtro").val().substr(0, 7)==='derived'){
-        filter_method='listtouch';
-    }else{
-        filter_method='listteam';
+    if ($("#txt_filtro").val().substr(0, 7) === 'derived') {
+        filter_method = 'listtouch';
+    } else {
+        filter_method = 'listteam';
     }
-    
+
     refresh_list();
-    load_listRC();
+    //load_listRC();
 }
 
 function load_listRC() {
@@ -184,7 +189,7 @@ function load_listRC() {
                 method: 'listteamclose',
                 team: filter_team
             },
-    function (data) {
+    function(data) {
 
         $("#ListRC").html(data.html);
         $("#tablelistRC").dataTable(
@@ -194,7 +199,7 @@ function load_listRC() {
                     "bAutoWidth": false
                 });
     },
-            function (data) {
+            function(data) {
                 $("#ListRC").html(data);
             }
     );

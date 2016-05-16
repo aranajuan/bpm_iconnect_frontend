@@ -1,4 +1,4 @@
-<script src="js/actions.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/actions.js?v=<?= VERSION; ?>" type="text/javascript"></script>
 
 <div>
     <div><h2>INBOX</h2></div>
@@ -21,7 +21,7 @@
             </td>
         </tr>
     </table>
- ','width:622px;');?>   
+ ', 'width:622px;'); ?>   
 
 <?
 // <editor-fold defaultstate="collapsed" desc="Filtro barra">
@@ -64,18 +64,23 @@ echo filter_bar('
 
 
 
-',"width:300px;");
+', "width:300px;");
 //</editor-fold>
 ?>
 
 
 <br/>
 <br/>
-<img src="img/thumbnail/xls.png" height="30" class="img_lnk" onclick="excel_link()" />
+<h3>
+Exportar <img src="img/thumbnail/xls.png" height="16" width="16" class="img_lnk" onclick="excel_link()" />
+&nbsp;&nbsp;&nbsp;Auto actualizar lista
+    <input type="checkbox" id="auto_update" />
+    <div id="updating" style="display: inline;"></div>
+</h3>
 <div id="List"></div>
 
 <div>
     <div><h2>ULTIMOS SOLUCIONADOS</h2></div>
 </div>
 
-<div id="ListRC"></div>
+<div id="ListRC"><h3><a href="javascript:load_listRC();">Cargar <img src="img/b_tblimport.png" class="img_lnk"></a></h3></div>

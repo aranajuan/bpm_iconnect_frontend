@@ -96,7 +96,8 @@ function refresh_List() {
                 {
                     "bJQueryUI": true,
                     "sPaginationType": "full_numbers",
-                    "bAutoWidth": true
+                    "bAutoWidth": true,
+                    "stateSave": true
                 });
     },
             null

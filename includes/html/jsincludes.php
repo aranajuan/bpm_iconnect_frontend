@@ -9,7 +9,7 @@
 <script src="js/classes/FileUploader/js/vendor/jquery.ui.widget.js?v=<?=VERSION;?>"></script>
 <script src="js/classes/FileUploader/js/jquery.iframe-transport.js?v=<?=VERSION;?>"></script>
 <script src="js/classes/FileUploader/js/jquery.fileupload.js?v=<?=VERSION;?>"></script>
-<script src="js/classes/datatable/js/jquery.dataTables.min.js?v=<?=VERSION;?>" type="text/javascript"></script>
+<script src="js/classes/datatable/datatables.min.js?v=<?=VERSION;?>" type="text/javascript"></script>
 <script src="js/classes/FileUploader/fileuploader.js?v=<?=VERSION;?>" type="text/javascript"></script>
 <script src="js/classes/multiselect/src/jquery.multiselect.js?v=<?=VERSION;?>" type="text/javascript"></script>
 <script src="js/classes/multiselect/src/jquery.multiselect.filter.js?v=<?=VERSION;?>" type="text/javascript"></script>
@@ -63,7 +63,8 @@ if ($canAccess) {
 }?>
 
     <script>
-        var JAVA_LOADING = '<img src="img/loading.gif" width="20" height="20" alt="cargando.." />';
+        var JAVA_LOADING = '<img src="img/loading.gif" width="16" height="16" alt="cargando.." />';
         var JAVA_ERROR = 'Error en JS/JQ.';
         var MSJ_INFORMATION = '<?=strToJava(MSJ_INFORMATION); ?>';
+        var USER_INACTIVE_TIME = '<?=strToJava(USER_INACTIVE_TIME); ?>';
     </script>
