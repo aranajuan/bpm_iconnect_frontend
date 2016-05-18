@@ -1,7 +1,6 @@
 <?php
 
 require_once "handler_functions.php";
-require_once "classes/xmlhandler.php";
 $params = $R->get_allparams();
 $XML = new XmlHandler();
 $XML->load_params($U, $class, $method, $params);

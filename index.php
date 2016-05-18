@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/utils/init.php'; // Configuraciones DB, Constantes, Direcciones
+require_once "includes/classes/xmlhandler.php";
 
 $R = new HtmlRequest();
 
@@ -24,7 +25,39 @@ if($rurl[0]!= (HTML_CONTROLLER.'/')){
     exit();
 }
 
-
+/* redirect for api */
+if($R->get_param("L")=='api'){
+    $docApi= new DOMDocument();
+    try{
+        $docApi->loadXML(trim(file_get_contents('php://input')));
+        $xpath = new DOMXpath($docApi);
+        $udate= array();
+        $request= array();
+        $udate["usr"]=$xpath->query('/itracker/header/usr')->item(0)->nodeValue;
+        $udate["instancia"]=
+                $xpath->query('/itracker/header/instance')->item(0)->nodeValue;
+        $udate["hash"]=
+                $xpath->query('/itracker/header/hash')->item(0)->nodeValue;
+        $request["class"]=
+                $xpath->query('/itracker/request/class')->item(0)->nodeValue;
+        $request["method"]=
+                $xpath->query('/itracker/request/method')->item(0)->nodeValue;
+        $params = $xpath->query('/itracker/request/params');
+        foreach ($params as $p){
+            $request["params"][$p->nodeName]=$p->nodeValue;
+        }
+        $U = new USER();
+        $U->load_vec($udate);
+        $app = new XmlHandler();
+        $app->setFrontName(FRONT_NAME_API);
+        $app->load_params($U, $request["class"], $request["method"], $request["params"]);
+        $app->send_request();
+        echo $app->plain_response();
+    } catch (Exception $e){
+        echo "Error: ".$e->getMessage();
+    }
+    exit();
+}
 
 $U = new USER();
 $U->load_session();

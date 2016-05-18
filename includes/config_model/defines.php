@@ -8,6 +8,7 @@ define("ERROR_REPORTINGCONST",E_ALL & ~E_NOTICE & ~E_WARNING & ~E_DEPRECATED);
 define('BASE_DIR',realpath(dirname(realpath(dirname(__FILE__)).'/../../../')));
 define('ROOT_DIR',BASE_DIR.'');
 define("FRONT_NAME","DMZ");
+define("FRONT_NAME_API","API_DMZ");
 define("APLICATION_SERVER","http://localhost/itracker_app");
 define('INCLUDE_DIR',ROOT_DIR."/includes"); 
 define('AJAX_CONTROLLER',INCLUDE_DIR."/ajax/request.php"); 

@@ -26,6 +26,8 @@ class XmlHandler {
     private $params;
     private $error;
 
+    private $selectedFront = null;
+    
     /*array*/
     private $params_sent;
     
@@ -43,6 +45,14 @@ class XmlHandler {
     }
 
     /**
+     * Cambia el front por defecto
+     * @param type $fname
+     */
+    public function setFrontName($fname){
+        $this->selectedFront = $fname;
+    }
+    
+    /**
      * Genera el header para el envio del XML // ip del usuario usr hash etc
      */
     private function make_header() {
@@ -54,8 +64,11 @@ class XmlHandler {
             $header->appendChild($this->request->createElement("hash", $this->user->get_prop("hash")));
         }
         $header->appendChild($this->request->createElement("ip", $_SERVER['REMOTE_ADDR']));
-        $header->appendChild($this->request->createElement("front", FRONT_NAME));
-        
+        if($this->selectedFront==null){
+            $header->appendChild($this->request->createElement("front", FRONT_NAME));
+        } else {
+            $header->appendChild($this->request->createElement("front", $this->selectedFront));
+        }
     }
 
     /**
