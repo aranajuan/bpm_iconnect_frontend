@@ -26,7 +26,8 @@ if($rurl[0]!= (HTML_CONTROLLER.'/')){
 }
 
 /* redirect for api */
-if($R->get_param("L")=='api'){
+
+if(trim($R->get_param("L"))=='api'){
     $docApi= new DOMDocument();
     try{
         $docApi->loadXML(trim(file_get_contents('php://input')));
@@ -42,7 +43,7 @@ if($R->get_param("L")=='api'){
                 $xpath->query('/itracker/request/class')->item(0)->nodeValue;
         $request["method"]=
                 $xpath->query('/itracker/request/method')->item(0)->nodeValue;
-        $params = $xpath->query('/itracker/request/params');
+        $params = $xpath->query('/itracker/request/params/*');
         foreach ($params as $p){
             $request["params"][$p->nodeName]=$p->nodeValue;
         }
