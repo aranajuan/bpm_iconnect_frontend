@@ -4,16 +4,16 @@ var mode_details = 0;
 
 
 function main() {
-    $("#nuevo").click(function () {
+    $("#nuevo").click(function() {
         clear_popup();
         show_details();
     });
-    
-    $("#actualizar").click(function () {
+
+    $("#actualizar").click(function() {
         refresh_List();
     });
 
-    $("#details_ok").click(function () {
+    $("#details_ok").click(function() {
         if (mode_details)
             reg_update();
         else
@@ -50,6 +50,15 @@ function clear_popup() {
             }
     );
     $("#txt_equiposvisible").idSEL(
+            {
+                'class': 'team',
+                method: 'idsel_listall',
+                multiple: true
+
+            }
+    );
+
+    $("#txt_equiposreporta").idSEL(
             {
                 'class': 'team',
                 method: 'idsel_listall',
@@ -118,7 +127,7 @@ function show_update(data) {
 
             }
     );
-    
+
     $("#txt_equiposreporta").idSEL(
             {
                 'class': 'team',
@@ -162,7 +171,7 @@ function refresh_List() {
                 'class': 'team',
                 method: 'lister'
             },
-    function (data) {
+    function(data) {
         $("#List").html(data.html);
         $("#tablelist").dataTable(
                 {
@@ -172,7 +181,7 @@ function refresh_List() {
                     "stateSave": true
                 });
     },
-            function (data) {
+            function(data) {
                 $("#List").html(data);
             }
     );
@@ -196,7 +205,7 @@ function close_details() {
 function show_delete(id) {
     DelID = id;
     confirm_p("Desea eliminar?", "Confirmar",
-            function () {
+            function() {
                 postControl.sendRequest(
                         true,
                         'teamdelete',
@@ -205,7 +214,7 @@ function show_delete(id) {
                             method: 'delete',
                             id: DelID
                         },
-                function (data) {
+                function(data) {
                     if (data.type === "array") {
                         if (data.result === "ok") {
                             alert_p("Registro eliminado", "Eliminado");
@@ -217,7 +226,7 @@ function show_delete(id) {
                     }
 
                 },
-                        function (data) {
+                        function(data) {
                             alert_p(data, "Error");
                         }
                 );
@@ -249,7 +258,7 @@ function reg_update() {
                 idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
                 idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
-    function (data) {
+    function(data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 close_details();
@@ -261,7 +270,7 @@ function reg_update() {
         }
 
     },
-            function (data) {
+            function(data) {
                 alert_p(data, "Error");
             }
     );
@@ -288,9 +297,10 @@ function reg_insert() {
                 staffhome_vista: $("#txt_vistainbox").val(),
                 tipo: $("#sel_tipo").val(),
                 idsequipos_deriva: array_txt($("#txt_equiposderiva").val()),
-                idsequipos_visible: array_txt($("#txt_equiposvisible").val())
+                idsequipos_visible: array_txt($("#txt_equiposvisible").val()),
+                idsequipos_reporta: array_txt($("#txt_equiposreporta").val())
             },
-    function (data) {
+    function(data) {
         if (data.type === "array") {
             if (data.result === "ok") {
                 close_details();
@@ -302,7 +312,7 @@ function reg_insert() {
         }
 
     },
-            function (data) {
+            function(data) {
                 alert_p(data, "Error");
             }
     );
