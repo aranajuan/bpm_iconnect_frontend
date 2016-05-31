@@ -62,7 +62,9 @@
 
 <br/>
 <br />
-<img src="img/thumbnail/xls.png" height="30" class="img_lnk" onclick="excel_link()" />
+<h3>
+Exportar <img src="img/thumbnail/xls.png" height="16" width="16" class="img_lnk" onclick="excel_link()" />
+</h3>
 <div id="List"></div>
 
 

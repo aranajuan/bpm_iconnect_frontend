@@ -67,7 +67,7 @@ class USER {
      * @param array $tmp 
      */
     public function load_vec($tmp) {
-        $this->usr = $tmp["usr"];
+        $this->usr = strtoupper($tmp["usr"]);
         $this->instancia = $tmp["instancia"];
         $this->ip = $tmp["ip"];
         $this->hash = $tmp["hash"];
