@@ -52,8 +52,12 @@ function GO($XML, $output = "html") {
     }
     $html_tree.="</table>";
     if (is_numeric($result["idmaster"])) {
-        $res.="<div style=\"width: 60%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('" . $result["idmaster"] . "')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+        $res.="<div style=\"display:inline-block;width: 30%;margin-left:10px; margin-top:5px;padding: 4px;cursor: pointer;\" class= \"ui-state-error\" onclick=\"show_details('" . $result["idmaster"] . "')\" >Este ticket esta adjunto a otro&nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
     }
+     if ($result["hasupdate"]=='true') {
+        $res.="<div style=\"display:inline-block;width: 30%;margin-left:10px; margin-top:5px;padding: 4px;cursor: pointer;\" class= \"ui-state-error\" onclick=\"show_details('" . $XML->get_paramSent('id') . "',false)\" >Ver detalles de actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+    }
+    
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
         $afterVal="";
@@ -63,7 +67,7 @@ function GO($XML, $output = "html") {
         $res.="<div class='date_TH'>" . $th["action"]["date"] . "</div>";
         $res.="</div>";
         $contact="";
-        if ($th["action"]["ejecuta"] === "open") {
+        if ($i==0) {
             $res.="<div class='element'>";
             $res.=$html_tree;
             $res.="</div>";
