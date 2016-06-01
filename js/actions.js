@@ -103,9 +103,10 @@ function go(accion) {
 /**
  * Carga detalles en #popup_detalles
  * @param {int} id
+ * @param {boolean} 
  * @returns {undefined}
  */
-function show_details(id) {
+function show_details(id,hideupdate) {
     $("#popup_detalles").html(JAVA_LOADING);
     $("#popup_detalles").dialog({title: "Cargando"});
     TKTID = id;
@@ -115,7 +116,8 @@ function show_details(id) {
             {
                 'class': 'tkt',
                 method: 'geth',
-                id: id
+                id: id,
+                hideupdate: hideupdate
             },
     function(data) {
         if (data.result === "ok") {
