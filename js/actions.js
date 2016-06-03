@@ -84,6 +84,9 @@ function go(accion) {
                 if (result.postactions !== 'ok') {
                     alert_p('Ocurrio un error inesperado, comuniquese con su soporte. ' + result.postactions, 'Error');
                 }
+                if(result.info && result.info!=''){
+                	alert_p(result.info, "Informacion");
+                }
             } else {
                 alert_p(result.msj+'-'+result.tkth, "Error");
             }
