@@ -20,14 +20,9 @@ if (isset($_SERVER['HTTPS']) &&
 else {
   $rurl[0] = 'http://'.$rurl[0];
 }
-if($rurl[0]!= (HTML_CONTROLLER.'/')){
-    header("Location: " . HTML_CONTROLLER . '/?'.$rurl[1]);
-    exit();
-}
 
 /* redirect for api */
-
-if(trim($R->get_param("L"))=='api'){
+if(preg_match('/\\/api\\/?$/' ,$_SERVER["REQUEST_URI"])){
     $docApi= new DOMDocument();
     try{
         $docApi->loadXML(trim(file_get_contents('php://input')));
