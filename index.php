@@ -42,11 +42,20 @@ if(preg_match('/\\/api\\/?$/' ,$_SERVER["REQUEST_URI"])){
         foreach ($params as $p){
             $request["params"][$p->nodeName]=$p->nodeValue;
         }
+        $files = $xpath->query('/itracker/request/files/*');
+        if(count($files)){
+            $request["files"]=array();
+            foreach ($files as $p){
+                array_push($request["files"], 
+                        array("name"=>$p->nodeName,"data"=>$p->nodeValue));                
+            }
+        }
         $U = new USER();
         $U->load_vec($udate);
         $app = new XmlHandler();
         $app->setFrontName(FRONT_NAME_API);
-        $app->load_params($U, $request["class"], $request["method"], $request["params"]);
+        $app->load_params($U, $request["class"], $request["method"],
+                $request["params"],$request["files"]);
         $app->send_request();
         echo $app->plain_response();
     } catch (Exception $e){

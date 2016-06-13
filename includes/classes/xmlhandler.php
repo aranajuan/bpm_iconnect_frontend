@@ -95,7 +95,7 @@ class XmlHandler {
      * @param USER $u
      * @param array $params 
      */
-    public function load_params($U, $class, $method, $params = null) {
+    public function load_params($U, $class, $method, $params = null, $files=null) {
         $this->create_doc();
         $this->user = $U;
         $this->params = $params;
@@ -104,10 +104,14 @@ class XmlHandler {
         $request->appendChild($this->create_requestElement("class", xmlEscape($class)));
         $request->appendChild($this->create_requestElement("method", xmlEscape($method)));
         if($this->params["sendfiles"]=="true"){
-            $files=$this->get_tempfiles();
+            $encoded=true;
+            if($files==null){
+                $files=$this->get_tempfiles();
+                $encoded=false;
+            }
             $filesNode = $this->create_requestElement("files");
             foreach($files as $f){
-                $filesNode->appendChild($this->create_requestElementSecure($f["name"], $f["data"]));
+                $filesNode->appendChild($this->create_requestElementSecure($f["name"], $f["data"],$encoded));
             }
             $request->appendChild($filesNode); 
         }
@@ -161,9 +165,13 @@ class XmlHandler {
      * @param type $k
      * @param type $v
      */
-    public function create_requestElementSecure($k, $v){
+    public function create_requestElementSecure($k, $v,$encoded=false){
         if($v==null or $v=='') return null;
-        $val = base64_encode($v);
+        if($encoded){
+            $val=$v;
+        } else {
+            $val = base64_encode($v);
+        }
         if($val){
             return $this->get_requestDOM()->createElement($this->make_param($k), $val);
         }
