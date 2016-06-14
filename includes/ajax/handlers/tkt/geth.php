@@ -45,14 +45,19 @@ function GO($XML, $output = "html") {
     $res = "";
     $i = 0;
     $tops = make_arrayobj($result["tree"]["option"]);
+
     $html_tree = "<br/><b>Tipificacion:</b><br/><table>";
     foreach ($tops as $t) {
         $html_tree.="<tr><td><b>" . $t["question"] . "</b><td><td>" . $t["ans"] . "</td></tr>";
     }
     $html_tree.="</table>";
     if (is_numeric($result["idmaster"])) {
-        $res.="<div style=\"width: 60%; border:2px solid; background-color: #ccffcc; padding: 4px;cursor: pointer;margin-top:5px;\" onclick=\"show_details('" . $result["idmaster"] . "')\" >Este ticket esta adjunto a otro que puede tener actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+        $res.="<div style=\"display:inline-block;width: 30%;margin-left:10px; margin-top:5px;padding: 4px;cursor: pointer;\" class= \"ui-state-error\" onclick=\"show_details('" . $result["idmaster"] . "')\" >Este ticket esta adjunto a otro&nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
     }
+     if ($result["hasupdate"]=='true') {
+        $res.="<div style=\"display:inline-block;width: 30%;margin-left:10px; margin-top:5px;padding: 4px;cursor: pointer;\" class= \"ui-state-error\" onclick=\"show_details('" . $XML->get_paramSent('id') . "',false)\" >Ver detalles de actualizaciones &nbsp;<img src=\"img/b_details.png\" class=\"img_lnk\"  /></div>";
+    }
+    
     $ths = make_arrayobj($result["ths"]["th"]);
     foreach ($ths as $th) {
         $afterVal="";
@@ -61,14 +66,18 @@ function GO($XML, $output = "html") {
         $res.="<div class='title_TH'>" . strtoupper($th["action"]["alias"]) . "</div>";
         $res.="<div class='date_TH'>" . $th["action"]["date"] . "</div>";
         $res.="</div>";
-
-        if ($th["action"]["ejecuta"] === "open") {
+        $contact="";
+        if ($i==0) {
             $res.="<div class='element'>";
             $res.=$html_tree;
             $res.="</div>";
             if ($GLOBALS['U']->check_access('TKT', 'getpdf')) {
                 $afterVal= '<a href="?class=tkt&method=getpdf&id=' . $XML->get_paramSent('id') .
-                        '">&nbsp;&nbsp;&nbsp;<img src="img/thumbnail/pdf.png"  height="20" title="exportar" alt="exportar"/><br/></a>';
+                        '">&nbsp;&nbsp;&nbsp;<img src="img/thumbnail/pdf.png"  height="20" title="exportar" alt="exportar"/></a>';
+            }
+            if($XML->get_user()->get_prop('usr')!=$result["USER"]["usr"]){
+                $contact = '&nbsp;<a href="sip:'.$result["USER"]["mail"].'"><img src="img/lync.jpg" class="img_lnk" /></a>
+                    &nbsp;<a href="mailto:'.$result["USER"]["mail"].'?subject=iTracker '.$XML->get_paramSent('id').'"><img src="img/mail.png" with="16" height="16" class="img_lnk"/></a>';
             }
         }
         $res.="<div class='element'>";
@@ -96,7 +105,7 @@ function GO($XML, $output = "html") {
         }
         $res.="</div>";
         $res.="<div class='element'>";
-        $res.="<b>" . $th["action"]["value"] . "</b>".$afterVal;
+        $res.="<b>" . $th["action"]["value"] . "</b>".$afterVal.$contact."<br/>";
         $res.="</div>";
         $res.="</div>";
         $i++;

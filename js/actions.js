@@ -84,6 +84,9 @@ function go(accion) {
                 if (result.postactions !== 'ok') {
                     alert_p('Ocurrio un error inesperado, comuniquese con su soporte. ' + result.postactions, 'Error');
                 }
+                if(result.info && result.info!=''){
+                	alert_p(result.info, "Informacion");
+                }
             } else {
                 alert_p(result.msj+'-'+result.tkth, "Error");
             }
@@ -103,9 +106,10 @@ function go(accion) {
 /**
  * Carga detalles en #popup_detalles
  * @param {int} id
+ * @param {boolean} 
  * @returns {undefined}
  */
-function show_details(id) {
+function show_details(id,hideupdate) {
     $("#popup_detalles").html(JAVA_LOADING);
     $("#popup_detalles").dialog({title: "Cargando"});
     TKTID = id;
@@ -115,7 +119,8 @@ function show_details(id) {
             {
                 'class': 'tkt',
                 method: 'geth',
-                id: id
+                id: id,
+                hideupdate: hideupdate
             },
     function(data) {
         if (data.result === "ok") {

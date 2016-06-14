@@ -26,6 +26,8 @@ class XmlHandler {
     private $params;
     private $error;
 
+    private $selectedFront = null;
+    
     /*array*/
     private $params_sent;
     
@@ -43,6 +45,14 @@ class XmlHandler {
     }
 
     /**
+     * Cambia el front por defecto
+     * @param type $fname
+     */
+    public function setFrontName($fname){
+        $this->selectedFront = $fname;
+    }
+    
+    /**
      * Genera el header para el envio del XML // ip del usuario usr hash etc
      */
     private function make_header() {
@@ -54,8 +64,11 @@ class XmlHandler {
             $header->appendChild($this->request->createElement("hash", $this->user->get_prop("hash")));
         }
         $header->appendChild($this->request->createElement("ip", $_SERVER['REMOTE_ADDR']));
-        $header->appendChild($this->request->createElement("front", FRONT_NAME));
-        
+        if($this->selectedFront==null){
+            $header->appendChild($this->request->createElement("front", FRONT_NAME));
+        } else {
+            $header->appendChild($this->request->createElement("front", $this->selectedFront));
+        }
     }
 
     /**
@@ -82,7 +95,7 @@ class XmlHandler {
      * @param USER $u
      * @param array $params 
      */
-    public function load_params($U, $class, $method, $params = null) {
+    public function load_params($U, $class, $method, $params = null, $files=null) {
         $this->create_doc();
         $this->user = $U;
         $this->params = $params;
@@ -91,10 +104,14 @@ class XmlHandler {
         $request->appendChild($this->create_requestElement("class", xmlEscape($class)));
         $request->appendChild($this->create_requestElement("method", xmlEscape($method)));
         if($this->params["sendfiles"]=="true"){
-            $files=$this->get_tempfiles();
+            $encoded=true;
+            if($files==null){
+                $files=$this->get_tempfiles();
+                $encoded=false;
+            }
             $filesNode = $this->create_requestElement("files");
             foreach($files as $f){
-                $filesNode->appendChild($this->create_requestElementSecure($f["name"], $f["data"]));
+                $filesNode->appendChild($this->create_requestElementSecure($f["name"], $f["data"],$encoded));
             }
             $request->appendChild($filesNode); 
         }
@@ -148,9 +165,13 @@ class XmlHandler {
      * @param type $k
      * @param type $v
      */
-    public function create_requestElementSecure($k, $v){
+    public function create_requestElementSecure($k, $v,$encoded=false){
         if($v==null or $v=='') return null;
-        $val = base64_encode($v);
+        if($encoded){
+            $val=$v;
+        } else {
+            $val = base64_encode($v);
+        }
         if($val){
             return $this->get_requestDOM()->createElement($this->make_param($k), $val);
         }

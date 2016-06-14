@@ -60,7 +60,8 @@ function listmy() {
                 {
                     "bJQueryUI": true,
                     "sPaginationType": "full_numbers",
-                    "bAutoWidth": false
+                    "bAutoWidth": false,
+                    "stateSave": true
                 });
     },
             function (data) {
@@ -94,7 +95,8 @@ function listfromteam() {
                 {
                     "bJQueryUI": true,
                     "sPaginationType": "full_numbers",
-                    "bAutoWidth": false
+                    "bAutoWidth": false,
+                    "stateSave": true
                 });
     },
             function (data) {

@@ -1,6 +1,7 @@
 <?php
 
 require_once 'includes/utils/init.php'; // Configuraciones DB, Constantes, Direcciones
+require_once "includes/classes/xmlhandler.php";
 
 $R = new HtmlRequest();
 
@@ -19,12 +20,49 @@ if (isset($_SERVER['HTTPS']) &&
 else {
   $rurl[0] = 'http://'.$rurl[0];
 }
-if($rurl[0]!= (HTML_CONTROLLER.'/')){
-    header("Location: " . HTML_CONTROLLER . '/?'.$rurl[1]);
+
+/* redirect for api */
+if(preg_match('/\\/api\\/?$/' ,$_SERVER["REQUEST_URI"])){
+    $docApi= new DOMDocument();
+    try{
+        $docApi->loadXML(trim(file_get_contents('php://input')));
+        $xpath = new DOMXpath($docApi);
+        $udate= array();
+        $request= array();
+        $udate["usr"]=$xpath->query('/itracker/header/usr')->item(0)->nodeValue;
+        $udate["instancia"]=
+                $xpath->query('/itracker/header/instance')->item(0)->nodeValue;
+        $udate["hash"]=
+                $xpath->query('/itracker/header/hash')->item(0)->nodeValue;
+        $request["class"]=
+                $xpath->query('/itracker/request/class')->item(0)->nodeValue;
+        $request["method"]=
+                $xpath->query('/itracker/request/method')->item(0)->nodeValue;
+        $params = $xpath->query('/itracker/request/params/*');
+        foreach ($params as $p){
+            $request["params"][$p->nodeName]=$p->nodeValue;
+        }
+        $files = $xpath->query('/itracker/request/files/*');
+        if(count($files)){
+            $request["files"]=array();
+            foreach ($files as $p){
+                array_push($request["files"], 
+                        array("name"=>$p->nodeName,"data"=>$p->nodeValue));                
+            }
+        }
+        $U = new USER();
+        $U->load_vec($udate);
+        $app = new XmlHandler();
+        $app->setFrontName(FRONT_NAME_API);
+        $app->load_params($U, $request["class"], $request["method"],
+                $request["params"],$request["files"]);
+        $app->send_request();
+        echo $app->plain_response();
+    } catch (Exception $e){
+        echo "Error: ".$e->getMessage();
+    }
     exit();
 }
-
-
 
 $U = new USER();
 $U->load_session();
