@@ -98,7 +98,7 @@ function GO($XML, $output = "html") {
         if (count($canupdateList[$acname[0]]) && $th["action"]["isupdated"] == 'false') {
             $res.='<br/>';
             foreach ($canupdateList[$acname[0]] as $updt) {
-                $res.="<input type=\"button\" class=\"button\" value=\"" . $updt[1] . "\""
+                $res.="<input type=\"button\" class=\"button\" style=\"margin: .15em;\" value=\"" . $updt[1] . "\""
                         . " onclick='getform(\"" . $acname[0] . "-UPDATE-" . $updt[0] . "\","
                         . "{\"idth\":\"" . $th["action"]["id"] . "\"})'  />";
             }
