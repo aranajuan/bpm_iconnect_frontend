@@ -31,10 +31,20 @@ function main() {
  * @returns {undefined}
  */
 function report() {
-    window.open("?class=report&method=report&longp=1&filter=" +
-            $("#filtro_origen").val() +
+    var rq = "?class=report&method=report&longp=1&filter=";
+    rq+=$("#filtro_origen").val() +
             "&datefilter=" + $("#filtro_fechas").val() +
             "&from=" + $("#desde").val() +
             "&too=" + $("#hasta").val() +
-            "&team=" + array_txt($("#teams").val()));
+            "&team=" + array_txt($("#teams").val());
+    if($("#avanzado").length && $("#avanzado").val()!==''){
+        try{
+            var txt= encodeURIComponent(JSON.stringify(JSON.parse($("#avanzado").val())));
+        } catch(e){
+            alert_p("Parametrizacion invalida","Error");
+            return;
+        }
+        rq+="&config=" + txt;
+    }
+    window.open(rq);
 }

@@ -1017,11 +1017,6 @@ class UploadHandler {
                 } else {
                     move_uploaded_file($uploaded_file, $file_path);
                 }
-            } else {
-                // Non-multipart uploads (PUT method support)
-                file_put_contents(
-                        $file_path, fopen('php://input', 'r'), $append_file ? FILE_APPEND : 0
-                );
             }
             $file->thumbnail = 0;
             $file_size = $this->get_file_size($file_path, $append_file);

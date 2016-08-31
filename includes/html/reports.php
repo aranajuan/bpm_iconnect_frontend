@@ -20,6 +20,17 @@
         <input type="text" id="hasta" class="dtpck"/>
     </div>
     Seleccione un rango no mayor a 31 dias
+    
+    <?
+        if($U->get_prop('superuser')){?>
+            <br/><br/>
+            <div style="display:inline;">
+                <b>Avanzado:</b>(dejar en blanco para no modificar el reporte)<br/>
+                <textarea id="avanzado" rows="20" cols="100"></textarea>
+            </div>
+    <?
+        }
+    ?>
     <br/><br/>
     <?= menu_button("DESCARGAR", "report()"); ?>
 
