@@ -25,6 +25,7 @@ function GO($XML) {
     }
     $LOG->addLine(array($XML->get_paramSent("usr"), "login exitoso"));
     $arr = $XML->get_response("data");
+    $arr = $arr['user'];
     $_SESSION["usr"] = $XML->get_user()->get_prop("usr");
     $_SESSION["nombre"] = $arr["nombre"];
     $_SESSION["puesto"] = $arr["puesto"];
