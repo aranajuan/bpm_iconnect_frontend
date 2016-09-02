@@ -17,7 +17,7 @@ function GO($XML, $output = "html") {
     $data = $XML->get_response("data");
     
     $res="<table style='width:100%'>";
-    $objs=  make_arrayobj($data["list"]["TKT"]);
+    $objs=  make_arrayobj($data["list"]["tkt"]);
     foreach($objs as $tkt){
         $res.="<tr >";
         $res.="<td style='border:1px solid'>".$tkt["id"]."</td><td style='border:1px solid'>".$tkt["usr_o.nombre"]."</td><td style='border:1px solid'><img class='img_lnk' src='img/b_details.png' onclick=\"javascript:show_details('".$tkt["id"]."')\" /></td>";

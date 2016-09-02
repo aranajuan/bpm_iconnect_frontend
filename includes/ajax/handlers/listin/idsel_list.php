@@ -5,5 +5,5 @@
  * @param string    $output //html
  */
 function GO($XML,$output="html") {
-    return normal_idsel($XML,"LISTIN",array("id","nombre"));
+    return normal_idsel($XML,"listin",array("id","nombre"));
 }

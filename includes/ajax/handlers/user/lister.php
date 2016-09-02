@@ -15,7 +15,7 @@ function GO($XML,$output="html") {
     }
     
     $list = $XML->get_response("list");
-    $users = $list["USER"];
+    $users = $list["user"];
     if(count($users)>0){
         $users=  make_arrayobj($users);
     }
