@@ -34,7 +34,6 @@ function main() {
     }
 
     refresh_list();
-    refresh_listClose();
 }
 
 /**
