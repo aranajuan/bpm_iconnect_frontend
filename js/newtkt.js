@@ -54,7 +54,7 @@ function go(path) {
         //{"type":"array","result":{"result":"ok","msj":"","openother":"","id":"336","tkth":"ok","sendfiles":"ok"},"status":"ok"}
         if (data.status == "ok") {
             var result = data.result;
-            if (result.result === "ok" && result.tkth=='ok') {
+            if (result.result === "ok") {
                 if (result.type == 'file') {
                     var text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2>";
                     if (ValidUrl(result.file)) {

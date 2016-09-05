@@ -15,7 +15,7 @@ function GO($XML,$output="html") {
     }
     
     $list = $XML->get_response("list");
-    $listV = $list["DIVISION"];
+    $listV = $list["division"];
     
     $HTML=arrayToTable(array("id","nombre","linkwi"), $listV, array("id","nombre","linkwi"), "id", false, true, false, "tablelist", "class=\"display\"");
     
