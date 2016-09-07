@@ -277,7 +277,11 @@ class XmlHandler {
      */
     public function get_error() {
         if($this->error){
-            return "*".$this->error;
+             $errV = explode('||',$this->error["msj"]);
+	     if($errV[1]!=''){
+		     return '<b>'.$errV[0].'</b><br/>'.$this->error["code"].'-'.$errV[1];
+	     }
+            return $this->error["code"].'-'.$errV[0];
         }else{
             return null;
         }
