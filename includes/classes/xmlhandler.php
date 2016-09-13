@@ -280,7 +280,7 @@ class XmlHandler {
 	 */
 	private function check_error() {
 		$this->error = $this->get_response ( "error" );
-		if (strpos ( strtolower ( $this->error ), "usuario no logeado" ) != false) {
+		if ($this->error['code']==218) {
 			$this->get_user ()->logout ();
 		}
 		if ($this->error) {
