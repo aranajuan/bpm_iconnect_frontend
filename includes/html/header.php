@@ -26,4 +26,5 @@
                                 <div id="information_head" style="width: 510px; height: 10px;">
                                     <div id="information" style="width: 500px;display: none;">&nbsp;</div>
                                 </div>
+				<div id="msjs" style="width: 500px;display: none;margin-top:10px">&nbsp;</div>
                                 

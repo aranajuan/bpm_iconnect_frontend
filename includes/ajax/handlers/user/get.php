@@ -9,7 +9,7 @@ function GO($XML, $output = "html") {
         return array("type" => "html", "html" => "Formato no soportado.", "status" => "error");
     }
 
-    $result = $XML->get_response("USER");
+    $result = $XML->get_response("user");
    
     return array("type" => "array", "result" => $result, "status" => "ok");
 }

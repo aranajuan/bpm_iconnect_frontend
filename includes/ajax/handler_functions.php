@@ -66,7 +66,7 @@ function normal_tktlist($XML,$defcol,$id, $output = "html"){
     }
     $data = $XML->get_response("data");
     $list = $data["list"];
-    $TKL = $list["TKT"];
+    $TKL = $list["tkt"];
     
     if (isset($data["view"])) {
         $cols = explode(",", $data["view"]); 
