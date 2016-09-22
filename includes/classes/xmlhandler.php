@@ -4,20 +4,20 @@
  * Administra la comunicacion XML con el application
  */
 class XmlHandler {
-	
+
 	/**
 	 *
 	 * @var SimpleXMLElement
 	 */
 	private $request;
 	private $response;
-	
+
 	/**
 	 *
 	 * @var SimpleXMLElement
 	 */
 	private $responseDom;
-	
+
 	/**
 	 *
 	 * @var USER
@@ -26,10 +26,10 @@ class XmlHandler {
 	private $params;
 	private $error;
 	private $selectedFront = null;
-	
+
 	/* array */
 	private $params_sent;
-	
+
 	/**
 	 * Crea documento para la solicitud
 	 */
@@ -42,16 +42,16 @@ class XmlHandler {
 		$request_d = $this->request->createElement ( "request" );
 		$xmlRoot->appendChild ( $request_d );
 	}
-	
+
 	/**
 	 * Cambia el front por defecto
-	 * 
-	 * @param type $fname        	
+	 *
+	 * @param type $fname
 	 */
 	public function setFrontName($fname) {
 		$this->selectedFront = $fname;
 	}
-	
+
 	/**
 	 * Genera el header para el envio del XML // ip del usuario usr hash etc
 	 */
@@ -70,10 +70,10 @@ class XmlHandler {
 			$header->appendChild ( $this->request->createElement ( "front", $this->selectedFront ) );
 		}
 	}
-	
+
 	/**
 	 * Archivos a xml
-	 * 
+	 *
 	 * @return array Array de archivos
 	 */
 	private function get_tempfiles() {
@@ -87,17 +87,17 @@ class XmlHandler {
 			$i ++;
 			array_push ( $base64F, array (
 					"name" => $sfname,
-					"data" => $im 
+					"data" => $im
 			) );
 		}
 		return $base64F;
 	}
-	
+
 	/**
 	 * Carga los parametros necesarios para ejecutar la consulta
-	 * 
-	 * @param USER $u        	
-	 * @param array $params        	
+	 *
+	 * @param USER $u
+	 * @param array $params
 	 */
 	public function load_params($U, $class, $method, $params = null, $files = null) {
 		$this->create_doc ();
@@ -119,7 +119,7 @@ class XmlHandler {
 			}
 			$request->appendChild ( $filesNode );
 		}
-		
+
 		if (is_array ( $this->params )) {
 			$paramsNode = $this->create_requestElement ( "params" );
 			$this->params_sent = null;
@@ -131,29 +131,29 @@ class XmlHandler {
 		}
 		$this->make_header ();
 	}
-	
+
 	/**
 	 * Devuelve parametro enviado
-	 * 
-	 * @param string $key        	
+	 *
+	 * @param string $key
 	 * @return string
 	 */
 	public function get_paramSent($key) {
 		return $this->params_sent [$key];
 	}
-	
+
 	/**
 	 * Devuelve DOM de request
-	 * 
+	 *
 	 * @return SimpleXMLElement
 	 */
 	private function get_requestDOM() {
 		return $this->request;
 	}
-	
+
 	/**
 	 * Crea elemento en request dom
-	 * 
+	 *
 	 * @param string $k
 	 *        	key
 	 * @param string $v
@@ -169,12 +169,12 @@ class XmlHandler {
 			return $this->get_requestDOM ()->createElement ( $this->make_param ( $k ) );
 		}
 	}
-	
+
 	/**
 	 * Crea elemento en dom sin verificar y en base64
-	 * 
-	 * @param type $k        	
-	 * @param type $v        	
+	 *
+	 * @param type $k
+	 * @param type $v
 	 */
 	public function create_requestElementSecure($k, $v, $encoded = false) {
 		if ($v == null or $v == '')
@@ -189,21 +189,21 @@ class XmlHandler {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Escapa caracteres del texto a enviar por xml
-	 * 
-	 * @param string $text        	
-	 * @param boolean $CDATA        	
+	 *
+	 * @param string $text
+	 * @param boolean $CDATA
 	 * @return string
 	 */
 	private function make_param($text, $CDATA) {
 		return trim ( xmlEscape ( strip_tags ( $text ), $CDATA ) );
 	}
-	
+
 	/**
 	 * Envia request al aplication
-	 * 
+	 *
 	 * @return boolean exito al parsear.
 	 */
 	public function send_request() {
@@ -227,19 +227,19 @@ class XmlHandler {
 		$this->response = $data;
 		return $this->load_response ();
 	}
-	
+
 	/**
 	 * Funcion para debug
-	 * 
+	 *
 	 * @return string
 	 */
 	public function plain_response() {
 		return $this->response;
 	}
-	
+
 	/**
 	 * Carga respuesta en dom
-	 * 
+	 *
 	 * @return boolean error
 	 */
 	private function load_response() {
@@ -255,27 +255,22 @@ class XmlHandler {
 			return false;
 		}
 	}
-	
+
 	/**
 	 * Elimina archivos si corresponde
-	 * 
+	 *
 	 * @return string
 	 */
 	private function clear_files() {
-		if ($this->params ["sendfiles"] == "true") {
-			$ret = $this->get_response ( "data" );
-			if ($ret ["sendfiles"] == "ok") {
+		if ($this->check_error()) {
 				$this->user->delete_file_tmp ();
-			} elseif ($ret ["sendfiles"] != "no requerido") {
-				return "No se recibieron archivos correctamente";
-			}
 		}
 		return "ok";
 	}
-	
+
 	/**
 	 * Analiza error en xml desde el aplication
-	 * 
+	 *
 	 * @return boolean true->no hay error
 	 */
 	private function check_error() {
@@ -288,10 +283,10 @@ class XmlHandler {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Devuelve error
-	 * 
+	 *
 	 * @return string Description error
 	 */
 	public function get_error() {
@@ -301,16 +296,16 @@ class XmlHandler {
 				return '<b>' . $errV [0] . '</b><br/>' . $this->error ["code"] . '-' . $errV [1];
 			}
 			return $this->error ["code"] . '-' . $errV [0];
-		} 
+		}
 		if($this->error){
 			return '-'.$this->error;
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Obtener datos de la respuesta
-	 * 
+	 *
 	 * @param string $tag
 	 *        	elemento a buscar
 	 * @param boolean $secure
@@ -326,11 +321,11 @@ class XmlHandler {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * Genera array a partir del elemento
-	 * 
-	 * @param SimpleXMLElement $EL        	
+	 *
+	 * @param SimpleXMLElement $EL
 	 * @param boolean $secure
 	 *        	elemento seguro sin tags
 	 * @return array<string><string>/string array recursivo
@@ -359,11 +354,11 @@ class XmlHandler {
 			return $this->filter_param ( ( string ) $EL, $secure ); // solo contiene texto
 		}
 	}
-	
+
 	/**
 	 * Devuelve parametro limpio de etiquetas XSS
-	 * 
-	 * @param string $value        	
+	 *
+	 * @param string $value
 	 * @param boolean $secure
 	 *        	elemento seguro sin tags
 	 * @return string $param
@@ -374,10 +369,10 @@ class XmlHandler {
 		}
 		return xmlItTags ( trim ( strip_tags ( $value ) ) );
 	}
-	
+
 	/**
 	 * Usuario ejecuta
-	 * 
+	 *
 	 * @return USER
 	 */
 	public function get_user() {
