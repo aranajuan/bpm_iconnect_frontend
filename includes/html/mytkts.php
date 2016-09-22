@@ -72,4 +72,4 @@ Exportar <img src="img/thumbnail/xls.png" height="16" width="16" class="img_lnk"
     <div><h2>ULTIMOS SOLUCIONADOS</h2></div>
 </div>
 
-<div id="ListClosed"></div>
+<div id="ListClosed"><h3><a href="javascript:refresh_listClose();">Cargar <img src="img/b_tblimport.png" class="img_lnk"></a></h3></div>

@@ -19,8 +19,8 @@ function GO($XML, $output = "html") {
 
     $arr = $XML->get_response("tree");
     //return array("type" => "html", "html" => "<pre>".print_r($arr,true)."</pre>", "status" => "error");
-    if (isset($arr["previous"]["OPTION"])) {
-        $prev = make_arrayobj($arr["previous"]["OPTION"]);
+    if (isset($arr["previous"]["option"])) {
+        $prev = make_arrayobj($arr["previous"]["option"]);
 
         $html = "";
         $histHTML = "";
@@ -76,13 +76,13 @@ function GO($XML, $output = "html") {
         $html.=$backbutton;
     } else {
         $html.="<div style=\"width:55%;float:left;\">";
-        $options = make_arrayobj($arr["options"]["OPTION"]);
+        $options = make_arrayobj($arr["options"]["option"]);
 
         $html.= "<img src=\"img/icon.png \" />" . mb_strtoupper($arr["question"]["title"],'utf-8');
 
         $html.="<br/></br>";
 
-        if (!isset($arr["options"]["OPTION"])) {
+        if (!isset($arr["options"]["option"])) {
             $html .= "No se encontraron opciones disponibles.<br/><br/>";
         } else {
             foreach ($options as $o) {
