@@ -28,7 +28,6 @@ function getform(accion,extra) {
                         resizable: false,
                         width: 800,
                         height: 'auto',
-                        modal: true,
                         draggable: true
                     });
                     build_buttons();
@@ -103,7 +102,7 @@ function go(accion) {
 /**
  * Carga detalles en #popup_detalles
  * @param {int} id
- * @param {boolean} 
+ * @param {boolean}
  * @returns {undefined}
  */
 function show_details(id,hideupdate) {
@@ -128,7 +127,6 @@ function show_details(id,hideupdate) {
                 resizable: false,
                 width: 800,
                 height: 500,
-                modal: true,
                 draggable: true,
                 position: {
                     my: 'top',
