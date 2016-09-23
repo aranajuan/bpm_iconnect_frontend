@@ -18,7 +18,7 @@ class formmaker {
      */
     private $fileRequired;
     /**
-     * 
+     *
      * @param type $id  formid - eventid
      */
     public function __construct($id=null) {
@@ -103,7 +103,7 @@ class formmaker {
 
     /**
      * Devuelve vista html
-     * @param array<String> $hideTypes type a ocultar 
+     * @param array<String> $hideTypes type a ocultar
      * @param boolean $hideTypes ocultar comentarios
      * @return string
      */
@@ -204,7 +204,7 @@ class formmaker {
     }
 
     private function make_select($el) {
-        $select = "<select id='" . $el["id"] . "' class='" . $el["formclass"] . "'>";
+        $select = "<select id='" . $el["id"] . "' class='" . $el["formclass"] . " multiselect_simple'>";
         $opts = make_arrayobj($el["option"]);
         foreach ($opts as $o) {
             $SELECTED="";
@@ -229,10 +229,10 @@ class formmaker {
         $this->js.="$('#" . $el["id"] . "').idSEL({'class':'" . $el["idselparams"]["class"] . "','method':'" . $el["idselparams"]["method"] . "',params:{idtkt:'" . $this->statics["tkt"]["id"] . "'} });";
         return $this->putintable($el["label"], "<div id='" . $el["id"] . "' class='" . $el["formclass"] . "'></div>");
     }
-    
-    
+
+
     /* view */
-    
+
     private function make_input_view($el) {
         $value=$this->link_adapt($el["value"]);
         return $this->putintable($el["label"], $value, $el["comment"]);
@@ -285,7 +285,7 @@ class formmaker {
             }
         }
     }
-    
+
     private function make_select_view($el) {
         $ans="";
         $opts = make_arrayobj($el["option"]);
