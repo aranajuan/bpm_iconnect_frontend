@@ -7,10 +7,10 @@ jQuery.fn.fileuploader = function (options) {
             '<b>Estas subiendo archivos en otra ventana de itracker?</b><br/>' +
             'Solo se puede subir archivos de un caso a la vez, cuando finalices o si no estas cargando nada presiona en <div class="lnk_blue" style="cursor:pointer;">CONTINUAR</div><br/>' +
             '</div><div id="DIVall_' + idObj + '" style="width:400px;display:none;">' +
-            '<div style="padding-top:20px;padding-left:50px;background-image:url(img/fileuploader.png);background-repeat:no-repeat;height:95px;width:350px">' +
+            '<div style="padding-top:2px;padding-left:5px;background-image:url(img/fileuploader.png);background-repeat:no-repeat;height:95px;width:350px">' +
             '<p style="color: gray;font-size:12px;">Puede pegar imagenes con el atajo CTRL+V<br/>' +
             '<input id="INPadd_' + idObj + '" type="file" name="files[]">' +
-            '<div style="margin:0px;padding:0px;font-size:9px;" id="DIVstatus_' + idObj + '"></div>' +
+            '<div style="margin:0px;padding-top:10px;font-size:9px;" id="DIVstatus_' + idObj + '"></div>' +
             '</p>' +
             '</div>' +
             '<div style="height:80px;" id="DIVadded_' + idObj + '"></div>' +
