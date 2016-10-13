@@ -24,7 +24,7 @@ function getform(accion,extra) {
                 if (data.result === "ok") {
                     $("#popup_form").html(data.html);
                     $("#popup_form").dialog({
-                        title: "Actualizar itracker " + TKTID + " -> " + accion,
+                        title: "Actualizar ticket " + TKTID + " -> " + accion,
                         resizable: false,
                         width: 800,
                         height: 'auto',
@@ -123,7 +123,7 @@ function show_details(id,hideupdate) {
             $("#popup_detalles").html('<div id="div_contenido" style="width:100%;height:100%">' + data.html + "</div>");
             $("#popup_detalles").dialog('close');
             $("#popup_detalles").dialog({
-                title: "itracker " + TKTID,
+                title: "iconnect " + TKTID,
                 resizable: false,
                 width: 800,
                 height: 500,

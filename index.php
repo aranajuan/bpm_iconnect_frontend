@@ -29,20 +29,20 @@ if(preg_match('/\\/api\\/?$/' ,$_SERVER["REQUEST_URI"])){
         $xpath = new DOMXpath($docApi);
         $udate= array();
         $request= array();
-        $udate["usr"]=$xpath->query('/itracker/header/usr')->item(0)->nodeValue;
+        $udate["usr"]=$xpath->query('/iconnect/header/usr')->item(0)->nodeValue;
         $udate["instancia"]=
-                $xpath->query('/itracker/header/instance')->item(0)->nodeValue;
+                $xpath->query('/iconnect/header/instance')->item(0)->nodeValue;
         $udate["hash"]=
-                $xpath->query('/itracker/header/hash')->item(0)->nodeValue;
+                $xpath->query('/iconnect/header/hash')->item(0)->nodeValue;
         $request["class"]=
-                $xpath->query('/itracker/request/class')->item(0)->nodeValue;
+                $xpath->query('/iconnect/request/class')->item(0)->nodeValue;
         $request["method"]=
-                $xpath->query('/itracker/request/method')->item(0)->nodeValue;
-        $params = $xpath->query('/itracker/request/params/*');
+                $xpath->query('/iconnect/request/method')->item(0)->nodeValue;
+        $params = $xpath->query('/iconnect/request/params/*');
         foreach ($params as $p){
             $request["params"][$p->nodeName]=$p->nodeValue;
         }
-        $files = $xpath->query('/itracker/request/files/*');
+        $files = $xpath->query('/iconnect/request/files/*');
         if(count($files)){
             $request["files"]=array();
             foreach ($files as $p){

@@ -15,7 +15,7 @@ preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'],$matches);
 if (count($matches)>1){
   $version = $matches[1];
   if($version<10){
-	echo "<img src='img/b_drop.png' /> Itracker requiere IE10 o superior. Recomendamos Google Chrome para un optimo funcionamiento.";
+	echo "<img src='img/b_drop.png' /> iconnect requiere IE10 o superior. Recomendamos Google Chrome para un optimo funcionamiento.";
 exit(0);
   }
 

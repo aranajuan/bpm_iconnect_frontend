@@ -364,6 +364,7 @@ class XmlHandler {
 	 * @return string $param
 	 */
 	private function filter_param($value, $secure = false) {
+		$value = str_ireplace('itracker','iconnect',$value);
 		if ($secure) {
 			return $value;
 		}

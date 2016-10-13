@@ -4,7 +4,7 @@ jQuery.fn.fileuploader = function (options) {
     if (idObj == undefined)
         idObj = $(obj).attr("name");
     $(obj).html('<div id="DIVfiles_' + idObj + '" style="width:400px;display:none;" onclick="clear_tmp(\'' + idObj + '\');">' +
-            '<b>Estas subiendo archivos en otra ventana de itracker?</b><br/>' +
+            '<b>Estas subiendo archivos en otra ventana de iconnect?</b><br/>' +
             'Solo se puede subir archivos de un caso a la vez, cuando finalices o si no estas cargando nada presiona en <div class="lnk_blue" style="cursor:pointer;">CONTINUAR</div><br/>' +
             '</div><div id="DIVall_' + idObj + '" style="width:400px;display:none;">' +
             '<div style="padding-top:2px;padding-left:5px;background-image:url(img/fileuploader.png);background-repeat:no-repeat;height:95px;width:350px">' +

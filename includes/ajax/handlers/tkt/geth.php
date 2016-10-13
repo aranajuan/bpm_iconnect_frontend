@@ -77,7 +77,7 @@ function GO($XML, $output = "html") {
             }
             if($XML->get_user()->get_prop('usr')!=$result["USER"]["usr"]){
                 $contact = '&nbsp;<a href="sip:'.$result["USER"]["mail"].'"><img src="img/lync.jpg" class="img_lnk" /></a>
-                    &nbsp;<a href="mailto:'.$result["USER"]["mail"].'?subject=iTracker '.$XML->get_paramSent('id').'"><img src="img/mail.png" with="16" height="16" class="img_lnk"/></a>';
+                    &nbsp;<a href="mailto:'.$result["USER"]["mail"].'?subject=iconnect '.$XML->get_paramSent('id').'"><img src="img/mail.png" with="16" height="16" class="img_lnk"/></a>';
             }
         }
         $res.="<div class='element'>";

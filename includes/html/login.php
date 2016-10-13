@@ -21,7 +21,7 @@
 ?>
 <div style="width: 100%;text-align: center;padding-top:40px;">
     <div id="statusform" style="width: 100%;text-align: center;float:left;display:block;">
-        <img src="img/loading.gif" height="50" width="50"><h2>Iniciando itracker</h2>
+        <img src="img/loading.gif" height="50" width="50"><h2>Iniciando</h2>
     </div>
     <? if(LOGIN_METHOD=="INTEGRATED"){
         echo "<div id=\"loginform\" style=\"display:none;\">";

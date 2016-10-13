@@ -28,7 +28,7 @@ function main() {
                 },
         function(data) {
             if (data.result == 'ok') {
-                alert_p('Sesiones eliminadas', 'Itracker');
+                alert_p('Sesiones eliminadas', 'iconnect');
             } else {
                 alert_p(data.result, 'Error');
             }

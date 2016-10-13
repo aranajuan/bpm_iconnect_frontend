@@ -57,14 +57,14 @@ function go(path) {
             var result = data.result;
             if (result.result === "ok") {
                 if (result.type == 'file') {
-                    var text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2>";
+                    var text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>iconnect " + result.id + "</a></h2>";
                     if (ValidUrl(result.file)) {
                         text += "<h2>Por favor remitase al siguiente&nbsp;<a href='" + result.file + "' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
                     } else {
                         text += "<h2>Por favor remitase al siguiente&nbsp;<a href='?class=tkt&method=downloadfile&type=anexo&file=" + result.file + "' target='_blank'>LINK</a>. El ticket fue cerrado.</h2>";
                     }
                 } else {
-                    text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>itracker " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.";
+                    text = "<h2>Se gener&oacute; el <a href='?L=mytkts&id=" + result.id + "'>iconnect " + result.id + "</a></h2><br/>Puedes darle seguimiento desde <b>Generados</b> ingresando por el menu.";
                     if (result.openother == 1) {
                         text += "<br/>" + "<a href=\"javascript:load_tree('" + path + "')\">Abrir otro igual</a>";
                     }
