@@ -22,6 +22,7 @@ function main() {
     } else {
         $("#statusform").hide();
         $("#loginform").show();
+        $("#usr").focus();
     }
     if($_GET("usr")){
         $("#usr").val($_GET("usr"));

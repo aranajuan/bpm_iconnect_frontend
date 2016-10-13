@@ -27,7 +27,7 @@ function GO($XML, $output = "html") {
         $f = new formmaker();
         $resHTML = "";
         $f->load_vector(make_arrayobj($tkt["th"]["itform"]["element"]));
-        $resHTML .= "<div style='border: 1px #444444 solid; background-color: #add8f2;float:left;cursor:pointer;margin:5px' onclick='$(\"input[value=" . $tkt["id"] . "]\").prop(\"checked\", true);'>";
+        $resHTML .= "<div style='border: 1px #444444 solid; background-color: white;float:left;cursor:pointer;margin:5px' onclick='$(\"input[value=" . $tkt["id"] . "]\").prop(\"checked\", true);'>";
         if ($tkt["childsc"] > 3) {
             $img = "postit_3.png";
         } elseif ($tkt["childsc"] >= 2) {
@@ -37,7 +37,7 @@ function GO($XML, $output = "html") {
         }
         $resHTML .= "<img src=\"img/$img\" />";
         $resHTML .= "<input name=\"Sel_similar\" id=\"Sel_similar\" type=\"radio\" value=\"" . $tkt["id"] . "\"  />";
-        $resHTML .= $tkt["id"] . "(" . $tkt["childsc"] . ")"."<br>Fecha: ". $tkt["FA"];
+        $resHTML .= $tkt["id"] . "(+" . dataDefatult($tkt["childsc"],'0') . ")"."<br>Fecha: ". $tkt["FA"];
         $resHTML .="<div style=\"overflow: auto;height: 200px;width:195px;padding-top:3px\">";
         $resHTML .=$f->get_htmlview(array('text', 'link'), true);
         $resHTML .="</div>";

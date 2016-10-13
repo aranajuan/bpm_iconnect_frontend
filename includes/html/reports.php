@@ -19,7 +19,6 @@
         <input type="text" id="desde" class="dtpck"/> y 
         <input type="text" id="hasta" class="dtpck"/>
     </div>
-    Seleccione un rango no mayor a 31 dias
     
     <?
         if($U->get_prop('superuser')){?>
@@ -32,7 +31,6 @@
         }
     ?>
     <br/><br/>
-    <?= menu_button("DESCARGAR", "report()"); ?>
-
+    <?= option_button("Generar",90, 0 ,"report()")?>
 </div>
 <br/>
