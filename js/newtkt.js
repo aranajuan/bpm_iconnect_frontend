@@ -13,6 +13,7 @@ function main() {
  * @returns {undefined}
  */
 function load_tree(path) {
+	$("#tree").html(JAVA_LOADING);
     postControl.sendRequest(
             true,
             'treeoptions',

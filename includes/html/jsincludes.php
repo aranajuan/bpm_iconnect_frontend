@@ -2,7 +2,7 @@
 <link rel="stylesheet" media="all" type="text/css" href="css/menu.css?v=<?=VERSION;?>" />
 <link rel="stylesheet" media="all" type="text/css" href="css/tkt_details.css?v=<?=VERSION;?>" />
 <script src="js/classes/jsonie.js?v=<?=VERSION;?>" type="text/javascript"></script>
-<link rel="stylesheet" media="all" type="text/css" href="js/classes/jui/themes/smoothness/jquery-ui.css?v=<?=VERSION;?>" />
+<link rel="stylesheet" media="all" type="text/css" href="js/classes/jui/jquery-ui.css?v=<?=VERSION;?>" />
 <script src="js/classes/jui/external/jquery/jquery.js?v=<?=VERSION;?>" type="text/javascript"></script>
 <script src="js/classes/jui/jquery-ui.js?v=<?=VERSION;?>" type="text/javascript"></script>
 

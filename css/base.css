@@ -1,3 +1,27 @@
+@font-face {
+    font-family: "century gothic";
+    src: url(../img/fonts/GOTHIC.TTF) format("truetype");
+}
+
+@font-face {
+    font-family: "century gothic";
+    src: url(../img/fonts/GOTHICB.TTF) format("truetype");
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: "century gothic";
+    src: url(../img/fonts/GOTHICI.TTF) format("truetype");
+    font-style: italic, oblique;
+}
+
+@font-face {
+    font-family: "century gothic";
+    src: url(../img/fonts/GOTHICBI.TTF) format("truetype");
+    font-weight: bold;
+    font-style: italic, oblique;
+}
+
 .popup{
     display: none;
     font-size: 12px;
@@ -15,14 +39,14 @@
     border:none;
 }
 body{
-    
-    font-family: calibri;
+    background-image: url("../img/base/back.png");
+    background-repeat: repeat;
+    font-family: century gothic;
     font-size: 10px;
 }
 h2{
     padding-left: 10px;
     padding-top: 10px;
-    color:#0A266B;
     clear:both;
 }
 .main_bar{
@@ -38,7 +62,7 @@ h2{
     min-height: 300px;
 }
 table{
-    font-family: calibri;
+    font-family: century gothic;
     font-size: 12px;
 }
 
@@ -56,5 +80,37 @@ a{text-decoration:none;}
 
 .status{
     width: 100%;
-        
 }
+
+.but-general{
+	float:left;
+	overflow: hidden;
+	cursor: pointer;
+	padding: 5px;
+}
+
+.but-general-s1{
+    float: left;
+    height: 100%;
+    text-align: center;
+    font-size: 15px;
+    background-color: #c10a27;
+    color: white;
+}
+
+.but-general-s2{
+	float: left;
+	height: 100%;
+	text-align: center;
+	font-size: 15px;
+    background-color: #9c9c9c;
+    color: white;
+}
+
+input[type="text"], input[type='password'], input[type='search'],textarea{
+    border:solid 2px #9c9c9c;
+}
+input[type="text"]:focus, input[type='password']:focus, input[type='search']:focus,textarea:focus{
+    border:solid 2px #c10a27;
+}
+

@@ -19,14 +19,14 @@
         echo "<script>var autologin=false;</script>";
     }
 ?>
-<div style="width: 100%;text-align: center;padding-top:10px;padding-bottom:40px;">
+<div style="width: 100%;text-align: center;padding-top:40px;">
     <div id="statusform" style="width: 100%;text-align: center;float:left;display:block;">
         <img src="img/loading.gif" height="50" width="50"><h2>Iniciando itracker</h2>
     </div>
     <? if(LOGIN_METHOD=="INTEGRATED"){
         echo "<div id=\"loginform\" style=\"display:none;\">";
         if(count($instancesV) > 1){ 
-            echo "<b>SELECCIONE UNA INSTANCIA DE ITRACKER</b>";
+            echo "<b>SELECCIONE UNA INSTANCIA</b>";
             echo "<div style=\"margin-left:300px;\">";
             foreach($instancesV as $ins){
                 echo option_button($ins, 300, 0, "login('','','".$ins."',null,false)");
@@ -39,11 +39,11 @@
         }
         echo "</div>";
     }else{?>
-    <div id="loginform" style="width: 70%;text-align: center;float:left;display:none;">
+    <div id="loginform" style="margin-left:369px;display:none;">
         <table>
             <tr>
                 <td>
-                    Usuario:    
+                    USUARIO:    
                 </td>
                 <td>
                     <input type="text" id="usr" size="10" />    
@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <td>
-                    Contrase&ntilde;a:    
+                    CONTRASE&Ntilde;A:    
                 </td>
                 <td>
                     <input type="password" id="pass" size="10" />    
@@ -90,7 +90,7 @@
             ?>
                 <tr>
                     <td>&nbsp;</td>
-                    <td> <?= menu_button("Login", "doLogin()")?></td>
+                    <td> <?= option_button("Login",90, 0 ,"doLogin()")?></td>
                 </tr>
         </table>
         <br/>
